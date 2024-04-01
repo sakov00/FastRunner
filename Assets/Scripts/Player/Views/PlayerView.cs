@@ -15,5 +15,10 @@ namespace Assets.Scripts.Player.Views
         {
             _characterController.Move(movement);
         }
+
+        public void Rotate(Quaternion quaternion)
+        {
+            transform.rotation = quaternion;
+        }
     }
 }

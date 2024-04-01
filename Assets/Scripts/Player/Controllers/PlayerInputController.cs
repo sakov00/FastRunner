@@ -24,37 +24,19 @@ namespace Assets.Scripts.Player.Controllers
 
         private void OnEnable()
         {
-            _inputActions.PC.HorizontalMove.performed += HorizontalMove;
-            _inputActions.PC.HorizontalMove.canceled += HorizontalMove;
-            _inputActions.PC.VerticalMove.performed += VerticalMove;
-            _inputActions.PC.VerticalMove.canceled += VerticalMove;
-            _inputActions.PC.Jump.performed += JumpMove;
-            _inputActions.PC.Jump.canceled += JumpMove;
+            _inputActions.PC.Movement.performed += Movement;
+            _inputActions.PC.Movement.canceled += Movement;
         }
 
         private void OnDisable()
         {
-            _inputActions.PC.HorizontalMove.performed -= HorizontalMove;
-            _inputActions.PC.HorizontalMove.canceled += HorizontalMove;
-            _inputActions.PC.VerticalMove.performed -= VerticalMove;
-            _inputActions.PC.VerticalMove.canceled += VerticalMove;
-            _inputActions.PC.Jump.performed -= JumpMove;
-            _inputActions.PC.Jump.canceled += JumpMove;
+            _inputActions.PC.Movement.performed -= Movement;
+            _inputActions.PC.Movement.canceled -= Movement;
         }
 
-        private void HorizontalMove(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+        private void Movement(UnityEngine.InputSystem.InputAction.CallbackContext obj)
         {
-            movementInput.x = obj.ReadValue<float>();
-        }
-
-        private void VerticalMove(UnityEngine.InputSystem.InputAction.CallbackContext obj)
-        {
-            movementInput.z = obj.ReadValue<float>();
-        }
-
-        private void JumpMove(UnityEngine.InputSystem.InputAction.CallbackContext obj)
-        {
-            movementInput.y = obj.ReadValue<float>();
+            movementInput = obj.ReadValue<Vector3>();
         }
     }
 }

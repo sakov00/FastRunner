@@ -13,6 +13,7 @@ namespace Assets.Scripts.Player.Controllers
         private CharacterController _characterController;
 
         private Vector3 movement;
+        private Quaternion targetRotation;
 
         private void Awake()
         {
@@ -34,21 +35,39 @@ namespace Assets.Scripts.Player.Controllers
 
         private void Move(Vector3 movementInput)
         {
-            movement.x = movementInput.x * _playerModel.RunSpeed;
-            movement.z = movementInput.z * _playerModel.RunSpeed;
-            if (_characterController.isGrounded && movementInput.y != 0)
+            movement.z = transform.forward.z * movementInput.z * _playerModel.RunSpeed;
+            movement.x = transform.forward.x * movementInput.z * _playerModel.RunSpeed;
+            if (movementInput.x == -1)
             {
-                movement.y = sqrt(_playerModel.JumpHeight * -2f * _playerModel.GravityValue);
+                targetRotation = Quaternion.Euler(0f, -15, 0f);
             }
-            else if (_characterController.isGrounded)
+            else if (movementInput.x == 1)
             {
-                movement.y = 0;
+                targetRotation = Quaternion.Euler(0f, 15, 0f);
             }
-            else if (!_characterController.isGrounded)
+            else
+            {
+                targetRotation = Quaternion.identity;
+            }
+
+            if (_characterController.isGrounded)
+            {
+                if (movementInput.y != 0)
+                {
+                    movement.y = sqrt(_playerModel.JumpHeight * -2f * _playerModel.GravityValue);
+                }
+                else
+                {
+                    movement.y = 0;
+                }
+            }
+            else
             {
                 movement.y += _playerModel.GravityValue * Time.deltaTime;
             }
+
             _playerView.Move(movement * Time.deltaTime);
+            _playerView.Rotate(Quaternion.Slerp(transform.rotation, targetRotation, 2 * Time.deltaTime));
         }
     }
 }
