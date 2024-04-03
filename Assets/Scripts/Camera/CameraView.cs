@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.Camera
 {
@@ -14,6 +12,11 @@ namespace Assets.Scripts.Camera
         public void Rotate(Quaternion quaternion)
         {
             transform.rotation = quaternion;
+        }
+
+        public void LookAt(Transform target)
+        {
+            transform.LookAt(target);
         }
     }
 }

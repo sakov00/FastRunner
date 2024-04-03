@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Assets.Scripts.Player.Controllers
@@ -7,19 +6,12 @@ namespace Assets.Scripts.Player.Controllers
     {
         private PlayerInput _inputActions;
 
-        private Vector3 movementInput;
-
-        public event Action<Vector3> OnMovementEvent;
+        public Vector3 MovementInput { get; private set; }
 
         private void Awake()
         {
             _inputActions = new PlayerInput();
             _inputActions.Enable();
-        }
-
-        private void Update()
-        {
-            OnMovementEvent?.Invoke(movementInput);
         }
 
         private void OnEnable()
@@ -36,7 +28,7 @@ namespace Assets.Scripts.Player.Controllers
 
         private void Movement(UnityEngine.InputSystem.InputAction.CallbackContext obj)
         {
-            movementInput = obj.ReadValue<Vector3>();
+            MovementInput = obj.ReadValue<Vector3>();
         }
     }
 }

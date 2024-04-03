@@ -23,51 +23,39 @@ namespace Assets.Scripts.Player.Controllers
             _characterController = GetComponent<CharacterController>();
         }
 
-        private void OnEnable()
+        private void Update()
         {
-            _playerInputController.OnMovementEvent += Move;
-        }
-
-        private void OnDisable()
-        {
-            _playerInputController.OnMovementEvent -= Move;
+            Move(_playerInputController.MovementInput);
+            Rotate(_playerInputController.MovementInput);
         }
 
         private void Move(Vector3 movementInput)
         {
             movement.z = transform.forward.z * movementInput.z * _playerModel.RunSpeed;
             movement.x = transform.forward.x * movementInput.z * _playerModel.RunSpeed;
-            if (movementInput.x == -1)
-            {
-                targetRotation = Quaternion.Euler(0f, -15, 0f);
-            }
-            else if (movementInput.x == 1)
-            {
-                targetRotation = Quaternion.Euler(0f, 15, 0f);
-            }
-            else
-            {
-                targetRotation = Quaternion.identity;
-            }
 
-            if (_characterController.isGrounded)
+            if (_characterController.isGrounded && movementInput.y != 0)
             {
-                if (movementInput.y != 0)
-                {
-                    movement.y = sqrt(_playerModel.JumpHeight * -2f * _playerModel.GravityValue);
-                }
-                else
-                {
-                    movement.y = 0;
-                }
+                movement.y = sqrt(_playerModel.JumpHeight * -2f * _playerModel.GravityValue);
             }
             else
             {
                 movement.y += _playerModel.GravityValue * Time.deltaTime;
             }
+            _playerView.Move(movement * Time.deltaTime);      
+        }
 
-            _playerView.Move(movement * Time.deltaTime);
-            _playerView.Rotate(Quaternion.Slerp(transform.rotation, targetRotation, 2 * Time.deltaTime));
+        private void Rotate(Vector3 movementInput) 
+        {
+            if (movementInput.x == -1)
+            {
+                targetRotation = Quaternion.Euler(0f, -_playerModel.MaxRotationAngleY, 0f);
+            }
+            else if (movementInput.x == 1)
+            {
+                targetRotation = Quaternion.Euler(0f, _playerModel.MaxRotationAngleY, 0f);
+            }
+            _playerView.Rotate(Quaternion.Lerp(transform.rotation, targetRotation, 2 * Time.deltaTime));
         }
     }
 }
