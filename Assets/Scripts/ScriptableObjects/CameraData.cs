@@ -6,7 +6,9 @@ namespace Assets.Scripts.ScriptableObjects
 
     public class CameraData : ScriptableObject
     {
-        public float SmoothSpeed;
+        public float SmoothValue;
+
+        public float LookingSpeed;
 
         public Vector3 OffsetInAir;
 

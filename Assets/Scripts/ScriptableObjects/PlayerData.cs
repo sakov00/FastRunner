@@ -6,12 +6,18 @@ namespace Assets.Scripts.ScriptableObjects
 
     public class PlayerData : ScriptableObject
     {
-        public float RunSpeed;
+        public float RunningSpeed;
+
+        public float FastRunningSpeed;
 
         public float JumpHeight;
 
         public float GravityValue;
 
-        public float MaxRotationAngleY;
+        public float LimitRotationAngleY;
+
+        public float RotationSpeedOnGround;
+
+        public float RotationSpeedOnFlying;
     }
 }

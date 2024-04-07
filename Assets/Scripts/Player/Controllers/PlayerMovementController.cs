@@ -15,6 +15,7 @@ namespace Assets.Scripts.Player.Controllers
         private Vector3 movement;
         private Quaternion targetRotation;
 
+
         private void Awake()
         {
             _playerModel = GetComponent<PlayerModel>();
@@ -25,14 +26,23 @@ namespace Assets.Scripts.Player.Controllers
 
         private void Update()
         {
-            Move(_playerInputController.MovementInput);
+            HorizontalMove(_playerInputController.MovementInput, _playerInputController.FastRunInput);
+            VerticalMove(_playerInputController.MovementInput);
             Rotate(_playerInputController.MovementInput);
+
+            _playerView.Move(movement * Time.deltaTime);
+            _playerView.Rotate(Quaternion.Lerp(transform.rotation, targetRotation, 2 * Time.deltaTime));
         }
 
-        private void Move(Vector3 movementInput)
+        private void HorizontalMove(Vector3 movementInput, float fastRunInput)
         {
-            movement.z = transform.forward.z * movementInput.z * _playerModel.RunSpeed;
-            movement.x = transform.forward.x * movementInput.z * _playerModel.RunSpeed;
+            var speedValue = fastRunInput == 1 ? _playerModel.FastRunningSpeed : _playerModel.RunningSpeed;
+            movement.z = transform.forward.z * movementInput.z * speedValue;
+            movement.x = transform.forward.x * movementInput.z * speedValue;
+        }
+
+        private void VerticalMove(Vector3 movementInput)
+        {
 
             if (_characterController.isGrounded && movementInput.y != 0)
             {
@@ -42,20 +52,20 @@ namespace Assets.Scripts.Player.Controllers
             {
                 movement.y += _playerModel.GravityValue * Time.deltaTime;
             }
-            _playerView.Move(movement * Time.deltaTime);      
         }
 
         private void Rotate(Vector3 movementInput) 
         {
-            if (movementInput.x == -1)
-            {
-                targetRotation = Quaternion.Euler(0f, -_playerModel.MaxRotationAngleY, 0f);
-            }
-            else if (movementInput.x == 1)
-            {
-                targetRotation = Quaternion.Euler(0f, _playerModel.MaxRotationAngleY, 0f);
-            }
-            _playerView.Rotate(Quaternion.Lerp(transform.rotation, targetRotation, 2 * Time.deltaTime));
+            var currentDegrees = targetRotation.eulerAngles.y;
+            var rotationSpeed = _characterController.isGrounded ? _playerModel.RotationSpeedOnGround : _playerModel.RotationSpeedOnFlying;
+            currentDegrees += movementInput.x * rotationSpeed * Time.deltaTime;
+            //currentDegrees = clamp(currentDegrees, -_playerModel.LimitRotationAngleY, _playerModel.LimitRotationAngleY); 
+
+            RaycastHit hit;
+            Physics.Raycast(transform.position, Vector3.down, out hit);
+            Quaternion surfaceRotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
+
+            targetRotation = Quaternion.Euler(surfaceRotation.eulerAngles.x, currentDegrees, surfaceRotation.eulerAngles.z);
         }
     }
 }

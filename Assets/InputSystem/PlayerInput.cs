@@ -15,7 +15,7 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public partial class @PlayerInput : IInputActionCollection2, IDisposable
+public partial class @PlayerInput: IInputActionCollection2, IDisposable
 {
     public InputActionAsset asset { get; }
     public @PlayerInput()
@@ -35,6 +35,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""FastRun"",
+                    ""type"": ""Button"",
+                    ""id"": ""2ba4ec82-d3e2-4e68-98b6-9b7203a4a53d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -103,6 +112,17 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e22b917b-d287-4e82-aee8-51c6c01334a5"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FastRun"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -112,6 +132,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         // PC
         m_PC = asset.FindActionMap("PC", throwIfNotFound: true);
         m_PC_Movement = m_PC.FindAction("Movement", throwIfNotFound: true);
+        m_PC_FastRun = m_PC.FindAction("FastRun", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -174,11 +195,13 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_PC;
     private List<IPCActions> m_PCActionsCallbackInterfaces = new List<IPCActions>();
     private readonly InputAction m_PC_Movement;
+    private readonly InputAction m_PC_FastRun;
     public struct PCActions
     {
         private @PlayerInput m_Wrapper;
         public PCActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_PC_Movement;
+        public InputAction @FastRun => m_Wrapper.m_PC_FastRun;
         public InputActionMap Get() { return m_Wrapper.m_PC; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -191,6 +214,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
             @Movement.started += instance.OnMovement;
             @Movement.performed += instance.OnMovement;
             @Movement.canceled += instance.OnMovement;
+            @FastRun.started += instance.OnFastRun;
+            @FastRun.performed += instance.OnFastRun;
+            @FastRun.canceled += instance.OnFastRun;
         }
 
         private void UnregisterCallbacks(IPCActions instance)
@@ -198,6 +224,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
             @Movement.started -= instance.OnMovement;
             @Movement.performed -= instance.OnMovement;
             @Movement.canceled -= instance.OnMovement;
+            @FastRun.started -= instance.OnFastRun;
+            @FastRun.performed -= instance.OnFastRun;
+            @FastRun.canceled -= instance.OnFastRun;
         }
 
         public void RemoveCallbacks(IPCActions instance)
@@ -218,5 +247,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     public interface IPCActions
     {
         void OnMovement(InputAction.CallbackContext context);
+        void OnFastRun(InputAction.CallbackContext context);
     }
 }

@@ -9,7 +9,9 @@ namespace Assets.Scripts.Camera
 
         [field: SerializeField] public Transform Target { get; set; }
 
-        public float SmoothSpeed { get; set; }
+        public float SmoothValue { get; set; }
+
+        public float LookingSpeed { get; set; }
 
         public Vector3 OffsetInAir { get; set; }
 
@@ -17,7 +19,8 @@ namespace Assets.Scripts.Camera
 
         private void Awake()
         {
-            SmoothSpeed = cameraData.SmoothSpeed;
+            SmoothValue = cameraData.SmoothValue;
+            LookingSpeed = cameraData.LookingSpeed;
             OffsetInAir = cameraData.OffsetInAir;
             OffsetInGround = cameraData.OffsetInGround;
         }

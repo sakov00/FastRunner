@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6bd0b2eda8863841a081d9f52deadbe, type: 3}
   m_Name: CameraData
   m_EditorClassIdentifier: 
-  SmoothSpeed: 0.05
-  OffsetInAir: {x: 0, y: 2, z: -10}
-  OffsetInGround: {x: 0, y: 0, z: -10}
+  SmoothValue: 5
+  LookingSpeed: 0
+  OffsetInAir: {x: 0, y: 2, z: -5}
+  OffsetInGround: {x: 0, y: 0, z: -5}

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using static Unity.Mathematics.math;
 
 namespace Assets.Scripts.Camera
 {
@@ -19,11 +20,19 @@ namespace Assets.Scripts.Camera
         private void LateUpdate()
         {
             var targetAngleY = _cameraModel.Target.eulerAngles.y;
-            var offset = _characterController.isGrounded ? _cameraModel.OffsetInGround : _cameraModel.OffsetInAir;
+            var offset = _cameraModel.OffsetInAir;
             Vector3 rotationOffset = Quaternion.Euler(0, targetAngleY, 0) * offset;
             Vector3 newCameraPosition = _cameraModel.Target.position + rotationOffset;
 
-            _cameraView.Move(Vector3.Lerp(transform.position, newCameraPosition, _cameraModel.SmoothSpeed));
+            Ray ray = new Ray(newCameraPosition, Vector3.down);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit) && _characterController.isGrounded)
+            {
+                newCameraPosition.y = hit.point.y+1;
+            }
+
+            _cameraView.Move(Vector3.Lerp(transform.position, newCameraPosition, _cameraModel.SmoothValue * Time.deltaTime));
             _cameraView.LookAt(_cameraModel.Target);
         }
     }
