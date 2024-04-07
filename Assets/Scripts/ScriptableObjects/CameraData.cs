@@ -6,12 +6,10 @@ namespace Assets.Scripts.ScriptableObjects
 
     public class CameraData : ScriptableObject
     {
-        public float SmoothValue;
+        [Range(1, 10)] public float SmoothValue;
 
-        public float LookingSpeed;
+        [Range(1, 10)] public float DistanceFromGround;
 
-        public Vector3 OffsetInAir;
-
-        public Vector3 OffsetInGround;
+        public Vector3 Offset;
     }
 }

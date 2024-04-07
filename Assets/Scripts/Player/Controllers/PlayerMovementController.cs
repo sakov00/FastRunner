@@ -43,10 +43,24 @@ namespace Assets.Scripts.Player.Controllers
 
         private void VerticalMove(Vector3 movementInput)
         {
+            //if (_characterController.isGrounded)
+            //{
+            //    _playerModel.CanDoubleJump = true;
+            //}
+            //if (!_characterController.isGrounded && _playerModel.CanDoubleJump)
+            //    _playerModel.CanDoubleJump = false;
 
-            if (_characterController.isGrounded && movementInput.y != 0)
+            float movementDirectionY = movement.y;
+            if (_characterController.isGrounded)
             {
-                movement.y = sqrt(_playerModel.JumpHeight * -2f * _playerModel.GravityValue);
+                if (movementInput.y != 0)
+                {
+                    movement.y = sqrt(_playerModel.JumpHeight * -2f * _playerModel.GravityValue);
+                }
+                else
+                {
+                    movement.y = movementDirectionY;
+                }
             }
             else
             {
@@ -54,12 +68,11 @@ namespace Assets.Scripts.Player.Controllers
             }
         }
 
-        private void Rotate(Vector3 movementInput) 
+        private void Rotate(Vector3 movementInput)
         {
             var currentDegrees = targetRotation.eulerAngles.y;
             var rotationSpeed = _characterController.isGrounded ? _playerModel.RotationSpeedOnGround : _playerModel.RotationSpeedOnFlying;
             currentDegrees += movementInput.x * rotationSpeed * Time.deltaTime;
-            //currentDegrees = clamp(currentDegrees, -_playerModel.LimitRotationAngleY, _playerModel.LimitRotationAngleY); 
 
             RaycastHit hit;
             Physics.Raycast(transform.position, Vector3.down, out hit);
