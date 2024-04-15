@@ -7,6 +7,8 @@ public class SpeedBoostEffect : MonoBehaviour
     public  Material mat;
     public float clipBoost;
     public float clipStand;
+    public ParticleSystem ps;
+    public CharacterController ch;
     
     void Start()
     {
@@ -21,6 +23,11 @@ public class SpeedBoostEffect : MonoBehaviour
         }
         else{
             mat.SetFloat("_clip", clipStand);
+        }
+        if(!ch.isGrounded)
+        {
+            ps.Play();
+            Debug.Log("стою же");
         }
     }
 }

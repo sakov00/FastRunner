@@ -664,6 +664,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5989876564739561343, guid: 189a21c16cb0b1840aa0fa28f60d4cb8, type: 3}
   m_PrefabInstance: {fileID: 4548888784213905860}
   m_PrefabAsset: {fileID: 0}
+--- !u!143 &311491841 stripped
+CharacterController:
+  m_CorrespondingSourceObject: {fileID: 6390660238196921899, guid: 189a21c16cb0b1840aa0fa28f60d4cb8, type: 3}
+  m_PrefabInstance: {fileID: 4548888784213905860}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &345122616 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4376657132610222105, guid: e133dac167ef59c40b7678ba58107c6a, type: 3}
@@ -1006,6 +1011,8 @@ MonoBehaviour:
   mat: {fileID: 2100000, guid: 83b10064ee151f143a9825c2d22ffde2, type: 2}
   clipBoost: 0.19
   clipStand: 1
+  ps: {fileID: 1465376701}
+  ch: {fileID: 311491841}
 --- !u!4 &658943793 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3805318389859771188, guid: 24457fdf8e66c3c49b7599931e0fdcb2, type: 3}
@@ -2271,7 +2278,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
