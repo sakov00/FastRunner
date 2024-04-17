@@ -16,8 +16,8 @@ namespace Assets.Scripts.ScriptableObjects
 
         [Range(0, 45)] public float LimitRotationAngleY;
 
-        [Range(50, 200)] public float RotationSpeedOnGround;
+        [Range(0, 10)] public float RotationSpeedOnGround;
 
-        [Range(50, 200)] public float RotationSpeedOnFlying;
+        [Range(0, 10)] public float RotationSpeedOnFlying;
     }
 }

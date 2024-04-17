@@ -1,15 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpeedBoostEffect : MonoBehaviour
 {
-    public  Material mat;
+    public Material mat;
     public float clipBoost;
     public float clipStand;
     public ParticleSystem ps;
-    public CharacterController ch;
-    
+    private CharacterController _characterController;
+
+    private void Awake()
+    {
+        _characterController = GetComponent<CharacterController>();
+    }
+
     void Start()
     {
         mat.SetFloat("_clip", clipStand);
@@ -17,14 +20,15 @@ public class SpeedBoostEffect : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift))
         {
             mat.SetFloat("_clip", clipBoost);
         }
-        else{
+        else
+        {
             mat.SetFloat("_clip", clipStand);
         }
-        if(!ch.isGrounded)
+        if (_characterController.isGrounded)
         {
             ps.Play();
             Debug.Log("стою же");
