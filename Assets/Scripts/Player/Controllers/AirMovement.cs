@@ -1,6 +1,6 @@
 ﻿using Assets.Scripts.Player.Models;
 using UnityEngine;
-using UnityEngine.EventSystems;
+using static Unity.Mathematics.math;
 
 namespace Assets.Scripts.Player.Controllers
 {
@@ -28,7 +28,7 @@ namespace Assets.Scripts.Player.Controllers
 
         private void HorizontalMove()
         {
-            var speedValue = _playerInputController.FastRunInput == 1 ? _playerModel.FastRunningSpeed : _playerModel.RunningSpeed;
+            var speedValue = _playerModel.RunningSpeed;
             var gravityValue = _movement.y;
             _movement = (_playerModel.transform.forward * _playerInputController.MovementInput.z * speedValue) + (_playerModel.transform.right * _playerInputController.MovementInput.x * _playerModel.RunningSpeed);
             _movement.y = gravityValue;
@@ -46,7 +46,7 @@ namespace Assets.Scripts.Player.Controllers
             return _targetRotation;
         }
 
-        private void CalculateRotate() 
+        private void CalculateRotate()
         {
             var currentDegrees = _targetRotation.eulerAngles.y;
             var rotationSpeed = _playerModel.RotationSpeedOnFlying;

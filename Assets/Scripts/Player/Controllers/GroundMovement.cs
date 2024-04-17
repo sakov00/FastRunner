@@ -28,7 +28,7 @@ namespace Assets.Scripts.Player.Controllers
 
         private void HorizontalMove()
         {
-            var speedValue = _playerInputController.FastRunInput == 1 ? _playerModel.FastRunningSpeed : _playerModel.RunningSpeed;
+            var speedValue = _playerModel.RunningSpeed;
             _movement.z = _playerModel.transform.forward.z * _playerInputController.MovementInput.z * speedValue;
             _movement.x = _playerModel.transform.forward.x * _playerInputController.MovementInput.z * speedValue;
         }

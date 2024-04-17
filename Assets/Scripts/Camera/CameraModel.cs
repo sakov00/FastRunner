@@ -20,12 +20,6 @@ namespace Assets.Scripts.Camera
             SetDafaultState();
         }
 
-        //Enable when someone want fast test parameters and set the best values
-        private void FixedUpdate()
-        {
-            SetDafaultState();
-        }
-
         private void SetDafaultState()
         {
             SmoothValue = cameraData.SmoothValue;

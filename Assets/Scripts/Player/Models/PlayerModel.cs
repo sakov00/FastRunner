@@ -1,3 +1,4 @@
+using Assets.Scripts.Enums;
 using Assets.Scripts.ScriptableObjects;
 using UnityEngine;
 
@@ -23,13 +24,11 @@ namespace Assets.Scripts.Player.Models
 
         public float RotationSpeedOnFlying { get; set; }
 
-        private void Awake()
-        {
-            SetDafaultState();
-        }
+        public TypeAbility FirstAbilityType { get; set; }
+        public TypeAbility SecondAbilityType { get; set; }
+        public TypeAbility ThirdAbilityType { get; set; }
 
-        //Enable when someone want fast test parameters and set the best values
-        private void FixedUpdate()
+        private void Awake()
         {
             SetDafaultState();
         }
@@ -43,6 +42,10 @@ namespace Assets.Scripts.Player.Models
             LimitRotationAngleY = playerData.LimitRotationAngleY;
             RotationSpeedOnGround = playerData.RotationSpeedOnGround;
             RotationSpeedOnFlying = playerData.RotationSpeedOnFlying;
+
+            FirstAbilityType = playerData.FirstAbilityType;
+            SecondAbilityType = playerData.SecondAbilityType;
+            ThirdAbilityType = playerData.ThirdAbilityType;
         }
     }
 }

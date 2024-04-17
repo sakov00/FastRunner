@@ -1,3 +1,4 @@
+using Assets.Scripts.Enums;
 using UnityEngine;
 
 namespace Assets.Scripts.ScriptableObjects
@@ -19,5 +20,9 @@ namespace Assets.Scripts.ScriptableObjects
         [Range(0, 10)] public float RotationSpeedOnGround;
 
         [Range(0, 10)] public float RotationSpeedOnFlying;
+
+        public TypeAbility FirstAbilityType;
+        public TypeAbility SecondAbilityType;
+        public TypeAbility ThirdAbilityType;
     }
 }

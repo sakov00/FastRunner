@@ -37,9 +37,27 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""FastRun"",
+                    ""name"": ""FirstAbility"",
                     ""type"": ""Button"",
                     ""id"": ""2ba4ec82-d3e2-4e68-98b6-9b7203a4a53d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SecondAbility"",
+                    ""type"": ""Button"",
+                    ""id"": ""14005f9f-c1f2-438d-93dc-0d7ff74847e8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ThirdAbility"",
+                    ""type"": ""Button"",
+                    ""id"": ""24a493da-2199-4747-957b-e31194f41082"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -116,11 +134,33 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""e22b917b-d287-4e82-aee8-51c6c01334a5"",
-                    ""path"": ""<Keyboard>/shift"",
+                    ""path"": ""<Keyboard>/1"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""FastRun"",
+                    ""action"": ""FirstAbility"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""43177dd2-947e-4082-8537-d72ebdb3edc9"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SecondAbility"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8a7ec54b-90d8-4785-9c2a-e2fecc7f8413"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ThirdAbility"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -132,7 +172,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         // PC
         m_PC = asset.FindActionMap("PC", throwIfNotFound: true);
         m_PC_Movement = m_PC.FindAction("Movement", throwIfNotFound: true);
-        m_PC_FastRun = m_PC.FindAction("FastRun", throwIfNotFound: true);
+        m_PC_FirstAbility = m_PC.FindAction("FirstAbility", throwIfNotFound: true);
+        m_PC_SecondAbility = m_PC.FindAction("SecondAbility", throwIfNotFound: true);
+        m_PC_ThirdAbility = m_PC.FindAction("ThirdAbility", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -195,13 +237,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_PC;
     private List<IPCActions> m_PCActionsCallbackInterfaces = new List<IPCActions>();
     private readonly InputAction m_PC_Movement;
-    private readonly InputAction m_PC_FastRun;
+    private readonly InputAction m_PC_FirstAbility;
+    private readonly InputAction m_PC_SecondAbility;
+    private readonly InputAction m_PC_ThirdAbility;
     public struct PCActions
     {
         private @PlayerInput m_Wrapper;
         public PCActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_PC_Movement;
-        public InputAction @FastRun => m_Wrapper.m_PC_FastRun;
+        public InputAction @FirstAbility => m_Wrapper.m_PC_FirstAbility;
+        public InputAction @SecondAbility => m_Wrapper.m_PC_SecondAbility;
+        public InputAction @ThirdAbility => m_Wrapper.m_PC_ThirdAbility;
         public InputActionMap Get() { return m_Wrapper.m_PC; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -214,9 +260,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Movement.started += instance.OnMovement;
             @Movement.performed += instance.OnMovement;
             @Movement.canceled += instance.OnMovement;
-            @FastRun.started += instance.OnFastRun;
-            @FastRun.performed += instance.OnFastRun;
-            @FastRun.canceled += instance.OnFastRun;
+            @FirstAbility.started += instance.OnFirstAbility;
+            @FirstAbility.performed += instance.OnFirstAbility;
+            @FirstAbility.canceled += instance.OnFirstAbility;
+            @SecondAbility.started += instance.OnSecondAbility;
+            @SecondAbility.performed += instance.OnSecondAbility;
+            @SecondAbility.canceled += instance.OnSecondAbility;
+            @ThirdAbility.started += instance.OnThirdAbility;
+            @ThirdAbility.performed += instance.OnThirdAbility;
+            @ThirdAbility.canceled += instance.OnThirdAbility;
         }
 
         private void UnregisterCallbacks(IPCActions instance)
@@ -224,9 +276,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Movement.started -= instance.OnMovement;
             @Movement.performed -= instance.OnMovement;
             @Movement.canceled -= instance.OnMovement;
-            @FastRun.started -= instance.OnFastRun;
-            @FastRun.performed -= instance.OnFastRun;
-            @FastRun.canceled -= instance.OnFastRun;
+            @FirstAbility.started -= instance.OnFirstAbility;
+            @FirstAbility.performed -= instance.OnFirstAbility;
+            @FirstAbility.canceled -= instance.OnFirstAbility;
+            @SecondAbility.started -= instance.OnSecondAbility;
+            @SecondAbility.performed -= instance.OnSecondAbility;
+            @SecondAbility.canceled -= instance.OnSecondAbility;
+            @ThirdAbility.started -= instance.OnThirdAbility;
+            @ThirdAbility.performed -= instance.OnThirdAbility;
+            @ThirdAbility.canceled -= instance.OnThirdAbility;
         }
 
         public void RemoveCallbacks(IPCActions instance)
@@ -247,6 +305,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     public interface IPCActions
     {
         void OnMovement(InputAction.CallbackContext context);
-        void OnFastRun(InputAction.CallbackContext context);
+        void OnFirstAbility(InputAction.CallbackContext context);
+        void OnSecondAbility(InputAction.CallbackContext context);
+        void OnThirdAbility(InputAction.CallbackContext context);
     }
 }

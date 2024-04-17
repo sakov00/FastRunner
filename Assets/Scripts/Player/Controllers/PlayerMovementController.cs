@@ -44,5 +44,10 @@ namespace Assets.Scripts.Player.Controllers
             _playerView.Move(_movement * Time.deltaTime);
             _playerView.Rotate(Quaternion.Lerp(transform.rotation, _rotation, 2 * Time.deltaTime));
         }
+
+        public void SetMovement(Vector3 movement)
+        {
+            _movement = movement;
+        }
     }
 }

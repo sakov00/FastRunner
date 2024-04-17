@@ -28,7 +28,7 @@ public class SpeedBoostEffect : MonoBehaviour
         {
             mat.SetFloat("_clip", clipStand);
         }
-        if (_characterController.isGrounded)
+        if (!_characterController.isGrounded)
         {
             ps.Play();
             Debug.Log("стою же");
