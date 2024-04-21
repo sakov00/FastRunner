@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SmoothValue: 10
   DistanceFromGround: 1
-  Offset: {x: 0, y: 2, z: -5}
+  Offset: {x: 0, y: 4, z: -5}

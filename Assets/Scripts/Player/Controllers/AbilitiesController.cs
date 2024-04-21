@@ -1,7 +1,6 @@
 ﻿using Assets.Scripts.Abilities;
 using Assets.Scripts.Enums;
 using Assets.Scripts.Player.Models;
-using Assets.Scripts.Player.Views;
 using UnityEngine;
 
 namespace Assets.Scripts.Player.Controllers
@@ -36,12 +35,12 @@ namespace Assets.Scripts.Player.Controllers
         private BaseAbility CreateAbility(TypeAbility typeAbility)
         {
             switch (typeAbility)
-            { 
-                case TypeAbility.Acceleration :
+            {
+                case TypeAbility.Acceleration:
                     return new AccelerationAbility(_playerModel, GetComponent<CharacterController>());
-                case TypeAbility.DoubleJump :
+                case TypeAbility.DoubleJump:
                     return new DoubleJumpAbility(_playerModel, _characterController, _playerMovementController);
-                default: 
+                default:
                     return null;
             }
         }

@@ -14,7 +14,7 @@ namespace Assets.Scripts.Player.Controllers
         private GroundMovement groundMovement;
         private AirMovement airMovement;
 
-        private Vector3 _movement;
+        private Vector3 _movement = Vector3.zero;
         private Quaternion _rotation;
 
         private void Awake()

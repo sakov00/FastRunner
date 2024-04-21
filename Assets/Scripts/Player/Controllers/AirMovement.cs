@@ -1,6 +1,5 @@
 ﻿using Assets.Scripts.Player.Models;
 using UnityEngine;
-using static Unity.Mathematics.math;
 
 namespace Assets.Scripts.Player.Controllers
 {

@@ -11,7 +11,7 @@ namespace Assets.Scripts.Abilities
         private readonly CharacterController _characterController;
         private readonly PlayerMovementController _playerMovementController;
 
-        public DoubleJumpAbility(PlayerModel playerModel, CharacterController characterController, PlayerMovementController playerMovementController) 
+        public DoubleJumpAbility(PlayerModel playerModel, CharacterController characterController, PlayerMovementController playerMovementController)
         {
             _playerModel = playerModel;
             _characterController = characterController;

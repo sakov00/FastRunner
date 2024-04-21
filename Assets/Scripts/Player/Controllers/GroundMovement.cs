@@ -35,14 +35,13 @@ namespace Assets.Scripts.Player.Controllers
 
         private void VerticalMove()
         {
-            float movementDirectionY = _movement.y;
             if (_playerInputController.MovementInput.y != 0)
             {
                 _movement.y = sqrt(_playerModel.JumpHeight * -2f * _playerModel.GravityValue);
             }
             else
             {
-                _movement.y = movementDirectionY;
+                _movement.y = -2f;
             }
         }
 
