@@ -5,6 +5,7 @@ public class GoundCreater : MonoBehaviour
     public GameObject[] go;
     public Vector3[] offsetPos;
     public GameObject[] posTriggers;
+    public GameObject player;
 
     public int currentIndex;
 
@@ -13,6 +14,19 @@ public class GoundCreater : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             go[currentIndex].transform.position = go[currentIndex].transform.position + offsetPos[currentIndex];
+            for(int i = 0; i < go.Length; i++)
+            {
+                float dist = Vector3.Distance(player.transform.position, go[i].transform.position);
+                if(dist > 300)
+                {
+                    go[i].SetActive(false);
+                }
+                if(dist <= 300)
+                {
+                    go[i].SetActive(true);
+                }
+            }
+            }
             currentIndex++;
             if (currentIndex <= 2)
             {
@@ -25,4 +39,4 @@ public class GoundCreater : MonoBehaviour
             }
         }
     }
-}
+

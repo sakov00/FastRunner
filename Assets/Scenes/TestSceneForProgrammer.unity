@@ -2767,6 +2767,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5103478392131331291, guid: 44dcbae73bbaf134f9f3ac12bd723417, type: 3}
   m_PrefabInstance: {fileID: 1307466530}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &596100070 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 880829621958856014, guid: 2886f9bd8b291b0438b63d50ab9ae1d9, type: 3}
+  m_PrefabInstance: {fileID: 1561614914}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &623276397 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5103478392131331291, guid: 44dcbae73bbaf134f9f3ac12bd723417, type: 3}
@@ -3845,6 +3850,7 @@ MonoBehaviour:
   - {fileID: 1282408635}
   - {fileID: 428733728}
   - {fileID: 1646340944}
+  player: {fileID: 596100070}
   currentIndex: 0
 --- !u!4 &973386607
 Transform:
@@ -5744,6 +5750,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1131679530697195866, guid: 2886f9bd8b291b0438b63d50ab9ae1d9, type: 3}
+      propertyPath: m_ClearFlags
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1131679530697195866, guid: 2886f9bd8b291b0438b63d50ab9ae1d9, type: 3}
+      propertyPath: field of view
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081926366292702250, guid: 2886f9bd8b291b0438b63d50ab9ae1d9, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: c36ec8a7f7a31c4479fc25ce062c7851, type: 3}
     - target: {fileID: 5498501228069623173, guid: 2886f9bd8b291b0438b63d50ab9ae1d9, type: 3}
       propertyPath: m_Name
       value: PlayerWithCamera
