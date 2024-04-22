@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aadb562e1617ad4783928d1abd3a7b1, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  RunningSpeed: 6.6
-  FastRunningSpeed: 30
+  RunningSpeed: 10
+  RunningSpeedOnFlying: 5
   JumpHeight: 5
   GravityValue: -20
   LimitRotationAngleY: 20
-  RotationSpeedOnGround: 1.5
-  RotationSpeedOnFlying: 0.2
+  RotationSpeedOnGround: 2
+  RotationSpeedOnFlying: 1
   FirstAbilityType: 0
   SecondAbilityType: 1
   ThirdAbilityType: 1

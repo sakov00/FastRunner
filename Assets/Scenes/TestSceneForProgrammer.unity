@@ -5744,6 +5744,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 536638035900471284, guid: 2886f9bd8b291b0438b63d50ab9ae1d9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.967
+      objectReference: {fileID: 0}
     - target: {fileID: 5498501228069623173, guid: 2886f9bd8b291b0438b63d50ab9ae1d9, type: 3}
       propertyPath: m_Name
       value: PlayerWithCamera

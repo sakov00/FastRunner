@@ -9,7 +9,7 @@ namespace Assets.Scripts.ScriptableObjects
     {
         [Range(5, 50)] public float RunningSpeed;
 
-        [Range(10, 100)] public float FastRunningSpeed;
+        [Range(5, 50)] public float RunningSpeedOnFlying;
 
         [Range(5, 20)] public float JumpHeight;
 

@@ -29,7 +29,7 @@ namespace Assets.Scripts.Player.Controllers
         {
             var speedValue = _playerModel.RunningSpeed;
             var gravityValue = _movement.y;
-            _movement = (_playerModel.transform.forward * _playerInputController.MovementInput.z * speedValue) + (_playerModel.transform.right * _playerInputController.MovementInput.x * _playerModel.RunningSpeed);
+            _movement = (_playerModel.transform.forward * speedValue) + (_playerModel.transform.right * _playerInputController.MovementInput.x * _playerModel.RunningSpeedOnFlying);
             _movement.y = gravityValue;
         }
 
@@ -51,7 +51,17 @@ namespace Assets.Scripts.Player.Controllers
             var rotationSpeed = _playerModel.RotationSpeedOnFlying;
             currentDegrees += _playerInputController.MovementInput.x * rotationSpeed;
 
-            _targetRotation = Quaternion.Euler(0, _targetRotation.eulerAngles.y, 0);
+            if (currentDegrees > 180f)
+            {
+                currentDegrees -= 360f;
+            }
+            float clampedRotationAngle = Mathf.Clamp(currentDegrees, -_playerModel.LimitRotationAngleY, _playerModel.LimitRotationAngleY);
+
+            RaycastHit hit;
+            Physics.Raycast(_playerModel.transform.position, Vector3.down, out hit);
+            Quaternion surfaceRotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
+
+            _targetRotation = Quaternion.Euler(surfaceRotation.eulerAngles.x, clampedRotationAngle, surfaceRotation.eulerAngles.z);
         }
     }
 }

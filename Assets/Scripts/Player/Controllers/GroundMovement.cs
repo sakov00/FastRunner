@@ -29,8 +29,8 @@ namespace Assets.Scripts.Player.Controllers
         private void HorizontalMove()
         {
             var speedValue = _playerModel.RunningSpeed;
-            _movement.z = _playerModel.transform.forward.z * _playerInputController.MovementInput.z * speedValue;
-            _movement.x = _playerModel.transform.forward.x * _playerInputController.MovementInput.z * speedValue;
+            _movement.z = _playerModel.transform.forward.z * speedValue;
+            _movement.x = _playerModel.transform.forward.x * speedValue;
         }
 
         private void VerticalMove()
@@ -41,7 +41,7 @@ namespace Assets.Scripts.Player.Controllers
             }
             else
             {
-                _movement.y = -2f;
+                _movement.y = _playerModel.GravityValue;
             }
         }
 
@@ -58,11 +58,17 @@ namespace Assets.Scripts.Player.Controllers
             var rotationSpeed = _playerModel.RotationSpeedOnGround;
             currentDegrees += _playerInputController.MovementInput.x * rotationSpeed;
 
+            if (currentDegrees > 180f)
+            {
+                currentDegrees -= 360f;
+            }
+            float clampedRotationAngle = Mathf.Clamp(currentDegrees, -_playerModel.LimitRotationAngleY, _playerModel.LimitRotationAngleY);
+
             RaycastHit hit;
             Physics.Raycast(_playerModel.transform.position, Vector3.down, out hit);
             Quaternion surfaceRotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
 
-            _targetRotation = Quaternion.Euler(surfaceRotation.eulerAngles.x, currentDegrees, surfaceRotation.eulerAngles.z);
+            _targetRotation = Quaternion.Euler(surfaceRotation.eulerAngles.x, clampedRotationAngle, surfaceRotation.eulerAngles.z);
         }
     }
 }

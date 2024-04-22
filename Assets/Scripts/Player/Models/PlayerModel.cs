@@ -10,7 +10,7 @@ namespace Assets.Scripts.Player.Models
 
         public float RunningSpeed { get; set; }
 
-        public float FastRunningSpeed { get; set; }
+        public float RunningSpeedOnFlying { get; set; }
 
         public float JumpHeight { get; set; }
 
@@ -36,7 +36,7 @@ namespace Assets.Scripts.Player.Models
         private void SetDafaultState()
         {
             RunningSpeed = playerData.RunningSpeed;
-            FastRunningSpeed = playerData.FastRunningSpeed;
+            RunningSpeedOnFlying = playerData.RunningSpeedOnFlying;
             JumpHeight = playerData.JumpHeight;
             GravityValue = playerData.GravityValue;
             LimitRotationAngleY = playerData.LimitRotationAngleY;
