@@ -1,13 +1,15 @@
-using Assets.Scripts.Enums;
-using Assets.Scripts.ScriptableObjects;
+using Assets._Project.Scripts.ScriptableObjects;
+using Assets._Project.Scripts.ScriptableObjects.AbilitiesData;
+using System;
 using UnityEngine;
 using Zenject;
 
-namespace Assets.Scripts.Player.Models
+namespace Assets._Project.Scripts.Player.Models
 {
     public class PlayerModel : MonoBehaviour
     {
         private PlayerData _playerData;
+        [SerializeField]private float energyValue;
 
         [Inject]
         private void Contract(PlayerData playerData)
@@ -23,9 +25,25 @@ namespace Assets.Scripts.Player.Models
 
         public float GravityValue { get; set; }
 
-        public TypeAbility FirstAbilityType { get; set; }
-        public TypeAbility SecondAbilityType { get; set; }
-        public TypeAbility ThirdAbilityType { get; set; }
+        public float EnergyValue 
+        {
+            get
+            {
+                return energyValue;
+            }
+            set
+            {
+                energyValue = value < 0 ? 0 : value;
+                if (energyValue == 0)
+                    OnEnergyValueEnded?.Invoke();
+            }
+        }
+
+        public AbilityData FirstAbilityType { get; set; }
+        public AbilityData SecondAbilityType { get; set; }
+        public AbilityData ThirdAbilityType { get; set; }
+
+        public event Action OnEnergyValueEnded;
 
         private void Awake()
         {
@@ -37,6 +55,7 @@ namespace Assets.Scripts.Player.Models
             RunningSpeed = _playerData.RunningSpeed;
             JumpHeight = _playerData.JumpHeight;
             GravityValue = _playerData.GravityValue;
+            EnergyValue = _playerData.EnergyValue;
 
             FirstAbilityType = _playerData.FirstAbilityType;
             SecondAbilityType = _playerData.SecondAbilityType;

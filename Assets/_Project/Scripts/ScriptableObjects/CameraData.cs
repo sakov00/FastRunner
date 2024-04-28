@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets.Scripts.ScriptableObjects
+namespace Assets._Project.Scripts.ScriptableObjects
 {
     [CreateAssetMenu(fileName = "CameraData", menuName = "DefaultData/CameraData")]
 

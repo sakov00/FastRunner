@@ -1,8 +1,8 @@
-using Assets.Scripts.Player.Controllers;
+using Assets._Project.Scripts.Player.Controllers;
 using UnityEngine;
 using Zenject;
 
-namespace Assets.Scripts.Player.Views
+namespace Assets._Project.Scripts.Player.Views
 {
     public class PlayerView : MonoBehaviour
     {

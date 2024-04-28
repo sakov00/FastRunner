@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.ScriptableObjects;
+﻿using Assets._Project.Scripts.ScriptableObjects;
 using UnityEngine;
 using Zenject;
 
-namespace Assets.Scripts.Camera
+namespace Assets._Project.Scripts.Camera
 {
     public class CameraController : MonoBehaviour
     {

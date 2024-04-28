@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.Enums
+﻿namespace Assets._Project.Scripts.Enums
 {
     public enum TypeAbility
     {

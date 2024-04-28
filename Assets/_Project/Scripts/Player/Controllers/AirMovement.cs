@@ -1,9 +1,8 @@
-﻿using Assets.Scripts.Player.Models;
-using Assets.Scripts.ScriptableObjects;
+﻿using Assets._Project.Scripts.Player.Models;
+using Assets._Project.Scripts.ScriptableObjects;
 using UnityEngine;
-using Zenject;
 
-namespace Assets.Scripts.Player.Controllers
+namespace Assets._Project.Scripts.Player.Controllers
 {
     public class AirMovement
     {

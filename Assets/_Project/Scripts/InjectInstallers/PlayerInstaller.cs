@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.ScriptableObjects;
+﻿using Assets._Project.Scripts.ScriptableObjects;
 using UnityEngine;
 using Zenject;
 
-namespace Assets.Scripts.InjectInstallers
+namespace Assets._Project.Scripts.InjectInstallers
 {
     public class PlayerInstaller : MonoInstaller
     {

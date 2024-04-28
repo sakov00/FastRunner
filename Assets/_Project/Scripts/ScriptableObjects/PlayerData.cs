@@ -1,7 +1,8 @@
-using Assets.Scripts.Enums;
+using Assets._Project.Scripts.Enums;
+using Assets._Project.Scripts.ScriptableObjects.AbilitiesData;
 using UnityEngine;
 
-namespace Assets.Scripts.ScriptableObjects
+namespace Assets._Project.Scripts.ScriptableObjects
 {
     [CreateAssetMenu(fileName = "PlayerData", menuName = "DefaultData/PlayerData")]
 
@@ -17,6 +18,8 @@ namespace Assets.Scripts.ScriptableObjects
 
         [Range(-50, 0)] public float GravityValue;
 
+        [Range(0, 100)] public float EnergyValue;
+
         [Header("Constant info"), Space(10)]
 
         [Range(0, 45)] public float LimitRotationAngleY;
@@ -31,8 +34,8 @@ namespace Assets.Scripts.ScriptableObjects
 
         [Header("Start abilities"), Space(10)]
 
-        public TypeAbility FirstAbilityType;
-        public TypeAbility SecondAbilityType;
-        public TypeAbility ThirdAbilityType;
+        public AbilityData FirstAbilityType;
+        public AbilityData SecondAbilityType;
+        public AbilityData ThirdAbilityType;
     }
 }

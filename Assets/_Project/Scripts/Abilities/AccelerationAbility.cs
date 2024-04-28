@@ -1,22 +1,25 @@
-﻿using Assets.Scripts.Player.Models;
+﻿using Assets._Project.Scripts.Abilities.Abstracts;
+using Assets._Project.Scripts.Player.Models;
+using Assets._Project.Scripts.ScriptableObjects.AbilitiesData;
 using UnityEngine;
 
-namespace Assets.Scripts.Abilities
+namespace Assets._Project.Scripts.Abilities
 {
-    public class AccelerationAbility : BaseAbility
+    public class AccelerationAbility : InstantAbility
     {
-        private readonly PlayerModel _playerModel;
         private readonly CharacterController _characterController;
 
-        public AccelerationAbility(PlayerModel playerModel, CharacterController characterController)
+        public AccelerationAbility(AbilityData abilityData, PlayerModel playerModel, CharacterController characterController)
         {
+            _instantAbilityData = (InstantAbilityData)abilityData;
             _playerModel = playerModel;
             _characterController = characterController;
         }
 
-        public override void StartAbility()
+        protected override bool ExecuteAbility()
         {
             _playerModel.RunningSpeed = 30;
+            return true;
         }
     }
 }

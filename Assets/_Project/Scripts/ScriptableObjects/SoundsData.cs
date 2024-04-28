@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Assets.Scripts.ScriptableObjects
+namespace Assets._Project.Scripts.ScriptableObjects
 {
     [CreateAssetMenu(fileName = "SoundsData", menuName = "DefaultData/SoundsData")]
     public class SoundsData : ScriptableObject

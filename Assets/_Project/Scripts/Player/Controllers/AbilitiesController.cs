@@ -1,9 +1,11 @@
-﻿using Assets.Scripts.Abilities;
-using Assets.Scripts.Enums;
-using Assets.Scripts.Player.Models;
+﻿using Assets._Project.Scripts.Abilities;
+using Assets._Project.Scripts.Abilities.Abstracts;
+using Assets._Project.Scripts.Enums;
+using Assets._Project.Scripts.Player.Models;
+using Assets._Project.Scripts.ScriptableObjects.AbilitiesData;
 using UnityEngine;
 
-namespace Assets.Scripts.Player.Controllers
+namespace Assets._Project.Scripts.Player.Controllers
 {
     public class AbilitiesController : MonoBehaviour
     {
@@ -27,19 +29,19 @@ namespace Assets.Scripts.Player.Controllers
             SecondAbility = CreateAbility(_playerModel.SecondAbilityType);
             ThirdAbility = CreateAbility(_playerModel.ThirdAbilityType);
 
-            _playerInputController.OnFirstAbility += FirstAbility.StartAbility;
-            _playerInputController.OnSecondAbility += SecondAbility.StartAbility;
-            _playerInputController.OnThirdAbility += ThirdAbility.StartAbility;
+            _playerInputController.OnFirstAbility += FirstAbility.Activate;
+            _playerInputController.OnSecondAbility += SecondAbility.Activate;
+            _playerInputController.OnThirdAbility += ThirdAbility.Activate;
         }
 
-        private BaseAbility CreateAbility(TypeAbility typeAbility)
+        private BaseAbility CreateAbility(AbilityData ability)
         {
-            switch (typeAbility)
+            switch (ability.AbilityType)
             {
                 case TypeAbility.Acceleration:
-                    return new AccelerationAbility(_playerModel, GetComponent<CharacterController>());
+                    return new AccelerationAbility(ability, _playerModel, _characterController);
                 case TypeAbility.DoubleJump:
-                    return new DoubleJumpAbility(_playerModel, _characterController, _playerMovementController);
+                    return new DoubleJumpAbility(ability, _playerModel, _characterController, _playerMovementController);
                 default:
                     return null;
             }
