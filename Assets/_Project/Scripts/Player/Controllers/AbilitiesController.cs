@@ -2,7 +2,6 @@
 using Assets._Project.Scripts.Abilities.Abstracts;
 using Assets._Project.Scripts.Enums;
 using Assets._Project.Scripts.Player.Models;
-using Assets._Project.Scripts.ScriptableObjects.AbilitiesData;
 using UnityEngine;
 
 namespace Assets._Project.Scripts.Player.Controllers
@@ -17,6 +16,14 @@ namespace Assets._Project.Scripts.Player.Controllers
         private BaseAbility FirstAbility { get; set; }
         private BaseAbility SecondAbility { get; set; }
         private BaseAbility ThirdAbility { get; set; }
+
+        //[Inject]
+        //private void Contract(AccelerationAbility AccelerationAbility, DoubleJumpAbility doubleJumpAbility, EnergyShieldAbility energyShieldAbility)
+        //{
+        //    FirstAbility = AccelerationAbility;
+        //    SecondAbility = doubleJumpAbility;
+        //    ThirdAbility = energyShieldAbility;
+        //}
 
         private void Start()
         {
@@ -34,14 +41,16 @@ namespace Assets._Project.Scripts.Player.Controllers
             _playerInputController.OnThirdAbility += ThirdAbility.Activate;
         }
 
-        private BaseAbility CreateAbility(AbilityData ability)
+        private BaseAbility CreateAbility(TypeAbility ability)
         {
-            switch (ability.AbilityType)
+            switch (ability)
             {
                 case TypeAbility.Acceleration:
-                    return new AccelerationAbility(ability, _playerModel, _characterController);
+                    return new AccelerationAbility(_playerModel);
                 case TypeAbility.DoubleJump:
-                    return new DoubleJumpAbility(ability, _playerModel, _characterController, _playerMovementController);
+                    return new DoubleJumpAbility(_playerModel, _characterController, _playerMovementController);
+                case TypeAbility.EnergyShield:
+                    return new EnergyShieldAbility(_playerModel);
                 default:
                     return null;
             }

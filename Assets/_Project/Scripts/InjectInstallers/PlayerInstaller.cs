@@ -1,4 +1,6 @@
-﻿using Assets._Project.Scripts.ScriptableObjects;
+﻿using Assets._Project.Scripts.Abilities;
+using Assets._Project.Scripts.ScriptableObjects;
+using Assets._Project.Scripts.ScriptableObjects.AbilitiesData;
 using UnityEngine;
 using Zenject;
 
@@ -9,6 +11,10 @@ namespace Assets._Project.Scripts.InjectInstallers
         [SerializeField] private GameObject playerManagerSounds;
         [SerializeField] private PlayerData playerData;
         [SerializeField] private CameraData cameraData;
+
+        [SerializeField] private AccelerationAbilityData accelerationAbilityData;
+        [SerializeField] private DoubleJumpAbilityData doubleJumpAbilityData;
+        [SerializeField] private EnergyShieldAbilityData energyShieldAbilityData;
 
         public override void InstallBindings()
         {
@@ -26,6 +32,10 @@ namespace Assets._Project.Scripts.InjectInstallers
         {
             Container.BindInstance(playerData).AsSingle();
             Container.BindInstance(cameraData).AsSingle();
+
+            AccelerationAbility.InjectData(accelerationAbilityData);
+            DoubleJumpAbility.InjectData(doubleJumpAbilityData);
+            EnergyShieldAbility.InjectData(energyShieldAbilityData);
         }
     }
 }

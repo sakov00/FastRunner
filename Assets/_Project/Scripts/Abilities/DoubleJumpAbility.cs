@@ -12,30 +12,37 @@ namespace Assets._Project.Scripts.Abilities
         private readonly CharacterController _characterController;
         private readonly PlayerMovementController _playerMovementController;
 
-        public DoubleJumpAbility(AbilityData abilityData, PlayerModel playerModel, CharacterController characterController, PlayerMovementController playerMovementController)
+        protected static DoubleJumpAbilityData AbilityData
         {
-            _instantAbilityData = (InstantAbilityData)abilityData;
+            get { return (DoubleJumpAbilityData)_instantAbilityData; }
+            set { _instantAbilityData = value; }
+        }
+
+        public DoubleJumpAbility(PlayerModel playerModel, CharacterController characterController, PlayerMovementController playerMovementController)
+        {
             _playerModel = playerModel;
             _characterController = characterController;
             _playerMovementController = playerMovementController;
         }
 
-        protected override bool ExecuteAbility()
+        public static void InjectData(DoubleJumpAbilityData doubleJumpAbilityData)
+        {
+            AbilityData = doubleJumpAbilityData;
+        }
+
+        protected override void OnActivate()
         {
             if (_characterController.isGrounded)
             {
                 _playerModel.CanDoubleJump = true;
-                return false;
             }
             if (!_characterController.isGrounded && _playerModel.CanDoubleJump)
             {
                 var movement = new Vector3(0, sqrt(_playerModel.JumpHeight * -2f * _playerModel.GravityValue), 0);
                 _playerMovementController.SetMovement(movement);
                 _playerModel.CanDoubleJump = false;
-                return true;
+                isCompleted = true;
             }
-
-            return false;
         }
     }
 }

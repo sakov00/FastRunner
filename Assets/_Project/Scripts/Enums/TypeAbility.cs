@@ -4,6 +4,6 @@
     {
         Acceleration = 0,
         DoubleJump = 1,
-        Shield = 2,
+        EnergyShield = 2,
     }
 }

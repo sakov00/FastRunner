@@ -1,36 +1,37 @@
 ﻿using Assets._Project.Scripts.Abilities.Abstracts;
 using Assets._Project.Scripts.Player.Models;
 using Assets._Project.Scripts.ScriptableObjects.AbilitiesData;
-using Zenject;
 
 namespace Assets._Project.Scripts.Abilities
 {
-    public class AccelerationAbility : ProlongedAbility
+    public class EnergyShieldAbility : ProlongedAbility
     {
-        protected static AccelerationAbilityData AbilityData
+        protected static EnergyShieldAbilityData AbilityData
         {
-            get { return (AccelerationAbilityData)_prolongedAbilityData; }
+            get { return (EnergyShieldAbilityData)_prolongedAbilityData; }
             set { _prolongedAbilityData = value; }
         }
 
-        public AccelerationAbility(PlayerModel playerModel)
+        public EnergyShieldAbility(PlayerModel playerModel)
         {
             _playerModel = playerModel;
+
+            OnLoad();
         }
 
-        public static void InjectData(AccelerationAbilityData accelerationAbilityData)
+        public static void InjectData(EnergyShieldAbilityData energyShieldAbilityData)
         {
-            AbilityData = accelerationAbilityData;
+            AbilityData = energyShieldAbilityData;
         }
 
         protected override void OnActivate()
         {
-            _playerModel.RunningSpeed += 20;
+
         }
 
         protected override void OnDeactivate()
         {
-            _playerModel.RunningSpeed -= 20;
+
         }
     }
 }
