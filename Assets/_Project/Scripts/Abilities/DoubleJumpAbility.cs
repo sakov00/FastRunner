@@ -12,22 +12,17 @@ namespace Assets._Project.Scripts.Abilities
         private readonly CharacterController _characterController;
         private readonly PlayerMovementController _playerMovementController;
 
-        protected static DoubleJumpAbilityData AbilityData
+        protected DoubleJumpAbilityData DoubleJumpAbilityData
         {
-            get { return (DoubleJumpAbilityData)_instantAbilityData; }
-            set { _instantAbilityData = value; }
+            get { return (DoubleJumpAbilityData)ProlongedAbilityData; }
+            set { ProlongedAbilityData = value; }
         }
 
-        public DoubleJumpAbility(PlayerModel playerModel, CharacterController characterController, PlayerMovementController playerMovementController)
+        public DoubleJumpAbility(PlayerModel playerModel, DoubleJumpAbilityData doubleJumpAbilityData, CharacterController characterController, PlayerMovementController playerMovementController) : base(playerModel)
         {
-            _playerModel = playerModel;
+            DoubleJumpAbilityData = doubleJumpAbilityData;
             _characterController = characterController;
             _playerMovementController = playerMovementController;
-        }
-
-        public static void InjectData(DoubleJumpAbilityData doubleJumpAbilityData)
-        {
-            AbilityData = doubleJumpAbilityData;
         }
 
         protected override void OnActivate()

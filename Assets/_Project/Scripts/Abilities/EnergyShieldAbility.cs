@@ -6,22 +6,15 @@ namespace Assets._Project.Scripts.Abilities
 {
     public class EnergyShieldAbility : ProlongedAbility
     {
-        protected static EnergyShieldAbilityData AbilityData
+        protected EnergyShieldAbilityData AccelerationAbilityData
         {
-            get { return (EnergyShieldAbilityData)_prolongedAbilityData; }
-            set { _prolongedAbilityData = value; }
+            get { return (EnergyShieldAbilityData)ProlongedAbilityData; }
+            set { ProlongedAbilityData = value; }
         }
 
-        public EnergyShieldAbility(PlayerModel playerModel)
+        public EnergyShieldAbility(PlayerModel playerModel, EnergyShieldAbilityData energyShieldAbilityData) : base(playerModel)
         {
-            _playerModel = playerModel;
-
-            OnLoad();
-        }
-
-        public static void InjectData(EnergyShieldAbilityData energyShieldAbilityData)
-        {
-            AbilityData = energyShieldAbilityData;
+            AccelerationAbilityData = energyShieldAbilityData;
         }
 
         protected override void OnActivate()

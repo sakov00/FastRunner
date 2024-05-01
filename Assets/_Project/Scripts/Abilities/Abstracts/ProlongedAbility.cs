@@ -1,33 +1,52 @@
-﻿using Assets._Project.Scripts.ScriptableObjects.AbilitiesData.Abstract;
+﻿using Assets._Project.Scripts.Player.Models;
+using Assets._Project.Scripts.ScriptableObjects.AbilitiesData.Abstract;
+using Assets._Project.Scripts.ScriptableObjects.AbilitiesData;
 using System.Threading.Tasks;
+using Zenject;
 
 namespace Assets._Project.Scripts.Abilities.Abstracts
 {
-    public abstract class ProlongedAbility : BaseAbility
+    public abstract class ProlongedAbility : BaseAbility, IFixedTickable
     {
         protected bool isActive = false;
-        protected static ProlongedAbilityData _prolongedAbilityData;
 
-        protected override void OnLoad()
+        protected ProlongedAbilityData ProlongedAbilityData
         {
-            _playerModel.OnEnergyValueEnded += OnDeactivate;
+            get { return (ProlongedAbilityData)AbilityData; }
+            set { AbilityData = value; }
+        }
+
+        protected ProlongedAbility(PlayerModel playerModel)
+        {
+            _playerModel = playerModel;
+
+            _playerModel.OnEnergyValueEnded += Deactivate;
+        }
+
+        public void FixedTick()
+        {
+            if(isActive)
+                _playerModel.EnergyValue -= ProlongedAbilityData.EnergyPerSecond / 50;
         }
 
         public override void Activate()
         {
-            if (!isActive)
+            if (!isActive && _playerModel.EnergyValue > 0)
             {
                 isActive = true;
                 OnActivate();
-                Task.Run(() => Deactivate());
+                Task.Run(async () =>
+                {
+                    await Task.Delay((int)(ProlongedAbilityData.EnergyTimer * 1000));
+                    Deactivate();
+                });
             }
         }
 
-        public async Task Deactivate()
+        public void Deactivate()
         {
             if (isActive)
             {
-                await Task.Delay((int)(_prolongedAbilityData.EnergyTimer * 1000));
                 isActive = false;
                 OnDeactivate();
             }

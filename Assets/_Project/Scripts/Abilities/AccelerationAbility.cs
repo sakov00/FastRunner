@@ -1,26 +1,20 @@
 ﻿using Assets._Project.Scripts.Abilities.Abstracts;
 using Assets._Project.Scripts.Player.Models;
 using Assets._Project.Scripts.ScriptableObjects.AbilitiesData;
-using Zenject;
 
 namespace Assets._Project.Scripts.Abilities
 {
     public class AccelerationAbility : ProlongedAbility
     {
-        protected static AccelerationAbilityData AbilityData
+        protected AccelerationAbilityData AccelerationAbilityData
         {
-            get { return (AccelerationAbilityData)_prolongedAbilityData; }
-            set { _prolongedAbilityData = value; }
+            get { return (AccelerationAbilityData)ProlongedAbilityData; }
+            set { ProlongedAbilityData = value; }
         }
 
-        public AccelerationAbility(PlayerModel playerModel)
+        public AccelerationAbility(PlayerModel playerModel, AccelerationAbilityData accelerationAbilityData) : base(playerModel)
         {
-            _playerModel = playerModel;
-        }
-
-        public static void InjectData(AccelerationAbilityData accelerationAbilityData)
-        {
-            AbilityData = accelerationAbilityData;
+            AccelerationAbilityData = accelerationAbilityData;
         }
 
         protected override void OnActivate()
