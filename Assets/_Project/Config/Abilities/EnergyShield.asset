@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a1f2d62307b5f747a4d9a6888a9045a, type: 3}
-  m_Name: Acceleration
+  m_Script: {fileID: 11500000, guid: 235b092ff57c5e14392585f49e2485b1, type: 3}
+  m_Name: EnergyShield
   m_EditorClassIdentifier: 
-  AbilityType: 0
+  AbilityType: 2
   EnergyPerSecond: 5
   EnergyTimer: 5

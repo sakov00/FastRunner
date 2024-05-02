@@ -1,25 +1,30 @@
 ﻿using Assets._Project.Scripts.Abilities.Abstracts;
 using Assets._Project.Scripts.Player.Models;
 using Assets._Project.Scripts.ScriptableObjects.AbilitiesData;
-using UnityEngine;
 
 namespace Assets._Project.Scripts.Abilities
 {
-    public class AccelerationAbility : InstantAbility
+    public class AccelerationAbility : ProlongedAbility
     {
-        private readonly CharacterController _characterController;
-
-        public AccelerationAbility(AbilityData abilityData, PlayerModel playerModel, CharacterController characterController)
+        protected AccelerationAbilityData AccelerationAbilityData
         {
-            _instantAbilityData = (InstantAbilityData)abilityData;
-            _playerModel = playerModel;
-            _characterController = characterController;
+            get { return (AccelerationAbilityData)ProlongedAbilityData; }
+            set { ProlongedAbilityData = value; }
         }
 
-        protected override bool ExecuteAbility()
+        public AccelerationAbility(PlayerModel playerModel, AccelerationAbilityData accelerationAbilityData) : base(playerModel)
         {
-            _playerModel.RunningSpeed = 30;
-            return true;
+            AccelerationAbilityData = accelerationAbilityData;
+        }
+
+        protected override void OnActivate()
+        {
+            _playerModel.RunningSpeed += 20;
+        }
+
+        protected override void OnDeactivate()
+        {
+            _playerModel.RunningSpeed -= 20;
         }
     }
 }
