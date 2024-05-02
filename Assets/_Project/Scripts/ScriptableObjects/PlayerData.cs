@@ -22,7 +22,7 @@ namespace Assets._Project.Scripts.ScriptableObjects
 
         [Header("Constant info"), Space(10)]
 
-        [Range(0, 45)] public float LimitRotationAngleY;
+        [Range(0, 90)] public float LimitRotationAngleY;
 
         [Range(0, 20)] public float RotationSpeedOnGround;
 

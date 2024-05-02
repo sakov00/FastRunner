@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Grass
+  m_Shader: {fileID: 4800000, guid: 8c5379c1dfad64e9a8bd325c0f29c232, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _CrossFlowMap:
+        m_Texture: {fileID: 2800000, guid: 9cb1b68ff8d9b45ca8bbc10de24bcfb0, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FlowMap:
+        m_Texture: {fileID: 2800000, guid: 3d4baffabe6da4e1b933505f5ffff8ad, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _Attenuation: 1.3343103
+    - _Density: 410.55685
+    - _HeightmapMultiplier: 0
+    - _MaxHeight: 128.00587
+    - _MinHeight: 16
+    - _NoiseMax: 1
+    - _NoiseMin: 0
+    - _OcclusionBias: 0.33
+    - _ShellCount: 96
+    - _ShellDistanceAttenuation: 0
+    - _ShellHeight: -6.14
+    - _ShellIndex: 0.39
+    - _ShellLength: -0.4
+    - _Thickness: 44.354836
+    - _TopColorMultiplier: 0
+    - _WindAmplitude: 0
+    - _WindFrequency: 0
+    m_Colors:
+    - _CharPos: {r: 0.931, g: 0.915, b: -0.016, a: 0}
+    - _CrossColor: {r: 0.55219334, g: 1, b: 0.525, a: 1}
+    - _ShellColor: {r: 0.20764455, g: 1, b: 0, a: 1}
+  m_BuildTextureStacks: []
