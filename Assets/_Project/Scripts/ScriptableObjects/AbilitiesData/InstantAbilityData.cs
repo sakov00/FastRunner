@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 
-namespace Assets._Project.Scripts.ScriptableObjects.AbilitiesData.Abstract
+namespace Assets._Project.Scripts.ScriptableObjects.AbilitiesData
 {
     [CreateAssetMenu(fileName = "InstantAbility", menuName = "AbilityConfigs/InstantAbility")]
-    public abstract class InstantAbilityData : AbilityData
+    public class InstantAbilityData : AbilityData
     {
         public float EnergyCost;
     }

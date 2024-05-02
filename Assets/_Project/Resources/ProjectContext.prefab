@@ -47,9 +47,6 @@ MonoBehaviour:
   playerManagerSounds: {fileID: 517746762279954535, guid: 44a18e8fee3c2394abd0930cd1243bbd, type: 3}
   playerData: {fileID: 11400000, guid: fb7674b8daee4094784b18648685cedd, type: 2}
   cameraData: {fileID: 11400000, guid: ed4d2602965afba47b4ddbdb456803d9, type: 2}
-  accelerationAbilityData: {fileID: 11400000, guid: 98ef7b54b948d454aa182b8b724ab118, type: 2}
-  doubleJumpAbilityData: {fileID: 11400000, guid: eda000abfb11a5842a73b2b634b8bee1, type: 2}
-  energyShieldAbilityData: {fileID: 11400000, guid: 670d13573feaa1a46acda964473464f9, type: 2}
 --- !u!1 &5755790904261276708
 GameObject:
   m_ObjectHideFlags: 0

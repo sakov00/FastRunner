@@ -1,45 +1,19 @@
-﻿using Assets._Project.Scripts.Player.Models;
-using Assets._Project.Scripts.ScriptableObjects.AbilitiesData.Abstract;
+﻿
 using Assets._Project.Scripts.ScriptableObjects.AbilitiesData;
-using System.Threading.Tasks;
-using Zenject;
 
 namespace Assets._Project.Scripts.Abilities.Abstracts
 {
-    public abstract class ProlongedAbility : BaseAbility, IFixedTickable
+    public abstract class ProlongedAbility : BaseAbility
     {
         protected bool isActive = false;
-
-        protected ProlongedAbilityData ProlongedAbilityData
-        {
-            get { return (ProlongedAbilityData)AbilityData; }
-            set { AbilityData = value; }
-        }
-
-        protected ProlongedAbility(PlayerModel playerModel)
-        {
-            _playerModel = playerModel;
-
-            _playerModel.OnEnergyValueEnded += Deactivate;
-        }
-
-        public void FixedTick()
-        {
-            if(isActive)
-                _playerModel.EnergyValue -= ProlongedAbilityData.EnergyPerSecond / 50;
-        }
+        protected ProlongedAbilityData _prolongedAbilityData;
 
         public override void Activate()
         {
-            if (!isActive && _playerModel.EnergyValue > 0)
+            if (!isActive)
             {
                 isActive = true;
                 OnActivate();
-                Task.Run(async () =>
-                {
-                    await Task.Delay((int)(ProlongedAbilityData.EnergyTimer * 1000));
-                    Deactivate();
-                });
             }
         }
 
@@ -52,8 +26,8 @@ namespace Assets._Project.Scripts.Abilities.Abstracts
             }
         }
 
-        protected abstract void OnActivate();
+        protected abstract bool OnActivate();
 
-        protected abstract void OnDeactivate();
+        protected abstract bool OnDeactivate();
     }
 }

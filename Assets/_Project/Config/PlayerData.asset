@@ -22,6 +22,6 @@ MonoBehaviour:
   RotationSensitiveOnGround: 10
   RotationSpeedOnFlying: 5
   RotationSensitiveOnFlying: 10
-  FirstAbilityType: 0
-  SecondAbilityType: 1
-  ThirdAbilityType: 2
+  FirstAbilityType: {fileID: 11400000, guid: 98ef7b54b948d454aa182b8b724ab118, type: 2}
+  SecondAbilityType: {fileID: 11400000, guid: eda000abfb11a5842a73b2b634b8bee1, type: 2}
+  ThirdAbilityType: {fileID: 11400000, guid: eda000abfb11a5842a73b2b634b8bee1, type: 2}

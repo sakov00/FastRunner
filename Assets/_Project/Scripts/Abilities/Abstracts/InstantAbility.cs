@@ -1,37 +1,17 @@
 ﻿using Assets._Project.Scripts.Player.Models;
 using Assets._Project.Scripts.ScriptableObjects.AbilitiesData;
-using Assets._Project.Scripts.ScriptableObjects.AbilitiesData.Abstract;
 
 namespace Assets._Project.Scripts.Abilities.Abstracts
 {
     public abstract class InstantAbility : BaseAbility
     {
-        protected bool isCompleted = false;
-
-        protected InstantAbilityData ProlongedAbilityData
-        {
-            get { return (InstantAbilityData)AbilityData; }
-            set { AbilityData = value; }
-        }
-
-        protected InstantAbility(PlayerModel playerModel)
-        {
-            _playerModel = playerModel;
-        }
-
+        protected InstantAbilityData _instantAbilityData;
         public override void Activate()
         {
-            if (_playerModel.EnergyValue > 0)
-            {
-                OnActivate();
-                if (isCompleted)
-                {
-                    _playerModel.EnergyValue -= ProlongedAbilityData.EnergyCost;
-                    isCompleted = false;
-                }
-            }
+            if (_playerModel.EnergyValue > _instantAbilityData.EnergyCost && ExecuteAbility())
+                _playerModel.EnergyValue -= _instantAbilityData.EnergyCost;
         }
 
-        protected abstract void OnActivate();
+        protected abstract bool ExecuteAbility();
     }
 }

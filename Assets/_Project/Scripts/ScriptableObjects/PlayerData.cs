@@ -1,4 +1,5 @@
 using Assets._Project.Scripts.Enums;
+using Assets._Project.Scripts.ScriptableObjects.AbilitiesData;
 using UnityEngine;
 
 namespace Assets._Project.Scripts.ScriptableObjects
@@ -33,8 +34,8 @@ namespace Assets._Project.Scripts.ScriptableObjects
 
         [Header("Start abilities"), Space(10)]
 
-        public TypeAbility FirstAbilityType;
-        public TypeAbility SecondAbilityType;
-        public TypeAbility ThirdAbilityType;
+        public AbilityData FirstAbilityType;
+        public AbilityData SecondAbilityType;
+        public AbilityData ThirdAbilityType;
     }
 }
