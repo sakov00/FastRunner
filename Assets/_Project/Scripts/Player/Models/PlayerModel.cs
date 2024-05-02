@@ -1,5 +1,5 @@
-using Assets._Project.Scripts.Enums;
 using Assets._Project.Scripts.ScriptableObjects;
+using Assets._Project.Scripts.ScriptableObjects.AbilitiesData;
 using System;
 using UnityEngine;
 using Zenject;
@@ -9,7 +9,7 @@ namespace Assets._Project.Scripts.Player.Models
     public class PlayerModel : MonoBehaviour
     {
         private PlayerData _playerData;
-        [SerializeField] private float energyValue;
+        [SerializeField]private float energyValue;
 
         [Inject]
         private void Contract(PlayerData playerData)
@@ -23,9 +23,9 @@ namespace Assets._Project.Scripts.Player.Models
 
         public bool CanDoubleJump { get; set; }
 
-        [field: SerializeField] public float GravityValue { get; set; }
+        public float GravityValue { get; set; }
 
-        public float EnergyValue
+        public float EnergyValue 
         {
             get
             {
@@ -39,9 +39,9 @@ namespace Assets._Project.Scripts.Player.Models
             }
         }
 
-        public TypeAbility FirstAbilityType { get; set; }
-        public TypeAbility SecondAbilityType { get; set; }
-        public TypeAbility ThirdAbilityType { get; set; }
+        public AbilityData FirstAbilityType { get; set; }
+        public AbilityData SecondAbilityType { get; set; }
+        public AbilityData ThirdAbilityType { get; set; }
 
         public event Action OnEnergyValueEnded;
 

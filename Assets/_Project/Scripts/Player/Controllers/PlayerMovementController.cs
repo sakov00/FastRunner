@@ -1,4 +1,6 @@
+using Assets._Project.Scripts.Player.Models;
 using Assets._Project.Scripts.Player.Views;
+using Assets._Project.Scripts.ScriptableObjects;
 using UnityEngine;
 using Zenject;
 
@@ -6,36 +8,49 @@ namespace Assets._Project.Scripts.Player.Controllers
 {
     public class PlayerMovementController : MonoBehaviour
     {
+        private PlayerModel _playerModel;
+        private PlayerData _playerData;
+        private PlayerInputController _playerInputController;
         private PlayerView _playerView;
         private CharacterController _characterController;
 
-        private GroundMovement _groundMovement;
-        private AirMovement _airMovement;
+        private GroundMovement groundMovement;
+        private AirMovement airMovement;
 
         private Vector3 _movement = Vector3.zero;
         private Quaternion _rotation;
 
         [Inject]
-        private void Contract(GroundMovement groundMovement, AirMovement airMovement, PlayerView playerView, CharacterController characterController)
+        private void Contract(PlayerData playerData)
         {
-            _groundMovement = groundMovement;
-            _airMovement = airMovement;
+            _playerData = playerData;
+        }
 
-            _playerView = playerView; 
-            _characterController = characterController;
+        private void Awake()
+        {
+            _playerModel = GetComponent<PlayerModel>();
+            _playerInputController = GetComponent<PlayerInputController>();
+            _playerView = GetComponent<PlayerView>();
+            _characterController = GetComponent<CharacterController>();
+        }
+
+        private void Start()
+        {
+            groundMovement = new GroundMovement(_playerModel, _playerData, _playerInputController);
+            airMovement = new AirMovement(_playerModel, _playerData, _playerInputController);
         }
 
         private void Update()
         {
             if (_characterController.isGrounded)
             {
-                _movement = _groundMovement.Move(_movement);
-                _rotation = _groundMovement.Rotate(_rotation);
+                _movement = groundMovement.Move(_movement);
+                _rotation = groundMovement.Rotate(_rotation);
             }
             else
             {
-                _movement = _airMovement.Move(_movement);
-                _rotation = _airMovement.Rotate(_rotation);
+                _movement = airMovement.Move(_movement);
+                _rotation = airMovement.Rotate(_rotation);
             }
 
             _playerView.Move(_movement * Time.deltaTime);
