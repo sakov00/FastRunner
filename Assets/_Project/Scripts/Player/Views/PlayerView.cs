@@ -6,7 +6,7 @@ namespace Assets._Project.Scripts.Player.Views
 {
     public class PlayerView : MonoBehaviour
     {
-        private PlayerInputController playerInputController;
+        private PlayerInputController _playerInputController;
         private CharacterController _characterController;
         private Animator _animator;
         private PlayerManagerSounds playerManagerSounds;
@@ -18,16 +18,12 @@ namespace Assets._Project.Scripts.Player.Views
         private static readonly string InputX = "InputX";
 
         [Inject]
-        private void Contract(PlayerManagerSounds playerManagerSounds)
+        private void Contract(PlayerManagerSounds playerManagerSounds, PlayerInputController playerInputController, CharacterController characterController, Animator animator)
         {
             this.playerManagerSounds = playerManagerSounds;
-        }
-
-        private void Awake()
-        {
-            playerInputController = GetComponent<PlayerInputController>();
-            _characterController = GetComponent<CharacterController>();
-            _animator = GetComponent<Animator>();
+            _playerInputController = playerInputController;
+            _characterController = characterController;
+            _animator = animator;
         }
 
         public void Move(Vector3 movement)
@@ -47,8 +43,8 @@ namespace Assets._Project.Scripts.Player.Views
             _animator.SetBool(IsGrounded, _characterController.isGrounded);
             _animator.SetBool(IsJump, movement.y > 0);
             _animator.SetBool(IsFalling, movement.y < 0 && !_characterController.isGrounded);
-            _animator.SetInteger(InputZ, (int)playerInputController.MovementInput.z);
-            _animator.SetInteger(InputX, (int)playerInputController.MovementInput.x);
+            _animator.SetInteger(InputZ, (int)_playerInputController.MovementInput.z);
+            _animator.SetInteger(InputX, (int)_playerInputController.MovementInput.x);
         }
 
         private void PlaySounds()
