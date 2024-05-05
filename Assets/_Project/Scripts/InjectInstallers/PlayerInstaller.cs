@@ -22,8 +22,21 @@ namespace Assets._Project.Scripts.InjectInstallers
 
         public override void InstallBindings()
         {
+            BindPlayerInputs();
             BindPlayer();
             BindAbilities();
+        }
+
+        private void BindPlayerInputs()
+        {
+            if (SystemInfo.deviceType == DeviceType.Desktop)
+            {
+                Container.BindInterfacesAndSelfTo<PlayerInputPCController>().AsSingle();
+            }
+            else if (SystemInfo.deviceType == DeviceType.Handheld)
+            {
+                Container.BindInterfacesAndSelfTo<PlayerInputMobileController>().AsSingle();
+            }
         }
 
         private void BindPlayer()
@@ -35,13 +48,14 @@ namespace Assets._Project.Scripts.InjectInstallers
             Container.BindInstance(cameraData).AsSingle();
             Container.BindInstance(FindObjectOfType<PlayerModel>()).AsSingle();
             Container.BindInstance(FindObjectOfType<Animator>()).AsSingle();
-
-            Container.BindInterfacesAndSelfTo<PlayerInputMobileController>().AsSingle();
             Container.BindInstance(FindObjectOfType<CharacterController>()).AsSingle();
-            Container.BindInstance(FindObjectOfType<PlayerView>()).AsSingle();
+
             Container.Bind<GroundMovement>().AsSingle();
             Container.Bind<AirMovement>().AsSingle();
             Container.BindInstance(FindObjectOfType<PlayerMovementController>()).AsSingle();
+
+            Container.BindInstance(FindObjectOfType<PlayerUIView>()).AsSingle();
+            Container.BindInstance(FindObjectOfType<PlayerView>()).AsSingle();
         }
 
         private void BindAbilities()
