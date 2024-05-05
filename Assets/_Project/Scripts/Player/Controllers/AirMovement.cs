@@ -1,4 +1,5 @@
-﻿using Assets._Project.Scripts.Player.Models;
+﻿using Assets._Project.InputSystem;
+using Assets._Project.Scripts.Player.Models;
 using Assets._Project.Scripts.ScriptableObjects;
 using UnityEngine;
 
@@ -8,16 +9,16 @@ namespace Assets._Project.Scripts.Player.Controllers
     {
         private PlayerModel _playerModel;
         private PlayerData _playerData;
-        private PlayerInputController _playerInputController;
+        private IPlayerInput _playerInput;
 
         private Vector3 _movement;
         private Quaternion _targetRotation;
 
-        public AirMovement(PlayerModel playerModel, PlayerData playerData, PlayerInputController playerInputController)
+        public AirMovement(PlayerModel playerModel, PlayerData playerData, IPlayerInput playerInput)
         {
             _playerModel = playerModel;
             _playerData = playerData;
-            _playerInputController = playerInputController;
+            _playerInput = playerInput;
         }
 
         public Vector3 Move(Vector3 movement)
@@ -32,7 +33,7 @@ namespace Assets._Project.Scripts.Player.Controllers
         {
             var speedValue = _playerModel.RunningSpeed;
             var gravityValue = _movement.y;
-            _movement = (_playerModel.transform.forward * speedValue) + (_playerModel.transform.right * _playerInputController.MovementInput.x * _playerData.RunningSpeedLeftRightOnFlying);
+            _movement = (_playerModel.transform.forward * speedValue) + (_playerModel.transform.right * _playerInput.MovementInput.x * _playerData.RunningSpeedLeftRightOnFlying);
             _movement.y = gravityValue;
         }
 
@@ -52,8 +53,8 @@ namespace Assets._Project.Scripts.Player.Controllers
         {
             var currentDegreesY = _targetRotation.eulerAngles.y;
             var currentDegreesZ = _targetRotation.eulerAngles.z;
-            currentDegreesY += _playerInputController.MovementInput.x * _playerData.RotationSpeedOnFlying;
-            currentDegreesZ -= _playerInputController.MovementInput.x * _playerData.RotationSpeedOnFlying;
+            currentDegreesY += _playerInput.MovementInput.x * _playerData.RotationSpeedOnFlying;
+            currentDegreesZ -= _playerInput.MovementInput.x * _playerData.RotationSpeedOnFlying;
 
             if (currentDegreesY > 180f)
             {

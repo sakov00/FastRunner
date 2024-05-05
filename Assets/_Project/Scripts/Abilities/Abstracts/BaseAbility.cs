@@ -6,7 +6,7 @@ namespace Assets._Project.Scripts.Abilities.Abstracts
     public abstract class BaseAbility
     {
         protected PlayerModel _playerModel;
-        public AbilityData AbilityData{ get;protected set; }
+        public AbilityData AbilityData { get; protected set; }
 
         public abstract void Activate();
     }

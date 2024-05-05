@@ -1,4 +1,5 @@
-﻿using Assets._Project.Scripts.Abilities;
+﻿using Assets._Project.InputSystem;
+using Assets._Project.Scripts.Abilities;
 using Assets._Project.Scripts.Player.Controllers;
 using Assets._Project.Scripts.Player.Models;
 using Assets._Project.Scripts.Player.Views;
@@ -34,7 +35,8 @@ namespace Assets._Project.Scripts.InjectInstallers
             Container.BindInstance(cameraData).AsSingle();
             Container.BindInstance(FindObjectOfType<PlayerModel>()).AsSingle();
             Container.BindInstance(FindObjectOfType<Animator>()).AsSingle();
-            Container.BindInstance(FindObjectOfType<PlayerInputController>()).AsSingle();
+
+            Container.BindInterfacesAndSelfTo<PlayerInputMobileController>().AsSingle();
             Container.BindInstance(FindObjectOfType<CharacterController>()).AsSingle();
             Container.BindInstance(FindObjectOfType<PlayerView>()).AsSingle();
             Container.Bind<GroundMovement>().AsSingle();

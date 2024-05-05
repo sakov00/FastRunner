@@ -1,4 +1,5 @@
-﻿using Assets._Project.Scripts.Abilities;
+﻿using Assets._Project.InputSystem;
+using Assets._Project.Scripts.Abilities;
 using Assets._Project.Scripts.Abilities.Abstracts;
 using Assets._Project.Scripts.Player.Models;
 using System.Collections.Generic;
@@ -11,15 +12,15 @@ namespace Assets._Project.Scripts.Player.Controllers
     public class AbilitiesController : MonoBehaviour
     {
         private PlayerModel _playerModel;
-        private PlayerInputController _playerInputController;
+        private IPlayerInput _playerInput;
 
         private List<BaseAbility> Abilities { get; set; } = new List<BaseAbility>();
 
         [Inject]
-        private void Contract(PlayerModel playerModel, PlayerInputController playerInputController, AccelerationAbility accelerationAbility, DoubleJumpAbility doubleJumpAbility, EnergyShieldAbility energyShieldAbility)
+        private void Contract(PlayerModel playerModel, IPlayerInput playerInput, AccelerationAbility accelerationAbility, DoubleJumpAbility doubleJumpAbility, EnergyShieldAbility energyShieldAbility)
         {
             _playerModel = playerModel;
-            _playerInputController = playerInputController;
+            _playerInput = playerInput;
 
             Abilities.Add(accelerationAbility);
             Abilities.Add(doubleJumpAbility);
@@ -28,9 +29,9 @@ namespace Assets._Project.Scripts.Player.Controllers
 
         private void Start()
         {
-            _playerInputController.OnFirstAbility += Abilities.First(ability => _playerModel.FirstAbilityType == ability.AbilityData.AbilityType).Activate;
-            _playerInputController.OnSecondAbility += Abilities.First(ability => _playerModel.SecondAbilityType == ability.AbilityData.AbilityType).Activate;
-            _playerInputController.OnThirdAbility += Abilities.First(ability => _playerModel.ThirdAbilityType == ability.AbilityData.AbilityType).Activate;
+            _playerInput.OnFirstAbility += Abilities.First(ability => _playerModel.FirstAbilityType == ability.AbilityData.AbilityType).Activate;
+            _playerInput.OnSecondAbility += Abilities.First(ability => _playerModel.SecondAbilityType == ability.AbilityData.AbilityType).Activate;
+            _playerInput.OnThirdAbility += Abilities.First(ability => _playerModel.ThirdAbilityType == ability.AbilityData.AbilityType).Activate;
         }
     }
 }

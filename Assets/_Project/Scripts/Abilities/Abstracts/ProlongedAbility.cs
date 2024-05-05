@@ -1,6 +1,5 @@
 ﻿using Assets._Project.Scripts.Player.Models;
 using Assets._Project.Scripts.ScriptableObjects.AbilitiesData.Abstract;
-using Assets._Project.Scripts.ScriptableObjects.AbilitiesData;
 using System.Threading.Tasks;
 using Zenject;
 
@@ -25,7 +24,7 @@ namespace Assets._Project.Scripts.Abilities.Abstracts
 
         public void FixedTick()
         {
-            if(isActive)
+            if (isActive)
                 _playerModel.EnergyValue -= ProlongedAbilityData.EnergyPerSecond / 50;
         }
 

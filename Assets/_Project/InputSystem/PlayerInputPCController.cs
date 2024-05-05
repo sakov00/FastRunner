@@ -1,24 +1,25 @@
 using System;
 using UnityEngine;
 
-namespace Assets._Project.Scripts.Player.Controllers
+namespace Assets._Project.InputSystem
 {
-    public class PlayerInputController : MonoBehaviour
+    public class PlayerInputPCController : IPlayerInput
     {
         private PlayerInput _inputActions;
 
-        public Vector3 MovementInput { get; private set; }
+        public Vector3 MovementInput { get; set; }
         public event Action OnFirstAbility;
         public event Action OnSecondAbility;
         public event Action OnThirdAbility;
 
-        private void Awake()
+        public PlayerInputPCController()
         {
             _inputActions = new PlayerInput();
             _inputActions.Enable();
+            OnEnable();
         }
 
-        private void OnEnable()
+        public void OnEnable()
         {
             _inputActions.PC.Movement.performed += Movement;
             _inputActions.PC.Movement.canceled += Movement;
@@ -27,7 +28,7 @@ namespace Assets._Project.Scripts.Player.Controllers
             _inputActions.PC.ThirdAbility.performed += ThirdAbility;
         }
 
-        private void OnDisable()
+        public void OnDisable()
         {
             _inputActions.PC.Movement.performed -= Movement;
             _inputActions.PC.Movement.canceled -= Movement;

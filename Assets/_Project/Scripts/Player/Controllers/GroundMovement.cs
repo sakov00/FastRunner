@@ -1,4 +1,5 @@
-﻿using Assets._Project.Scripts.Player.Models;
+﻿using Assets._Project.InputSystem;
+using Assets._Project.Scripts.Player.Models;
 using Assets._Project.Scripts.ScriptableObjects;
 using UnityEngine;
 using static Unity.Mathematics.math;
@@ -9,16 +10,16 @@ namespace Assets._Project.Scripts.Player.Controllers
     {
         private PlayerModel _playerModel;
         private PlayerData _playerData;
-        private PlayerInputController _playerInputController;
+        private IPlayerInput _playerInput;
 
         private Vector3 _movement;
         private Quaternion _targetRotation;
 
-        public GroundMovement(PlayerModel playerModel, PlayerData playerData, PlayerInputController playerInputController)
+        public GroundMovement(PlayerModel playerModel, PlayerData playerData, IPlayerInput playerInput)
         {
             _playerModel = playerModel;
             _playerData = playerData;
-            _playerInputController = playerInputController;
+            _playerInput = playerInput;
         }
 
         public Vector3 Move(Vector3 movement)
@@ -38,7 +39,7 @@ namespace Assets._Project.Scripts.Player.Controllers
 
         private void VerticalMove()
         {
-            if (_playerInputController.MovementInput.y != 0)
+            if (_playerInput.MovementInput.y != 0)
             {
                 _movement.y = sqrt(_playerModel.JumpHeight * -2f * _playerModel.GravityValue);
             }
@@ -59,7 +60,7 @@ namespace Assets._Project.Scripts.Player.Controllers
         {
             var currentDegrees = _targetRotation.eulerAngles.y;
             var rotationSpeed = _playerData.RotationSpeedOnGround;
-            currentDegrees += _playerInputController.MovementInput.x * rotationSpeed;
+            currentDegrees += _playerInput.MovementInput.x * rotationSpeed;
 
             if (currentDegrees > 180f)
             {

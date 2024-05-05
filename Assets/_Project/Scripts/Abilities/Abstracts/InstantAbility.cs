@@ -1,5 +1,4 @@
 ﻿using Assets._Project.Scripts.Player.Models;
-using Assets._Project.Scripts.ScriptableObjects.AbilitiesData;
 using Assets._Project.Scripts.ScriptableObjects.AbilitiesData.Abstract;
 
 namespace Assets._Project.Scripts.Abilities.Abstracts

@@ -21,7 +21,7 @@ namespace Assets._Project.Scripts.Player.Controllers
             _groundMovement = groundMovement;
             _airMovement = airMovement;
 
-            _playerView = playerView; 
+            _playerView = playerView;
             _characterController = characterController;
         }
 
