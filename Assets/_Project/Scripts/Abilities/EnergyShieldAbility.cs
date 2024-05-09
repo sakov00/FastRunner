@@ -6,7 +6,7 @@ namespace Assets._Project.Scripts.Abilities
 {
     public class EnergyShieldAbility : ProlongedAbility
     {
-        protected EnergyShieldAbilityData AccelerationAbilityData
+        protected EnergyShieldAbilityData EnergyShieldAbilityData
         {
             get { return (EnergyShieldAbilityData)ProlongedAbilityData; }
             set { ProlongedAbilityData = value; }
@@ -14,7 +14,7 @@ namespace Assets._Project.Scripts.Abilities
 
         public EnergyShieldAbility(PlayerModel playerModel, EnergyShieldAbilityData energyShieldAbilityData) : base(playerModel)
         {
-            AccelerationAbilityData = energyShieldAbilityData;
+            EnergyShieldAbilityData = energyShieldAbilityData;
         }
 
         protected override void OnActivate()

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Acceleration
   m_EditorClassIdentifier: 
   AbilityType: 0
-  EnergyPerSecond: 5
+  EnergyPerSecond: 2.5
   EnergyTimer: 10
   ValueSpeedUp: 20

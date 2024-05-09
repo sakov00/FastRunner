@@ -54,7 +54,7 @@ namespace Assets._Project.Scripts.Player.Controllers
             var currentDegreesY = _targetRotation.eulerAngles.y;
             var currentDegreesZ = _targetRotation.eulerAngles.z;
             currentDegreesY += _playerInput.MovementInput.x * _playerData.RotationSpeedOnFlying;
-            currentDegreesZ -= _playerInput.MovementInput.x * _playerData.RotationSpeedOnFlying;
+            currentDegreesZ -= _playerInput.MovementInput.x * _playerInput.MovementInput.z * _playerData.RotationSpeedOnFlying;
 
             if (currentDegreesY > 180f)
             {

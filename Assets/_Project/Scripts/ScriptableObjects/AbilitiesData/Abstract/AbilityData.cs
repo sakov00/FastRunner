@@ -5,6 +5,6 @@ namespace Assets._Project.Scripts.ScriptableObjects.AbilitiesData.Abstract
 {
     public abstract class AbilityData : ScriptableObject
     {
-        public TypeAbility AbilityType;
+        public AbilityType AbilityType;
     }
 }

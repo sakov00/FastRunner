@@ -33,8 +33,8 @@ namespace Assets._Project.Scripts.ScriptableObjects
 
         [Header("Start abilities"), Space(10)]
 
-        public TypeAbility FirstAbilityType;
-        public TypeAbility SecondAbilityType;
-        public TypeAbility ThirdAbilityType;
+        public AbilityType FirstAbilityType;
+        public AbilityType SecondAbilityType;
+        public AbilityType ThirdAbilityType;
     }
 }

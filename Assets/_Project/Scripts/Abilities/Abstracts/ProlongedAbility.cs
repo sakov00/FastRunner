@@ -5,7 +5,7 @@ using Zenject;
 
 namespace Assets._Project.Scripts.Abilities.Abstracts
 {
-    public abstract class ProlongedAbility : BaseAbility, IFixedTickable
+    public abstract class ProlongedAbility : BaseAbility
     {
         protected bool isActive = false;
 

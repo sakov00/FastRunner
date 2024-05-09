@@ -9,7 +9,6 @@ namespace Assets._Project.Scripts.Player.Views
         private IPlayerInput _playerInput;
         private CharacterController _characterController;
         private Animator _animator;
-        private PlayerManagerSounds playerManagerSounds;
 
         private static readonly string IsGrounded = "IsGrounded";
         private static readonly string IsFalling = "IsFalling";
@@ -18,18 +17,21 @@ namespace Assets._Project.Scripts.Player.Views
         private static readonly string InputX = "InputX";
 
         [Inject]
-        private void Contract(PlayerManagerSounds playerManagerSounds, IPlayerInput playerInput, CharacterController characterController, Animator animator)
+        private void Contract(IPlayerInput playerInput)
         {
-            this.playerManagerSounds = playerManagerSounds;
             _playerInput = playerInput;
-            _characterController = characterController;
-            _animator = animator;
+        }
+
+        private void Awake()
+        {
+            _characterController = GetComponent<CharacterController>();
+            _animator = GetComponent<Animator>();
         }
 
         public void Move(Vector3 movement)
         {
             PlayAnimations(movement);
-            PlaySounds();
+            //PlaySounds();
             _characterController.Move(movement);
         }
 
@@ -47,12 +49,12 @@ namespace Assets._Project.Scripts.Player.Views
             _animator.SetFloat(InputX, _playerInput.MovementInput.x);
         }
 
-        private void PlaySounds()
-        {
-            if (_animator.GetBool(IsGrounded))
-                playerManagerSounds.PlaySteps();
-            else
-                playerManagerSounds.StopSteps();
-        }
+        //private void PlaySounds()
+        //{
+        //    if (_animator.GetBool(IsGrounded))
+        //        playerManagerSounds.PlaySteps();
+        //    else
+        //        playerManagerSounds.StopSteps();
+        //}
     }
 }

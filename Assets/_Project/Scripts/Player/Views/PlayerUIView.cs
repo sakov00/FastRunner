@@ -10,10 +10,9 @@ namespace Assets._Project.Scripts.Player.Views
         private PlayerModel _playerModel;
         [SerializeField] private Slider _sliderEnergy;
 
-        [Inject]
-        private void Contract(PlayerModel playerModel)
+        private void Awake()
         {
-            _playerModel = playerModel;
+            _playerModel = GetComponent<PlayerModel>();
         }
 
         private void Start()

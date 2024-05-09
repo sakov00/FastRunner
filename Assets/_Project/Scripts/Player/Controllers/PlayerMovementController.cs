@@ -1,4 +1,7 @@
+using Assets._Project.InputSystem;
+using Assets._Project.Scripts.Player.Models;
 using Assets._Project.Scripts.Player.Views;
+using Assets._Project.Scripts.ScriptableObjects;
 using UnityEngine;
 using Zenject;
 
@@ -6,6 +9,9 @@ namespace Assets._Project.Scripts.Player.Controllers
 {
     public class PlayerMovementController : MonoBehaviour
     {
+        private PlayerModel _playerModel;
+        private PlayerData _playerData;
+        private IPlayerInput _playerInput;
         private PlayerView _playerView;
         private CharacterController _characterController;
 
@@ -16,13 +22,20 @@ namespace Assets._Project.Scripts.Player.Controllers
         private Quaternion _rotation;
 
         [Inject]
-        private void Contract(GroundMovement groundMovement, AirMovement airMovement, PlayerView playerView, CharacterController characterController)
+        private void Contract(PlayerData playerData, IPlayerInput playerInput)
         {
-            _groundMovement = groundMovement;
-            _airMovement = airMovement;
+            _playerData = playerData;
+            _playerInput = playerInput;
+        }
 
-            _playerView = playerView;
-            _characterController = characterController;
+        private void Awake()
+        {
+            _playerModel = GetComponent<PlayerModel>();
+            _playerView = GetComponent<PlayerView>();
+            _characterController = GetComponent<CharacterController>();
+
+            _groundMovement = new GroundMovement(_playerModel, _playerData, _playerInput);
+            _airMovement = new AirMovement(_playerModel, _playerData, _playerInput);
         }
 
         private void Update()

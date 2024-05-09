@@ -18,13 +18,9 @@ namespace Assets._Project.Scripts.Player.Models
             _playerData = playerData;
         }
 
+        public event Action OnDied; 
         public event Action OnEnergyValueEnded;
         public event PropertyChangedEventHandler PropertyChanged;
-
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
-        }
 
         public float RunningSpeed { get; set; }
 
@@ -47,9 +43,9 @@ namespace Assets._Project.Scripts.Player.Models
             }
         }    
 
-        public TypeAbility FirstAbilityType { get; set; }
-        public TypeAbility SecondAbilityType { get; set; }
-        public TypeAbility ThirdAbilityType { get; set; }
+        public AbilityType FirstAbilityType { get; set; }
+        public AbilityType SecondAbilityType { get; set; }
+        public AbilityType ThirdAbilityType { get; set; }
 
         private void Awake()
         {
@@ -66,6 +62,16 @@ namespace Assets._Project.Scripts.Player.Models
             FirstAbilityType = _playerData.FirstAbilityType;
             SecondAbilityType = _playerData.SecondAbilityType;
             ThirdAbilityType = _playerData.ThirdAbilityType;
+        }
+
+        public void OnPropertyChanged([CallerMemberName] string prop = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+        }
+
+        public void Die()
+        {
+            OnDied.Invoke();
         }
     }
 }

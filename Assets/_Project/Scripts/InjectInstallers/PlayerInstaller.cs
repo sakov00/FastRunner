@@ -1,10 +1,8 @@
 ﻿using Assets._Project.InputSystem;
-using Assets._Project.Scripts.Abilities;
-using Assets._Project.Scripts.Player.Controllers;
-using Assets._Project.Scripts.Player.Models;
-using Assets._Project.Scripts.Player.Views;
+using Assets._Project.Scripts.Factories;
 using Assets._Project.Scripts.ScriptableObjects;
 using Assets._Project.Scripts.ScriptableObjects.AbilitiesData;
+using Assets._Project.Scripts.Spawners;
 using UnityEngine;
 using Zenject;
 
@@ -22,9 +20,19 @@ namespace Assets._Project.Scripts.InjectInstallers
 
         public override void InstallBindings()
         {
+            BindConfigs();
             BindPlayerInputs();
-            BindPlayer();
-            BindAbilities();
+            BindFactories();
+            BindSpawners();
+        }
+
+        private void BindConfigs()
+        {
+            Container.BindInstance(playerData).AsSingle();
+            Container.BindInstance(cameraData).AsSingle();
+            Container.BindInstance(accelerationAbilityData).AsSingle();
+            Container.BindInstance(doubleJumpAbilityData).AsSingle();
+            Container.BindInstance(energyShieldAbilityData).AsSingle();
         }
 
         private void BindPlayerInputs()
@@ -39,34 +47,14 @@ namespace Assets._Project.Scripts.InjectInstallers
             }
         }
 
-        private void BindPlayer()
+        private void BindFactories()
         {
-            var obj = Container.InstantiatePrefab(playerManagerSounds);
-            Container.BindInstance(obj.GetComponent<PlayerManagerSounds>()).AsSingle();
-
-            Container.BindInstance(playerData).AsSingle();
-            Container.BindInstance(cameraData).AsSingle();
-            Container.BindInstance(FindObjectOfType<PlayerModel>()).AsSingle();
-            Container.BindInstance(FindObjectOfType<Animator>()).AsSingle();
-            Container.BindInstance(FindObjectOfType<CharacterController>()).AsSingle();
-
-            Container.Bind<GroundMovement>().AsSingle();
-            Container.Bind<AirMovement>().AsSingle();
-            Container.BindInstance(FindObjectOfType<PlayerMovementController>()).AsSingle();
-
-            Container.BindInstance(FindObjectOfType<PlayerUIView>()).AsSingle();
-            Container.BindInstance(FindObjectOfType<PlayerView>()).AsSingle();
+            Container.Bind<PlayerFactory>().AsSingle();
         }
 
-        private void BindAbilities()
+        private void BindSpawners()
         {
-            Container.BindInstance(accelerationAbilityData).AsSingle();
-            Container.BindInstance(doubleJumpAbilityData).AsSingle();
-            Container.BindInstance(energyShieldAbilityData).AsSingle();
-
-            Container.BindInterfacesAndSelfTo<AccelerationAbility>().AsSingle();
-            Container.BindInterfacesAndSelfTo<DoubleJumpAbility>().AsSingle();
-            Container.BindInterfacesAndSelfTo<EnergyShieldAbility>().AsSingle();
+            Container.BindInstance(FindObjectOfType<PlayerSpawner>()).AsSingle();
         }
     }
 }
