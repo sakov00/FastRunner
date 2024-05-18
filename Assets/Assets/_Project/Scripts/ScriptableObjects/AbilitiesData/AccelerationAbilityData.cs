@@ -7,5 +7,6 @@ namespace Assets._Project.Scripts.ScriptableObjects.AbilitiesData
     public class AccelerationAbilityData : ProlongedAbilityData
     {
         public float ValueSpeedUp;
+        public float ValueSpeedDown;
     }
 }

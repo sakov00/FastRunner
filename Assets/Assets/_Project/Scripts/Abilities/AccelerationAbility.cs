@@ -24,7 +24,7 @@ namespace Assets._Project.Scripts.Abilities
 
         protected override void OnDeactivate()
         {
-            _playerModel.RunningSpeed -= AccelerationAbilityData.ValueSpeedUp;
+            _playerModel.RunningSpeed -= AccelerationAbilityData.ValueSpeedDown;
         }
     }
 }

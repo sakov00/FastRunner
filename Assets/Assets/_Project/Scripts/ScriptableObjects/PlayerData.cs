@@ -17,7 +17,7 @@ namespace Assets._Project.Scripts.ScriptableObjects
 
         [Range(-50, 0)] public float GravityValue;
 
-        [Range(0, 100)] public float EnergyValue;
+        [Range(0, 200)] public float EnergyValue;
 
         [Header("Constant info"), Space(10)]
 
