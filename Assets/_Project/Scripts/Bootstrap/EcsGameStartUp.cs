@@ -10,37 +10,53 @@ namespace Assets._Project.Scripts.Bootstrap
 {
     public class EcsGameStartUp : MonoBehaviour
     {
-        private DiContainer _diContainer;
         private EcsWorld world;
 
+        private EcsSystems initUpdateSystems;
         private EcsSystems fixedUpdateSystems;
         private EcsSystems updateSystems;
         private EcsSystems lateUpdateSystems;
 
         [Inject]
-        private void Contract(DiContainer diContainer)
+        private void Contract(EcsWorld world, IEcsInitSystem[] initSystems)
         {
-            _diContainer = diContainer;
+            this.world = world;
+
+            initUpdateSystems = new EcsSystems(world);
+            foreach (var initSystem in initSystems)
+            {
+                initUpdateSystems.Add(initSystem);
+            }
         }
 
         private void Start()
         {
-            world = new EcsWorld();
+            DeclareInitSystems();
+            DeclareFixedUpdateSystems();
+            DeclareUpdateSystems();
+            DeclareLateUpdateSystems();
+        }
 
+        private void DeclareInitSystems()
+        {
+            initUpdateSystems.Init();
+        }
+
+        private void DeclareFixedUpdateSystems()
+        {
             fixedUpdateSystems = new EcsSystems(world);
+
+            fixedUpdateSystems.Add(new PlayerActivateAbilitySystem());
+            fixedUpdateSystems.Add(new AccelerationAbilitySystem());
+            fixedUpdateSystems.Add(new DoubleJumpAbilitySystem());
+            fixedUpdateSystems.Add(new EnergyShieldAbilitySystem());
+
+            fixedUpdateSystems.Init();
+        }
+
+        private void DeclareUpdateSystems()
+        {
             updateSystems = new EcsSystems(world);
-            lateUpdateSystems = new EcsSystems(world);
-
-            updateSystems.Add(_diContainer.Resolve<PlayerInitSystem>());
-
-            if (SystemInfo.deviceType == DeviceType.Desktop)
-            {
-                updateSystems.Add(new InputPCSystem());
-            }
-            else if (SystemInfo.deviceType == DeviceType.Handheld)
-            {
-                updateSystems.Add(new InputMobileSystem());
-            }
 
             updateSystems.Add(new PlayerAnimationSystem());
             updateSystems.Add(new PlayerGroundMovementSystem());
@@ -48,15 +64,15 @@ namespace Assets._Project.Scripts.Bootstrap
             updateSystems.Add(new PlayerAirMovementSystem());
             updateSystems.Add(new PlayerAirRotationSystem());
 
-            fixedUpdateSystems.Add(new PlayerActivateAbilitySystem());
-            fixedUpdateSystems.Add(new AccelerationAbilitySystem());
-            fixedUpdateSystems.Add(new DoubleJumpAbilitySystem());
-            fixedUpdateSystems.Add(new EnergyShieldAbilitySystem());
+            updateSystems.Init();
+        }
+
+        private void DeclareLateUpdateSystems()
+        {
+            lateUpdateSystems = new EcsSystems(world);
 
             lateUpdateSystems.Add(new FollowCameraSystem());
 
-            fixedUpdateSystems.Init();
-            updateSystems.Init();
             lateUpdateSystems.Init();
         }
 
@@ -71,6 +87,7 @@ namespace Assets._Project.Scripts.Bootstrap
 
         private void OnDestroy()
         {
+            initUpdateSystems.Destroy();
             fixedUpdateSystems.Destroy();
             updateSystems.Destroy();
             lateUpdateSystems.Destroy();
