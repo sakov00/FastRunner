@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Assets._Project.Scripts.Player.Models;
 using JetBrains.Annotations;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ public class StoneSpawner : MonoBehaviour
     public float boundX = 100;
     public float boundY = 50f;
     public float boundZ = 10;
-    public GameObject player;
+    public PlayerModel player;
     public GameObject[] stones;
     public GameObject stonePortal;
     public Vector3 offsetPortal = new Vector3(0,0,0);
@@ -21,6 +22,12 @@ public class StoneSpawner : MonoBehaviour
     float randomAngleY;
     float randomAngleZ;
     float randomAnglePort;
+    public GameObject pointToSpawn;
+    public bool isEnabled;
+    private void Start() 
+    {
+        player = FindObjectOfType<PlayerModel>();
+    }
     
     void FixedUpdate()
     {
@@ -29,7 +36,7 @@ public class StoneSpawner : MonoBehaviour
 
     public void StoneSpawn()
     {
-        if(isSpawnStone)
+        if(isSpawnStone && isEnabled)
         {
             int indexRandom = Random.Range(0, stones.Length);
             boundVectorX = Random.Range(boundX, -boundX);
@@ -37,9 +44,10 @@ public class StoneSpawner : MonoBehaviour
             randomAngleY = Random.Range(-180, 180);
             randomAngleZ = Random.Range(-180, 180);
             randomAnglePort = Random.Range(30, -30);
-            Vector3 pos = new Vector3(boundVectorX + player.transform.position.x, boundY, player.transform.position.z + boundZ);
-            Instantiate(stonePortal, pos,Quaternion.Euler(190, 0, randomAnglePort));
-            StartCoroutine(SpawnActivater(stones[indexRandom], pos, Quaternion.Euler(randomAngleX, randomAngleY, randomAngleZ)));
+            Vector3 pos = new Vector3(pointToSpawn.transform.position.x, player.transform.position.y + boundY, pointToSpawn.transform.position.z);
+            Destroy(Instantiate(stonePortal, pos,Quaternion.Euler(100, 0, randomAnglePort)), timeToSpawn);
+            StartCoroutine(SpawnActivater(stones[indexRandom], pos, stones[indexRandom].transform.rotation));
+            //Quaternion.Euler(randomAngleX, randomAngleY, randomAngleZ)));
             isSpawnStone = false;
         }
     }
@@ -47,13 +55,13 @@ public class StoneSpawner : MonoBehaviour
 
     IEnumerator SpawnActivater(GameObject go, Vector3 pos, Quaternion rot)
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(timeToSpawn);
         SpawnStone(go, pos, rot);
         isSpawnStone = true;
     }
 
     public void SpawnStone(GameObject go, Vector3 pos, Quaternion rot)
     {
-        Instantiate(go, pos, rot);
+        Destroy(Instantiate(go, pos, rot), 4f);
     }
 }   

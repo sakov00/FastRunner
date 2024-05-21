@@ -42,12 +42,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Max: 4.32
-    - _Min: 2.99
+    - _Max: 1.52
+    - _Min: 3.01
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Shades: 0.74
-    - _Smooth: -0.44
+    - _Smooth: 0.38
     m_Colors:
     - _Color: {r: 0.15957637, g: 0.20429492, b: 0.20754719, a: 0}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}

@@ -16,3 +16,4 @@ MonoBehaviour:
   EnergyPerSecond: 2.5
   EnergyTimer: 10
   ValueSpeedUp: 20
+  ValueSpeedDown: 0
