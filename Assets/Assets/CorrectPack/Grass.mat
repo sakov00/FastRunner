@@ -16,7 +16,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2450
   stringTagMap: {}
   disabledShaderPasses: []
   m_LockedProperties: _WindFrequency
@@ -24,28 +24,28 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _CrossFlowMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: bbcc46412986c6842aed9e4fbda0bb7f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _FlowMap:
-        m_Texture: {fileID: 2800000, guid: 099a705e08b40f2479e14cdf15222ef3, type: 3}
+        m_Texture: {fileID: 2800000, guid: 6b2f8c52bafc5ea4aa350a8f956ce01e, type: 3}
         m_Scale: {x: 10, y: 10}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Attenuation: -1.04
-    - _Density: 775.5
+    - _Attenuation: -0.53
+    - _Density: 2221.2
     - _HeightmapMultiplier: 0
-    - _MaxHeight: 813.6
-    - _MinHeight: -399.2
-    - _OcclusionBias: 0.9
-    - _ShellCount: 30
+    - _MaxHeight: 15.17
+    - _MinHeight: 87.5
+    - _OcclusionBias: 1.28
+    - _ShellCount: 19
     - _ShellIndex: 0
-    - _Thickness: 3.45
-    - _TopColorMultiplier: 0
-    - _WindAmplitude: 0
-    - _WindFrequency: 0
+    - _Thickness: 436.8
+    - _TopColorMultiplier: -0.62
+    - _WindAmplitude: 1.15
+    - _WindFrequency: 6.4
     m_Colors:
-    - _CrossColor: {r: 0.36311856, g: 0.9056604, b: 0.43072093, a: 1}
-    - _ShellColor: {r: 0.4054874, g: 0.8773585, b: 0.3186632, a: 1}
+    - _CrossColor: {r: 0.24252404, g: 0.9433962, b: 0.16464934, a: 1}
+    - _ShellColor: {r: 0.07170161, g: 0.7075472, b: 0.02336242, a: 1}
   m_BuildTextureStacks: []

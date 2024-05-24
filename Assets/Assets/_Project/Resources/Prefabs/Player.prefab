@@ -6557,7 +6557,7 @@ MonoBehaviour:
   stonePortal: {fileID: 765777131777492159, guid: 6159fc003acde6c42b6c6add79b3102d,
     type: 3}
   offsetPortal: {x: 0, y: 0, z: 0}
-  timeToSpawn: 0.7
+  timeToSpawn: 0.3
   isSpawn: 1
   isSpawnStone: 1
   pointToSpawn: {fileID: 4949039047633378547}
@@ -6574,7 +6574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f36fca41d9f4d445b5462bcbbbacae0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boundX: 0.5
+  boundX: 0.8
   boundY: 50
   boundZ: 40
   player: {fileID: 0}
@@ -6583,7 +6583,7 @@ MonoBehaviour:
   stonePortal: {fileID: 765777131777492159, guid: 6159fc003acde6c42b6c6add79b3102d,
     type: 3}
   offsetPortal: {x: 0, y: 0, z: 0}
-  timeToSpawn: 0.4
+  timeToSpawn: 0.2
   isSpawn: 1
   isSpawnStone: 1
   pointToSpawn: {fileID: 4949039047633378547}

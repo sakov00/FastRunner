@@ -33,10 +33,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Attenuation: 1.3343103
-    - _Density: 410.55685
+    - _Attenuation: 0.59308416
+    - _Density: 139.44203
     - _HeightmapMultiplier: 0
-    - _MaxHeight: 128.00587
+    - _MaxHeight: 157.82326
     - _MinHeight: 16
     - _NoiseMax: 1
     - _NoiseMin: 0
@@ -48,7 +48,7 @@ Material:
     - _ShellLength: -0.4
     - _Thickness: 44.354836
     - _TopColorMultiplier: 0
-    - _WindAmplitude: 0
+    - _WindAmplitude: 0.1290837
     - _WindFrequency: 0
     m_Colors:
     - _CharPos: {r: 0.931, g: 0.915, b: -0.016, a: 0}

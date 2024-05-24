@@ -15,7 +15,7 @@ namespace ShellTexturedGrass
 
         private MaterialPropertyBlock _block;
 
-        private void Awake()
+        private void OnValidate()
         {
             if (Application.isPlaying)
             {
