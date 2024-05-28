@@ -44,6 +44,8 @@ Shader "ShellTexture/Grass1"
         #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 
         #pragma multi_compile_instancing
+        #pragma multi_compile _ _MAIN_LIGHT_SHADOWS
+        #pragma multi_compile _ _MAIN_LIGHT_SHADOWS_CASCADE
 
         TEXTURE2D(_FlowMap);
         SAMPLER(sampler_FlowMap);

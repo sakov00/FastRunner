@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Transactions;
+using UnityEditor.ShaderGraph;
 using UnityEngine;
 
 public class StoneCollision : MonoBehaviour
@@ -11,8 +13,10 @@ public class StoneCollision : MonoBehaviour
     public Material mat;
     public GameObject flame;
     public GameObject secondFlame;
+    public GameObject spotPS;
     MeshRenderer meshRenderer;
     Rigidbody rb;
+    public bool hitG;
 
     private void Start() 
     {
@@ -36,6 +40,15 @@ public class StoneCollision : MonoBehaviour
             speed = 0;
             h -= 1f * Time.deltaTime;
             mat.SetFloat("_Height", h);
+        }
+        if(Physics.Raycast(raycastPoint.position, -Vector3.up, out hit, 1000, 1<<3) && !hitG)
+        {
+            Vector3 hitNormal = hit.normal;
+            float angle = Vector3.Angle(Vector3.up, hitNormal);
+            Vector3 cross = Vector3.Cross(Vector3.up, hitNormal);
+            Quaternion targetRot = Quaternion.AngleAxis(angle, cross);
+            Destroy(Instantiate(spotPS, hit.point+ new Vector3(0, 0.5f, 0), targetRot), 1f);
+            hitG = true;
         }
 
     }

@@ -66,9 +66,9 @@ Material:
     - _ZWrite: 1
     - _ZWriteControl: 0
     m_Colors:
-    - _Color: {r: 0.5754717, g: 0.20427509, b: 0.08414916, a: 0}
-    - _Color_Small_Flame: {r: 0.18867922, g: 0.16242433, b: 0.13616943, a: 0}
-    - _Disrotion_Speed: {r: 0, g: -0.43, b: 0, a: 0}
+    - _Color: {r: 0.46226418, g: 0.3136121, b: 0.24639553, a: 1}
+    - _Color_Small_Flame: {r: 0.9911022, g: 0.590619, b: 0.37626222, a: 1}
+    - _Disrotion_Speed: {r: 0, g: -0.12, b: 0, a: 0}
     - _Distortion_Tiling: {r: -6.52, g: 0.17, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &2604837538499769766
