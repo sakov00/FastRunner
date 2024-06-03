@@ -51,7 +51,7 @@ Material:
     - _QueueOffset: 0
     - _TillindSpeed: 0.005
     m_Colors:
-    - _Tilling: {r: 5, g: 5, b: 0, a: 0}
+    - _Tilling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &41569721555748834
 MonoBehaviour:

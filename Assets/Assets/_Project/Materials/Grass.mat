@@ -33,19 +33,19 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Attenuation: -1.2
-    - _Density: 600
+    - _Attenuation: -0.5
+    - _Density: 2000
     - _HeightmapMultiplier: 0
-    - _MaxHeight: -644
-    - _MinHeight: 109.1
+    - _MaxHeight: -1915.8
+    - _MinHeight: 131.2
     - _OcclusionBias: 1.13
     - _ShellCount: 40
     - _ShellIndex: 0
-    - _Thickness: 3.3
-    - _TopColorMultiplier: -0.62
-    - _WindAmplitude: 1.15
-    - _WindFrequency: 6.4
+    - _Thickness: 47.91
+    - _TopColorMultiplier: 0.52
+    - _WindAmplitude: 0
+    - _WindFrequency: 0
     m_Colors:
-    - _CrossColor: {r: 0.5715681, g: 0.745283, b: 0.31287822, a: 1}
-    - _ShellColor: {r: 0.33813787, g: 0.6792453, b: 0.24670699, a: 1}
+    - _CrossColor: {r: 0.12300229, g: 1, b: 0, a: 1}
+    - _ShellColor: {r: 0.4114594, g: 0.9056604, b: 0.23495908, a: 1}
   m_BuildTextureStacks: []

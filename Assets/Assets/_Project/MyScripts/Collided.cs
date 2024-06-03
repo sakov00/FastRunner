@@ -9,7 +9,7 @@ public class Collided : MonoBehaviour
     private void OnTriggerEnter(Collider other) 
     {
         canvasWarningImage.SetActive(true);
-        Destroy(canvasWarningImage, 60f);
+        Destroy(canvasWarningImage, 3f);
         other.gameObject.GetComponentInChildren<StoneSpawner>().isEnabled = true;
     }
 }
