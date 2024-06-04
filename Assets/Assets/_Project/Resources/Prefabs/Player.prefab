@@ -466,8 +466,8 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 64
-  splashPref: {fileID: 1839246063928096219, guid: cf0af969db33b1a40999db45cc42aafe,
-    type: 3}
+  splashPref: {fileID: 0}
+  psSplash: {fileID: 0}
 --- !u!1 &887178955288619264
 GameObject:
   m_ObjectHideFlags: 0
