@@ -67,7 +67,7 @@ PrefabInstance:
     - target: {fileID: -1504981713932161579, guid: 622ce5176ebc47a448913fb99fd48429,
         type: 3}
       propertyPath: m_CastShadows
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -1504981713932161579, guid: 622ce5176ebc47a448913fb99fd48429,
         type: 3}
@@ -92,7 +92,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 622ce5176ebc47a448913fb99fd48429,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 126
+      value: 127
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -5716681864270162303, guid: 622ce5176ebc47a448913fb99fd48429, type: 3}
