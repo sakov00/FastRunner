@@ -17,7 +17,7 @@ Material:
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2000
   stringTagMap: {}
   disabledShaderPasses: []
   m_LockedProperties: 
@@ -26,6 +26,14 @@ Material:
     m_TexEnvs:
     - _MainTexture:
         m_Texture: {fileID: 2800000, guid: 51f2d63a3e906ad4092a849758583656, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_56d9582398fe40629ba023ffd9a27a81_Texture_1_Texture2D:
+        m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_84ed1a8530304386bc12860cd11afdfc_Texture_1_Texture2D:
+        m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -42,16 +50,30 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Distance: 2.76
+    - _DivideSize: 0
+    - _Ed1: 0.12
+    - _Ed1_1: 2.52
+    - _Float: 7.09
+    - _Float_1: 0
+    - _L1: 0.48
+    - _L2: 2.56
     - _Max: 0.66
     - _Min: 1.44
+    - _Pos: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Shades: -1.06
+    - _Size: 2.04
     - _Smooth: -0.96
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color_1: {r: 1, g: 0.6795426, b: 0.37626222, a: 1}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
+    - _PlayerPos: {r: 71.62742, g: -119.375175, b: 2491.3186, a: 0}
+    - _Pos: {r: 0, g: 0, b: 0, a: 0}
     - _Tilling_and_offset: {r: 1, g: 1, b: 0, a: 0}
+    - _Vector2: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &8834944652192120342
 MonoBehaviour:
