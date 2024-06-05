@@ -20,7 +20,7 @@ namespace Assets._Project.Scripts.Systems.Ability
                 if (!ability.AccelerationAbilityActivated && !accelerationAbility.IsActive)
                     continue;
 
-                if (ability.EnergyValue == 0)
+                if (ability.EnergyPoints == 0)
                 {
                     DeactivateAcceleration(ref unitMovement, ref accelerationAbility);
                     continue;
@@ -51,7 +51,7 @@ namespace Assets._Project.Scripts.Systems.Ability
         private void MaintainAcceleration(ref AbilityComponent ability, ref AccelerationAbilityComponent accelerationAbility)
         {
             accelerationAbility.CurrentWorkTime += Time.fixedDeltaTime;
-            ability.EnergyValue -= accelerationAbility.AccelerationAbilityData.EnergyPerSecond * Time.fixedDeltaTime;
+            ability.EnergyPoints -= accelerationAbility.AccelerationAbilityData.EnergyPerSecond * Time.fixedDeltaTime;
         }
 
         private void DeactivateAcceleration(ref UnitMovementComponent unitMovement, ref AccelerationAbilityComponent accelerationAbility)

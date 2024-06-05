@@ -23,13 +23,13 @@ namespace Assets._Project.Scripts.Systems.Ability
                 {
                     doubleJumpAbility.CanDoubleJump = true;
                 }
-                if (ability.DoubleJumpAbilityActivated && unitMovement.Movement.y < 0 && ability.EnergyValue != 0 &&
+                if (ability.DoubleJumpAbilityActivated && unitMovement.Movement.y < 0 && ability.EnergyPoints != 0 &&
                     !unitMovement.CharacterController.isGrounded && doubleJumpAbility.CanDoubleJump)
                 {
                     var movement = new Vector3(0, sqrt(unitMovement.JumpHeight * -2f * unitMovement.GravityValue), 0);
                     unitMovement.Movement = movement;
                     doubleJumpAbility.CanDoubleJump = false;
-                    ability.EnergyValue -= doubleJumpAbility.DoubleJumpAbilityData.EnergyCost;
+                    ability.EnergyPoints -= doubleJumpAbility.DoubleJumpAbilityData.EnergyCost;
                 }
             }
         }

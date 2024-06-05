@@ -4,18 +4,23 @@ namespace Assets._Project.Scripts.Components.Player
 {
     internal struct AbilityComponent
     {
-        private float energyValue;
-        public float EnergyValue
+        private float energyPoints;
+        public float EnergyPoints
         {
-            get { return energyValue; }
+            get { return energyPoints; }
             set
             {
-                if (value < 0)
-                    energyValue = 0;
+                if (value < EnergyPointsMin)
+                    energyPoints = EnergyPointsMin;
+                if (value > EnergyPointsMax)
+                    energyPoints = EnergyPointsMax;
                 else
-                    energyValue = value;
+                    energyPoints = value;
             }
         }
+
+        public float EnergyPointsMin { get; set; }
+        public float EnergyPointsMax { get; set; }
 
         public bool AccelerationAbilityActivated;
         public bool DoubleJumpAbilityActivated;

@@ -13,6 +13,5 @@ namespace Assets._Project.Scripts.Components.Unit
 
         public Transform Transform;
         public CharacterController CharacterController;
-
     }
 }

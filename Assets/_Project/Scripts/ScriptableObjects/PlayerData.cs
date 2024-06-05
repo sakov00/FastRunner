@@ -7,7 +7,27 @@ namespace Assets._Project.Scripts.ScriptableObjects
 
     public class PlayerData : ScriptableObject
     {
-        [Header("Start info"), Space(10)]
+        [Header("Health"), Space(10)]
+
+        [Range(0, 100)] public float HealthPointsMax;
+
+        [Range(0, 100)] public float HealthPointsMin;
+
+        [Range(0, 100)] public float EnergyPoints;
+
+        [Header("Damage"), Space(10)]
+
+        [Range(0, 5)] public float DamageCoolDown;
+
+        [Header("Energy"), Space(10)]
+
+        [Range(0, 100)] public float EnergyPointsMax;
+
+        [Range(0, 100)] public float EnergyPointsMin;
+
+        [Range(0, 100)] public float HealthPoints;
+
+        [Header("Movement"), Space(10)]
 
         [Range(5, 100)] public float RunningSpeed;
 
@@ -17,9 +37,7 @@ namespace Assets._Project.Scripts.ScriptableObjects
 
         [Range(-50, 0)] public float GravityValue;
 
-        [Range(0, 200)] public float EnergyValue;
-
-        [Header("Constant info"), Space(10)]
+        [Header("Rotation"), Space(10)]
 
         [Range(0, 90)] public float LimitRotationAngleY;
 
@@ -31,10 +49,12 @@ namespace Assets._Project.Scripts.ScriptableObjects
 
         [Range(0, 20)] public float RotationSensitiveOnFlying;
 
-        [Header("Start abilities"), Space(10)]
+        [Header("Abilities"), Space(10)]
 
         public AbilityType FirstAbilityType;
+
         public AbilityType SecondAbilityType;
+
         public AbilityType ThirdAbilityType;
     }
 }

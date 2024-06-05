@@ -26,7 +26,7 @@ namespace Assets._Project.Scripts.InjectInstallers
             BindInitSystems();
         }
 
-        private void BindEcs() 
+        private void BindEcs()
         {
             Container.Bind<EcsWorld>().AsSingle();
         }

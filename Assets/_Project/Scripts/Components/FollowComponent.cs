@@ -1,4 +1,4 @@
-﻿using Assets._Project.Scripts.Components.Unit;
+﻿using Leopotam.Ecs;
 using UnityEngine;
 
 namespace Assets._Project.Scripts.Components
@@ -7,6 +7,6 @@ namespace Assets._Project.Scripts.Components
     {
         public Vector3 Offset;
 
-        public UnitMovementComponent TargetMovementComponent;
+        public EcsEntity Entity;
     }
 }

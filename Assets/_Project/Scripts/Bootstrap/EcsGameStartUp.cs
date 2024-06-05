@@ -1,6 +1,6 @@
 ﻿using Assets._Project.Scripts.Systems;
 using Assets._Project.Scripts.Systems.Ability;
-using Assets._Project.Scripts.Systems.Init;
+using Assets._Project.Scripts.Systems.Object;
 using Assets._Project.Scripts.Systems.Player;
 using Leopotam.Ecs;
 using UnityEngine;
@@ -50,6 +50,11 @@ namespace Assets._Project.Scripts.Bootstrap
             fixedUpdateSystems.Add(new AccelerationAbilitySystem());
             fixedUpdateSystems.Add(new DoubleJumpAbilitySystem());
             fixedUpdateSystems.Add(new EnergyShieldAbilitySystem());
+
+            fixedUpdateSystems.Add(new CollisionDetectionSystem());
+            fixedUpdateSystems.Add(new DamageDetectionSystem());
+
+            fixedUpdateSystems.Add(new PlayerUISystem());
 
             fixedUpdateSystems.Init();
         }

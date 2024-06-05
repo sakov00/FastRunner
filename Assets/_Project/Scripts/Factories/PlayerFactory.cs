@@ -1,5 +1,7 @@
 ﻿using Assets._Project.Scripts.Components;
 using Assets._Project.Scripts.Components.Abilities;
+using Assets._Project.Scripts.Components.Camera;
+using Assets._Project.Scripts.Components.Object;
 using Assets._Project.Scripts.Components.Player;
 using Assets._Project.Scripts.Components.Unit;
 using Assets._Project.Scripts.Enums;
@@ -7,6 +9,7 @@ using Assets._Project.Scripts.ScriptableObjects;
 using Assets._Project.Scripts.ScriptableObjects.AbilitiesData;
 using Leopotam.Ecs;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 namespace Assets._Project.Scripts.Factories
@@ -54,11 +57,14 @@ namespace Assets._Project.Scripts.Factories
             InitializeMovementComponent(in playerEntity, playerObject);
             InitializeRotationComponent(in playerEntity, playerObject);
             InitializeAbilityComponents(in playerEntity);
+            InitializeHealthComponent(in playerEntity);
+            InitializeCollisionComponent(in playerEntity, playerObject);
 
             var cameraGameObject = CreateCameraGameObject(position);
             var cameraEntity = CreateCameraEntity();
             InitializeCameraMovementComponent(in cameraEntity, cameraGameObject);
             InitializeFollowComponent(in cameraEntity, in playerEntity);
+            InitializeCameraUIComponent(in cameraEntity, in playerEntity, cameraGameObject);
 
             var player = (PlayerObject: playerObject, PlayerEntity: playerEntity);
             return player;
@@ -116,7 +122,10 @@ namespace Assets._Project.Scripts.Factories
         {
             ref var abilityComponent = ref playerEntity.Get<AbilityComponent>();
             abilityComponent.playerData = playerData;
-            abilityComponent.EnergyValue = playerData.EnergyValue;
+
+            abilityComponent.EnergyPointsMax = playerData.EnergyPointsMax;
+            abilityComponent.EnergyPointsMin = playerData.EnergyPointsMin;
+            abilityComponent.EnergyPoints = playerData.EnergyPoints;
 
             ref var accelerationAbilityComponent = ref playerEntity.Get<AccelerationAbilityComponent>();
             accelerationAbilityComponent.AbilityType = AbilityType.Acceleration;
@@ -129,6 +138,24 @@ namespace Assets._Project.Scripts.Factories
             ref var energyShieldAbilityComponent = ref playerEntity.Get<EnergyShieldAbilityComponent>();
             energyShieldAbilityComponent.AbilityType = AbilityType.EnergyShield;
             energyShieldAbilityComponent.EnergyShieldAbilityData = energyShieldAbilityData;
+        }
+
+        private void InitializeHealthComponent(in EcsEntity playerEntity)
+        {
+            ref var healthComponent = ref playerEntity.Get<HealthComponent>();
+
+            healthComponent.HealthPointsMax = playerData.HealthPointsMax;
+            healthComponent.HealthPointsMin = playerData.HealthPointsMin;
+            healthComponent.HealthPoints = playerData.HealthPoints;
+            healthComponent.DamageCoolDown = playerData.DamageCoolDown;
+        }
+
+        private void InitializeCollisionComponent(in EcsEntity playerEntity, GameObject playerObject)
+        {
+            ref var collisionComponent = ref playerEntity.Get<CollisionComponent>();
+
+            collisionComponent.CollisionEntity = null;
+            collisionComponent.GameObjectCollider = playerObject.GetComponent<Collider>();
         }
 
         public GameObject CreateCameraGameObject(Vector3 position)
@@ -155,7 +182,26 @@ namespace Assets._Project.Scripts.Factories
             ref var followComponent = ref cameraEntity.Get<FollowComponent>();
 
             followComponent.Offset = cameraData.Offset;
-            followComponent.TargetMovementComponent = playerEntity.Get<UnitMovementComponent>();
+            followComponent.Entity = playerEntity;
+        }
+
+        private void InitializeCameraUIComponent(in EcsEntity cameraEntity, in EcsEntity playerEntity, GameObject cameraObject)
+        {
+            ref var cameraUIComponent = ref cameraEntity.Get<CameraUIComponent>();
+
+            Slider[] sliders = cameraObject.GetComponentsInChildren<Slider>();
+            cameraUIComponent.EnergySlider = sliders[0]; // это костыль надо исправить
+            cameraUIComponent.HealthSlider = sliders[1];
+
+            ref var playerAbility = ref playerEntity.Get<AbilityComponent>();
+            cameraUIComponent.EnergySlider.maxValue = playerAbility.EnergyPointsMax;
+            cameraUIComponent.EnergySlider.minValue = playerAbility.EnergyPointsMin;
+            cameraUIComponent.EnergySlider.value = playerAbility.EnergyPoints;
+
+            ref var playerHealth = ref playerEntity.Get<HealthComponent>();
+            cameraUIComponent.HealthSlider.maxValue = playerHealth.HealthPointsMax;
+            cameraUIComponent.HealthSlider.minValue = playerHealth.HealthPointsMin;
+            cameraUIComponent.HealthSlider.value = playerHealth.HealthPoints;
         }
     }
 }
