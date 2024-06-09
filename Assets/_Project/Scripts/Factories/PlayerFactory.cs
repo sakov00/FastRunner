@@ -8,6 +8,7 @@ using Assets._Project.Scripts.Enums;
 using Assets._Project.Scripts.ScriptableObjects;
 using Assets._Project.Scripts.ScriptableObjects.AbilitiesData;
 using Leopotam.Ecs;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -52,6 +53,7 @@ namespace Assets._Project.Scripts.Factories
         {
             var playerObject = CreatePlayerGameObject(position);
             var playerEntity = CreatePlayerEntity();
+            InitializePlayerComponent(in playerEntity);
             InitializeInputComponent(in playerEntity);
             InitializeAnimationComponent(in playerEntity, playerObject);
             InitializeMovementComponent(in playerEntity, playerObject);
@@ -78,6 +80,11 @@ namespace Assets._Project.Scripts.Factories
         private EcsEntity CreatePlayerEntity()
         {
             return world.NewEntity();
+        }
+
+        private void InitializePlayerComponent(in EcsEntity playerEntity)
+        {
+            ref var inputComponent = ref playerEntity.Get<PlayerComponent>();
         }
 
         private void InitializeInputComponent(in EcsEntity playerEntity)
@@ -154,7 +161,7 @@ namespace Assets._Project.Scripts.Factories
         {
             ref var collisionComponent = ref playerEntity.Get<CollisionComponent>();
 
-            collisionComponent.CollisionEntity = null;
+            collisionComponent.CollisionEntity = new List<EcsEntity>();
             collisionComponent.GameObjectCollider = playerObject.GetComponent<Collider>();
         }
 

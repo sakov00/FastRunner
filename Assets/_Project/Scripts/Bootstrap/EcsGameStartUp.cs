@@ -11,6 +11,7 @@ namespace Assets._Project.Scripts.Bootstrap
     public class EcsGameStartUp : MonoBehaviour
     {
         private EcsWorld world;
+        private IEcsInitSystem[] initSystems;
 
         private EcsSystems initUpdateSystems;
         private EcsSystems fixedUpdateSystems;
@@ -20,13 +21,8 @@ namespace Assets._Project.Scripts.Bootstrap
         [Inject]
         private void Contract(EcsWorld world, IEcsInitSystem[] initSystems)
         {
+            this.initSystems = initSystems;
             this.world = world;
-
-            initUpdateSystems = new EcsSystems(world);
-            foreach (var initSystem in initSystems)
-            {
-                initUpdateSystems.Add(initSystem);
-            }
         }
 
         private void Start()
@@ -39,6 +35,13 @@ namespace Assets._Project.Scripts.Bootstrap
 
         private void DeclareInitSystems()
         {
+            initUpdateSystems = new EcsSystems(world);
+
+            foreach (var initSystem in initSystems)
+            {
+                initUpdateSystems.Add(initSystem);
+            }
+
             initUpdateSystems.Init();
         }
 
@@ -51,11 +54,15 @@ namespace Assets._Project.Scripts.Bootstrap
             fixedUpdateSystems.Add(new DoubleJumpAbilitySystem());
             fixedUpdateSystems.Add(new EnergyShieldAbilitySystem());
 
+            fixedUpdateSystems.Add(new CleanCollisionSystem()); 
             fixedUpdateSystems.Add(new CollisionDetectionSystem());
             fixedUpdateSystems.Add(new DamageDetectionSystem());
 
+            fixedUpdateSystems.Add(new ActivateSystem()); 
+
             fixedUpdateSystems.Add(new PlayerUISystem());
 
+            fixedUpdateSystems.Add(new GameOverSystem()); 
             fixedUpdateSystems.Init();
         }
 

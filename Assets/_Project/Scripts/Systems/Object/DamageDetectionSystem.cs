@@ -15,9 +15,6 @@ namespace Assets._Project.Scripts.Systems.Object
                 ref var healthComponent = ref filter.Get1(entity);
                 ref var collisionComponent = ref filter.Get2(entity);
 
-                if (collisionComponent.CollisionEntity == null)
-                    continue;
-
                 for (int i = 0; i < collisionComponent.CollisionEntity.Count; i++)
                 {
                     if (collisionComponent.CollisionEntity[i] == EcsEntity.Null)

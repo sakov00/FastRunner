@@ -10,7 +10,7 @@ namespace Assets._Project.Scripts.Systems.Init
         private PlayerFactory playerFactory;
 
         [Inject]
-        private void Contract(PlayerFactory playerFactory)
+        private void Construct(PlayerFactory playerFactory)
         {
             this.playerFactory = playerFactory;
         }

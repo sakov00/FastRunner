@@ -1,5 +1,6 @@
 ﻿using Assets._Project.Scripts.Components.Object;
 using Leopotam.Ecs;
+using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -11,7 +12,7 @@ namespace Assets._Project.Scripts.UnityComponents
         [SerializeField] float damageValue = 10;
 
         [Inject]
-        private void Contract(EcsWorld world)
+        private void Construct(EcsWorld world)
         {
             this.world = world;
         }
@@ -24,6 +25,7 @@ namespace Assets._Project.Scripts.UnityComponents
             damageComponent.Value = damageValue;
 
             ref var collisionComponent = ref damageEntity.Get<CollisionComponent>();
+            collisionComponent.CollisionEntity = new List<EcsEntity>();
             collisionComponent.GameObjectCollider = GetComponent<Collider>();
         }
     }

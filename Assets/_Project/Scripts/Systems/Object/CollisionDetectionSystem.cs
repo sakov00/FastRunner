@@ -15,35 +15,33 @@ namespace Assets._Project.Scripts.Systems.Object
             foreach (var firstEntity in collisionFilter1)
             {
                 ref var firstCollisionComponent = ref collisionFilter1.Get1(firstEntity);
-                firstCollisionComponent.CollisionEntity = new List<EcsEntity>();
 
-                foreach (var otherEntity in collisionFilter2)
+                foreach (var secondEntity in collisionFilter2)
                 {
-                    if (collisionFilter1.GetEntity(firstEntity) == collisionFilter2.GetEntity(otherEntity))
+                    if (collisionFilter1.GetEntity(firstEntity) == collisionFilter2.GetEntity(secondEntity))
                     {
                         continue;
                     }
 
-                    ref var otherCollisionComponent = ref collisionFilter2.Get1(otherEntity);
-                    otherCollisionComponent.CollisionEntity = new List<EcsEntity>();
+                    ref var secondCollisionComponent = ref collisionFilter2.Get1(secondEntity);
 
-                    if (firstCollisionComponent.GameObjectCollider == null || otherCollisionComponent.GameObjectCollider == null)
+                    if (firstCollisionComponent.GameObjectCollider == null || secondCollisionComponent.GameObjectCollider == null)
                     {
                         continue;
                     }
 
-                    if (IsColliding(firstCollisionComponent.GameObjectCollider, otherCollisionComponent.GameObjectCollider))
+                    if (IsColliding(firstCollisionComponent.GameObjectCollider, secondCollisionComponent.GameObjectCollider))
                     {
-                        firstCollisionComponent.CollisionEntity.Add(collisionFilter2.GetEntity(otherEntity));
-                        otherCollisionComponent.CollisionEntity.Add(collisionFilter1.GetEntity(firstEntity));
+                        firstCollisionComponent.CollisionEntity.Add(collisionFilter2.GetEntity(secondEntity));
+                        secondCollisionComponent.CollisionEntity.Add(collisionFilter1.GetEntity(firstEntity));
                     }
                 }
             }
         }
 
-        private bool IsColliding(Collider playerCollider, Collider otherCollider)
+        private bool IsColliding(Collider firstCollider, Collider secondCollider)
         {
-            return playerCollider.bounds.Intersects(otherCollider.bounds);
+            return firstCollider.bounds.Intersects(secondCollider.bounds);
         }
     }
 }
