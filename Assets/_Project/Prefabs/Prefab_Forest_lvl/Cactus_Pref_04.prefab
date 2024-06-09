@@ -11,17 +11,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: b243450538dc9984fa66574e1ffe5287,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.496859
+      value: 1.6072254
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b243450538dc9984fa66574e1ffe5287,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.06
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b243450538dc9984fa66574e1ffe5287,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 12.68
+      value: 99.81001
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b243450538dc9984fa66574e1ffe5287,
         type: 3}
@@ -31,7 +31,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: b243450538dc9984fa66574e1ffe5287,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b243450538dc9984fa66574e1ffe5287,
         type: 3}
@@ -122,6 +122,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 4159013813207922821}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b243450538dc9984fa66574e1ffe5287,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -8130429436637795570}
   m_SourcePrefab: {fileID: 100100000, guid: b243450538dc9984fa66574e1ffe5287, type: 3}
 --- !u!1 &8922779335477416722 stripped
 GameObject:
@@ -152,3 +156,16 @@ CapsuleCollider:
   m_Height: 5.273321
   m_Direction: 1
   m_Center: {x: -0.026624203, y: 1.7084007, z: 0.9439417}
+--- !u!114 &-8130429436637795570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8922779335477416722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab681a5f89d72014a93f0587e7cce099, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageValue: 100

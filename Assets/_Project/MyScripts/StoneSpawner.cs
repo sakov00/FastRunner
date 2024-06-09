@@ -1,7 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using Assets._Project.Scripts.Player.Models;
-using JetBrains.Annotations;
 using UnityEngine;
 
 public class StoneSpawner : MonoBehaviour
@@ -9,7 +6,7 @@ public class StoneSpawner : MonoBehaviour
     public float boundX = 100;
     public float boundY = 50f;
     public float boundZ = 10;
-    public PlayerModel player;
+    public GameObject player;
     public GameObject[] stones;
     public GameObject stonePortal;
     public Vector3 offsetPortal = new Vector3(0,0,0);
@@ -24,10 +21,6 @@ public class StoneSpawner : MonoBehaviour
     float randomAnglePort;
     public GameObject pointToSpawn;
     public bool isEnabled;
-    private void Start() 
-    {
-        player = FindObjectOfType<PlayerModel>();
-    }
     
     void FixedUpdate()
     {

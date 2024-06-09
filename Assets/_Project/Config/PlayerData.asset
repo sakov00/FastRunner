@@ -12,11 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aadb562e1617ad4783928d1abd3a7b1, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  RunningSpeed: 20
-  RunningSpeedLeftRightOnFlying: 0
+  HealthPointsMax: 100
+  HealthPointsMin: 0
+  EnergyPoints: 100
+  DamageCoolDown: 1
+  EnergyPointsMax: 100
+  EnergyPointsMin: 0
+  HealthPoints: 100
+  RunningSpeed: 10
+  RunningSpeedLeftRightOnFlying: 5
   JumpHeight: 5
   GravityValue: -20
-  EnergyValue: 200
   LimitRotationAngleY: 66.5
   RotationSpeedOnGround: 10
   RotationSensitiveOnGround: 10
