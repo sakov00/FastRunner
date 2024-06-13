@@ -74,7 +74,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color_1: {r: 0.5, g: 0.39955148, b: 0.23103853, a: 1}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
-    - _PlayerPos: {r: -5.9016347, g: 7.4317164, b: 647.23785, a: 0}
+    - _PlayerPos: {r: 59.382336, g: 23.45163, b: 1364.2238, a: 0}
     - _Pos: {r: 0, g: 0, b: 0, a: 0}
     - _Tilling_and_offset: {r: 1, g: 1, b: 0, a: 0}
     - _Vector2: {r: 0, g: 0, b: 0, a: 0}
