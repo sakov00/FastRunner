@@ -9,7 +9,7 @@ uint _StartOffset;
 StructuredBuffer<float3> _AllInstancesPosWSBuffer; //will not change until instance count change
 AppendStructuredBuffer<uint> _VisibleInstancesOnlyPosWSIDBuffer; //will set counter to 0 per frame, then fill in by this compute shader
 
-[numthreads(32,1,1)]
+[numthreads(64,1,1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
 	//posWS -> posCS

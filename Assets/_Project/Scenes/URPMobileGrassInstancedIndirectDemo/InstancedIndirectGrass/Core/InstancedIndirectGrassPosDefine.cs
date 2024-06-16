@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[ExecuteAlways]
 public class InstancedIndirectGrassPosDefine : MonoBehaviour
 {
     [Range(1, 10000000)]
@@ -14,11 +13,11 @@ public class InstancedIndirectGrassPosDefine : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        UpdatePosIfNeeded();
     }
 
     private void Start()
     {
+        UpdatePosIfNeeded();
     }
 
     private void Update()

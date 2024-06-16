@@ -30,14 +30,13 @@
         [Header(Lighting)]
         _RandomNormal("_RandomNormal", Float) = 0.15
 
-        //make SRP batcher happy
         [HideInInspector]_PivotPosWS("_PivotPosWS", Vector) = (0,0,0,0)
         [HideInInspector]_BoundSize("_BoundSize", Vector) = (1,1,0)
     }
 
     SubShader
     {
-        Tags { "RenderType" = "Opaque" "RenderPipeline" = "UniversalRenderPipeline"}
+        Tags { "RenderType" = "Opaque" "RenderPipeline" = "UniversalPipeline"}
 
         Pass
         {
@@ -49,15 +48,6 @@
             #pragma vertex vert
             #pragma fragment frag
 
-            // -------------------------------------
-            // Universal Render Pipeline keywords
-            // When doing custom shaders you most often want to copy and paste these #pragmas
-            // These multi_compile variants are stripped from the build depending on:
-            // 1) Settings in the URP Asset assigned in the GraphicsSettings at build time
-            // e.g If you disabled AdditionalLights in the asset then all _ADDITIONA_LIGHTS variants
-            // will be stripped from build
-            // 2) Invalid combinations are stripped. e.g variants with _MAIN_LIGHT_SHADOWS_CASCADE
-            // but not _MAIN_LIGHT_SHADOWS are invalid and therefore stripped.
             #pragma multi_compile _ _MAIN_LIGHT_SHADOWS
             #pragma multi_compile _ _MAIN_LIGHT_SHADOWS_CASCADE
             #pragma multi_compile _ _ADDITIONAL_LIGHTS_VERTEX _ADDITIONAL_LIGHTS
@@ -65,7 +55,7 @@
             #pragma multi_compile _ _SHADOWS_SOFT
             // -------------------------------------
             // Unity defined keywords
-            #pragma multi_compile_fog
+            //#pragma multi_compile_fog
             // -------------------------------------
 
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
@@ -110,11 +100,11 @@
 
                 half _RandomNormal;
 
-                StructuredBuffer<float3> _AllInstancesTransformBuffer;
-                StructuredBuffer<uint> _VisibleInstanceOnlyTransformIDBuffer;
-            CBUFFER_END
+                CBUFFER_END
+                
+            StructuredBuffer<float3> _AllInstancesTransformBuffer;
+            StructuredBuffer<uint> _VisibleInstanceOnlyTransformIDBuffer;
 
-            sampler2D _GrassBendingRT;
             sampler2D _BaseColorTexture;
 
             half3 ApplySingleDirectLight(Light light, half3 N, half3 V, half3 albedo, half positionOSY)
@@ -148,11 +138,6 @@
 
                 float perGrassHeight = lerp(2,5,(sin(perGrassPivotPosWS.x*23.4643 + perGrassPivotPosWS.z) * 0.45 + 0.55)) * _GrassHeight;
 
-                //get "is grass stepped" data(bending) from RT
-                float2 grassBendingUV = ((perGrassPivotPosWS.xz - _PivotPosWS.xz) / _BoundSize) * 0.5 + 0.5;//claculate where is this grass inside bound (can optimize to 2 MAD)
-                float stepped = tex2Dlod(_GrassBendingRT, float4(grassBendingUV, 0, 0)).x;
-
-                //rotation(make grass LookAt() camera just like a billboard)
                 //=========================================
                 float3 cameraTransformRightWS = UNITY_MATRIX_V[0].xyz;//UNITY_MATRIX_V[0].xyz == world space camera Right unit vector
                 float3 cameraTransformUpWS = UNITY_MATRIX_V[1].xyz;//UNITY_MATRIX_V[1].xyz == world space camera Up unit vector
@@ -165,11 +150,6 @@
                 positionOS += IN.positionOS.y * cameraTransformUpWS;         
                 //=========================================
 
-                //bending by RT (hard code)
-                float3 bendDir = cameraTransformForwardWS;
-                bendDir.xz *= 0.5; //make grass shorter when bending, looks better
-                bendDir.y = min(-0.5,bendDir.y);//prevent grass become too long if camera forward is / near parallel to ground
-                positionOS = lerp(positionOS.xyz + bendDir * positionOS.y / -bendDir.y, positionOS.xyz, stepped * 0.95 + 0.05);//don't fully bend, will produce ZFighting
 
                 //per grass height scale
                 positionOS.y *= perGrassHeight;
@@ -214,8 +194,8 @@
 
                 half3 V = viewWS / ViewWSLength;
 
-                half3 baseColor = tex2Dlod(_BaseColorTexture, float4(TRANSFORM_TEX(positionWS.xz,_BaseColorTexture),0,0)) * _BaseColor;//sample mip 0 only
-                half3 albedo = lerp(_GroundColor,baseColor, IN.positionOS.y);
+                half3 baseColor = tex2Dlod(_BaseColorTexture, float4(TRANSFORM_TEX(positionWS.xz, _BaseColorTexture), 0, 0)).rgb * _BaseColor;
+                half3 albedo = lerp(_GroundColor, baseColor, IN.positionOS.y);
 
                 //indirect
                 half3 lightingResult = SampleSH(0) * albedo;

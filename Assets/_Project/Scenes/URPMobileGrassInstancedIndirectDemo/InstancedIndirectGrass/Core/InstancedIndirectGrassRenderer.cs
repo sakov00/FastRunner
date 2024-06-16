@@ -5,7 +5,6 @@ using Unity.Jobs;
 using UnityEngine;
 using UnityEngine.Profiling;
 
-[ExecuteAlways]
 public class InstancedIndirectGrassRenderer : MonoBehaviour
 {
     [Header("Settings")]
@@ -28,7 +27,7 @@ public class InstancedIndirectGrassRenderer : MonoBehaviour
 
     // чем меньше число, тем больше времени потребуется на ЦП, но ГП будет быстрее
     private float cellSizeX = 50; // единица Unity (м)
-    private float cellSizeZ = 200; // единица Unity (м)
+    private float cellSizeZ = 150; // единица Unity (м)
     //private float cellSizeY = 10;
 
     private int instanceCountCache = -1;
@@ -48,16 +47,13 @@ public class InstancedIndirectGrassRenderer : MonoBehaviour
 
     private void Awake() 
     {
-        //instance = this;   
+        instance = this;   
+        cam = Camera.main;
     }
+
     private void Start() 
     {
-        UpdateAllInstanceTransformBufferIfNeeded();
-    }
-    private void OnEnable()
-    {
-        cam = Camera.main;
-        instance = this; // установка глобальной ссылки на этот скрипт
+        cam = Camera.main;    
     }
 
     void LateUpdate()
@@ -162,7 +158,7 @@ public class InstancedIndirectGrassRenderer : MonoBehaviour
             if(jobLength > 0)
             {
                 // диспетчеризация для отсеченной ячейки
-                cullingComputeShader.Dispatch(0, Mathf.CeilToInt(jobLength / 32f), 1, 1); // количество делений disaptch.X должно соответствовать numthreads.x в compute shader (например, 64)
+                cullingComputeShader.Dispatch(0, Mathf.CeilToInt(jobLength / 64f), 1, 1); // количество делений disaptch.X должно соответствовать numthreads.x в compute shader (например, 64)
                 dispatchCount++;
             }
         }
@@ -177,7 +173,11 @@ public class InstancedIndirectGrassRenderer : MonoBehaviour
         Bounds renderBound = new Bounds();
         renderBound.SetMinMax(new Vector3(minX, 0, minZ), new Vector3(maxX, 0, maxZ)); // если область отсечения камеры не пересекается с этой границей, DrawMeshInstancedIndirect даже не будет отображать
         Graphics.DrawMeshInstancedIndirect(GetGrassMeshCache(), 0, instanceMaterial, renderBound, argsBuffer);
+
+        
         }
+
+        
     }
 
 
