@@ -9,7 +9,7 @@ public class StoneSpawner : MonoBehaviour
     public GameObject player;
     public GameObject[] stones;
     public GameObject stonePortal;
-    public Vector3 offsetPortal = new Vector3(0,0,0);
+    public Vector3 offsetPortal = new Vector3(0, 0, 0);
     public float timeToSpawn;
     public bool isSpawn = true;
     public bool isSpawnStone = true;
@@ -21,7 +21,7 @@ public class StoneSpawner : MonoBehaviour
     float randomAnglePort;
     public GameObject pointToSpawn;
     public bool isEnabled;
-    
+
     void FixedUpdate()
     {
         StoneSpawn();
@@ -29,7 +29,7 @@ public class StoneSpawner : MonoBehaviour
 
     public void StoneSpawn()
     {
-        if(isSpawnStone && isEnabled)
+        if (isSpawnStone && isEnabled)
         {
             int indexRandom = Random.Range(0, stones.Length);
             boundVectorX = Random.Range(boundX, -boundX);
@@ -57,4 +57,4 @@ public class StoneSpawner : MonoBehaviour
     {
         Destroy(Instantiate(go, pos, rot), 4f);
     }
-}   
+}

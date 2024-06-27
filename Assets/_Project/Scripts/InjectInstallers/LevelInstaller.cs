@@ -12,6 +12,7 @@ namespace Assets._Project.Scripts.InjectInstallers
         {
             BindEcs();
             BindFactories();
+            //BindSpawners();
             BindInitSystems();
         }
 
@@ -19,9 +20,15 @@ namespace Assets._Project.Scripts.InjectInstallers
         {
             Container.Rebind<EcsWorld>().AsSingle();
         }
+
         private void BindFactories()
         {
             Container.Bind<PlayerFactory>().AsSingle();
+        }
+
+        private void BindSpawners()
+        {
+            Container.Bind<StoneSpawner>().AsSingle();
         }
 
         private void BindInitSystems()

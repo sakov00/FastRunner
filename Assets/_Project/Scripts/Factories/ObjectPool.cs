@@ -1,6 +1,6 @@
-﻿using Leopotam.Ecs;
+﻿using Assets._Project.Scripts.Components.Object;
+using Leopotam.Ecs;
 using System.Collections.Generic;
-using Assets._Project.Scripts.Components.Object;
 
 namespace Assets._Project.Scripts.Factories
 {

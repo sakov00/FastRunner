@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Dissolve : MonoBehaviour
@@ -7,15 +5,15 @@ public class Dissolve : MonoBehaviour
     public Material material;
     public Transform playerPos;
     public Vector3 pos;
-    
+
 
     void Update()
     {
-        if(playerPos == null)
+        if (playerPos == null)
         {
             playerPos = FindObjectOfType<CactusDestroer>().gameObject.transform;
         }
-        if(playerPos != null)
+        if (playerPos != null)
         {
             material.SetVector("_PlayerPos", playerPos.position);
         }

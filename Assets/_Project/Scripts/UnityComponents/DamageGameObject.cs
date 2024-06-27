@@ -26,7 +26,9 @@ namespace Assets._Project.Scripts.UnityComponents
 
             ref var collisionComponent = ref damageEntity.Get<CollisionComponent>();
             collisionComponent.CollisionEntity = new List<EcsEntity>();
-            collisionComponent.GameObjectCollider = GetComponent<Collider>();
+
+            ref var colliderComponent = ref damageEntity.Get<ColliderComponent>();
+            colliderComponent.Collider = GetComponent<Collider>();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Assets._Project.Scripts.Components.Player;
+﻿using Assets._Project.Scripts.Components.Object;
+using Assets._Project.Scripts.Components.Player;
 using Assets._Project.Scripts.Components.Unit;
 using Leopotam.Ecs;
 using UnityEngine;
@@ -7,20 +8,21 @@ namespace Assets._Project.Scripts.Systems.Player
 {
     internal class PlayerAirRotationSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<InputComponent, UnitMovementComponent, UnitRotationComponent> filter = null;
+        private readonly EcsFilter<InputComponent, UnitMovementComponent, CharacterControllerComponent, UnitRotationComponent> filter = null;
         public void Run()
         {
             foreach (var i in filter)
             {
                 ref var inputComponent = ref filter.Get1(i);
                 ref var unitMovementComponent = ref filter.Get2(i);
-                ref var unitRotationComponent = ref filter.Get3(i);
+                ref var characterControllerComponent = ref filter.Get3(i);
+                ref var unitRotationComponent = ref filter.Get4(i);
 
-                if (unitMovementComponent.CharacterController.isGrounded)
+                if (characterControllerComponent.CharacterController.isGrounded)
                     break;
 
                 var currentDegreesY = unitRotationComponent.Rotation.eulerAngles.y;
-                var currentDegreesZ = unitRotationComponent.Rotation.eulerAngles.z;
+                var currentDegreesZ = 0f;
                 currentDegreesY += inputComponent.MovementInput.x * unitRotationComponent.RotationSpeedOnFlying;
                 currentDegreesZ -= inputComponent.MovementInput.x * inputComponent.MovementInput.z * unitRotationComponent.RotationSpeedOnFlying;
 

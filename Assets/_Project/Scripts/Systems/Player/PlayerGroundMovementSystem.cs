@@ -1,4 +1,5 @@
-﻿using Assets._Project.Scripts.Components.Player;
+﻿using Assets._Project.Scripts.Components.Object;
+using Assets._Project.Scripts.Components.Player;
 using Assets._Project.Scripts.Components.Unit;
 using Leopotam.Ecs;
 using UnityEngine;
@@ -8,7 +9,7 @@ namespace Assets._Project.Scripts.Systems.Player
 {
     internal class PlayerGroundMovementSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<InputComponent, UnitMovementComponent> filter = null;
+        private readonly EcsFilter<InputComponent, UnitMovementComponent, CharacterControllerComponent, GameObjectComponent> filter = null;
 
         public void Run()
         {
@@ -16,13 +17,15 @@ namespace Assets._Project.Scripts.Systems.Player
             {
                 ref var inputComponent = ref filter.Get1(i);
                 ref var unitMovementComponent = ref filter.Get2(i);
+                ref var characterControllerComponent = ref filter.Get3(i);
+                ref var gameObjectComponent = ref filter.Get4(i);
 
-                if (!unitMovementComponent.CharacterController.isGrounded)
+                if (!characterControllerComponent.CharacterController.isGrounded)
                     break;
 
                 var speedValue = unitMovementComponent.RunningSpeed;
-                unitMovementComponent.Movement.z = unitMovementComponent.Transform.forward.z * speedValue;
-                unitMovementComponent.Movement.x = unitMovementComponent.Transform.forward.x * speedValue;
+                unitMovementComponent.Movement.z = gameObjectComponent.GameObject.transform.forward.z * speedValue;
+                unitMovementComponent.Movement.x = gameObjectComponent.GameObject.transform.forward.x * speedValue;
 
                 if (inputComponent.MovementInput.y != 0)
                 {
@@ -32,7 +35,7 @@ namespace Assets._Project.Scripts.Systems.Player
                 {
                     unitMovementComponent.Movement.y = unitMovementComponent.GravityValue;
                 }
-                unitMovementComponent.CharacterController.Move(unitMovementComponent.Movement * Time.deltaTime);
+                characterControllerComponent.CharacterController.Move(unitMovementComponent.Movement * Time.deltaTime);
             }
         }
     }

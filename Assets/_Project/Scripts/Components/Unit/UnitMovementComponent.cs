@@ -10,8 +10,5 @@ namespace Assets._Project.Scripts.Components.Unit
         public float RunningSpeedLeftRightOnFlying;
 
         public Vector3 Movement;
-
-        public Transform Transform;
-        public CharacterController CharacterController;
     }
 }

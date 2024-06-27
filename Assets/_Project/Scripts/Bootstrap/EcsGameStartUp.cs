@@ -54,15 +54,15 @@ namespace Assets._Project.Scripts.Bootstrap
             fixedUpdateSystems.Add(new DoubleJumpAbilitySystem());
             fixedUpdateSystems.Add(new EnergyShieldAbilitySystem());
 
-            fixedUpdateSystems.Add(new CleanCollisionSystem()); 
+            fixedUpdateSystems.Add(new CleanCollisionSystem());
             fixedUpdateSystems.Add(new CollisionDetectionSystem());
             fixedUpdateSystems.Add(new DamageDetectionSystem());
 
-            fixedUpdateSystems.Add(new ActivateSystem()); 
+            fixedUpdateSystems.Add(new ActivateSystem());
 
             fixedUpdateSystems.Add(new PlayerUISystem());
 
-            fixedUpdateSystems.Add(new GameOverSystem()); 
+            fixedUpdateSystems.Add(new GameOverSystem());
             fixedUpdateSystems.Init();
         }
 

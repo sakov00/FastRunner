@@ -54,13 +54,15 @@ namespace Assets._Project.Scripts.Factories
             var playerObject = CreatePlayerGameObject(position);
             var playerEntity = CreatePlayerEntity();
             InitializePlayerComponent(in playerEntity);
+            InitializeGameObjectComponent(in playerEntity, playerObject);
             InitializeInputComponent(in playerEntity);
-            InitializeAnimationComponent(in playerEntity, playerObject);
-            InitializeMovementComponent(in playerEntity, playerObject);
-            InitializeRotationComponent(in playerEntity, playerObject);
+            InitializeAnimationComponent(in playerEntity);
+            InitializeCharacterControllerComponent(in playerEntity);
+            InitializeMovementComponent(in playerEntity);
+            InitializeRotationComponent(in playerEntity);
             InitializeAbilityComponents(in playerEntity);
             InitializeHealthComponent(in playerEntity);
-            InitializeCollisionComponent(in playerEntity, playerObject);
+            InitializeCollisionComponent(in playerEntity);
 
             var cameraGameObject = CreateCameraGameObject(position);
             var cameraEntity = CreateCameraEntity();
@@ -84,7 +86,13 @@ namespace Assets._Project.Scripts.Factories
 
         private void InitializePlayerComponent(in EcsEntity playerEntity)
         {
-            ref var inputComponent = ref playerEntity.Get<PlayerComponent>();
+            ref var playerComponent = ref playerEntity.Get<PlayerComponent>();
+        }
+
+        private void InitializeGameObjectComponent(in EcsEntity playerEntity, GameObject gameObject)
+        {
+            ref var gameObjectComponent = ref playerEntity.Get<GameObjectComponent>();
+            gameObjectComponent.GameObject = gameObject;
         }
 
         private void InitializeInputComponent(in EcsEntity playerEntity)
@@ -92,10 +100,10 @@ namespace Assets._Project.Scripts.Factories
             ref var inputComponent = ref playerEntity.Get<InputComponent>();
         }
 
-        private void InitializeAnimationComponent(in EcsEntity playerEntity, GameObject playerObject)
+        private void InitializeAnimationComponent(in EcsEntity playerEntity)
         {
             ref var unitAnimationComponent = ref playerEntity.Get<UnitAnimationComponent>();
-            unitAnimationComponent.Animator = playerObject.GetComponent<Animator>();
+            unitAnimationComponent.Animator = playerEntity.Get<GameObjectComponent>().GameObject.GetComponent<Animator>();
             unitAnimationComponent.IsGrounded = "IsGrounded";
             unitAnimationComponent.IsFalling = "IsFalling";
             unitAnimationComponent.IsJump = "IsJump";
@@ -103,18 +111,22 @@ namespace Assets._Project.Scripts.Factories
             unitAnimationComponent.InputX = "InputX";
         }
 
-        private void InitializeMovementComponent(in EcsEntity playerEntity, GameObject playerObject)
+        private void InitializeCharacterControllerComponent(in EcsEntity playerEntity)
+        {
+            ref var characterControllerComponent = ref playerEntity.Get<CharacterControllerComponent>();
+            characterControllerComponent.CharacterController = playerEntity.Get<GameObjectComponent>().GameObject.GetComponent<CharacterController>();
+        }
+
+        private void InitializeMovementComponent(in EcsEntity playerEntity)
         {
             ref var unitMovementComponent = ref playerEntity.Get<UnitMovementComponent>();
             unitMovementComponent.RunningSpeed = playerData.RunningSpeed;
             unitMovementComponent.JumpHeight = playerData.JumpHeight;
             unitMovementComponent.GravityValue = playerData.GravityValue;
             unitMovementComponent.RunningSpeedLeftRightOnFlying = playerData.RunningSpeedLeftRightOnFlying;
-            unitMovementComponent.Transform = playerObject.transform;
-            unitMovementComponent.CharacterController = playerObject.GetComponent<CharacterController>();
         }
 
-        private void InitializeRotationComponent(in EcsEntity playerEntity, GameObject playerObject)
+        private void InitializeRotationComponent(in EcsEntity playerEntity)
         {
             ref var unitRotationComponent = ref playerEntity.Get<UnitRotationComponent>();
             unitRotationComponent.LimitRotationAngleY = playerData.LimitRotationAngleY;
@@ -122,7 +134,7 @@ namespace Assets._Project.Scripts.Factories
             unitRotationComponent.RotationSensitiveOnGround = playerData.RotationSensitiveOnGround;
             unitRotationComponent.RotationSpeedOnFlying = playerData.RotationSpeedOnFlying;
             unitRotationComponent.RotationSensitiveOnFlying = playerData.RotationSensitiveOnFlying;
-            unitRotationComponent.Transform = playerObject.transform;
+            unitRotationComponent.Transform = playerEntity.Get<GameObjectComponent>().GameObject.transform;
         }
 
         private void InitializeAbilityComponents(in EcsEntity playerEntity)
@@ -157,12 +169,11 @@ namespace Assets._Project.Scripts.Factories
             healthComponent.DamageCoolDown = playerData.DamageCoolDown;
         }
 
-        private void InitializeCollisionComponent(in EcsEntity playerEntity, GameObject playerObject)
+        private void InitializeCollisionComponent(in EcsEntity playerEntity)
         {
             ref var collisionComponent = ref playerEntity.Get<CollisionComponent>();
 
             collisionComponent.CollisionEntity = new List<EcsEntity>();
-            collisionComponent.GameObjectCollider = playerObject.GetComponent<Collider>();
         }
 
         public GameObject CreateCameraGameObject(Vector3 position)

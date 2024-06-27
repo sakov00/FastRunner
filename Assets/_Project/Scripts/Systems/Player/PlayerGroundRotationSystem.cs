@@ -1,4 +1,5 @@
-﻿using Assets._Project.Scripts.Components.Player;
+﻿using Assets._Project.Scripts.Components.Object;
+using Assets._Project.Scripts.Components.Player;
 using Assets._Project.Scripts.Components.Unit;
 using Leopotam.Ecs;
 using UnityEngine;
@@ -7,7 +8,7 @@ namespace Assets._Project.Scripts.Systems.Player
 {
     internal class PlayerGroundRotationSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<InputComponent, UnitMovementComponent, UnitRotationComponent> filter = null;
+        private readonly EcsFilter<InputComponent, UnitMovementComponent, CharacterControllerComponent, UnitRotationComponent> filter = null;
 
         public void Run()
         {
@@ -15,9 +16,11 @@ namespace Assets._Project.Scripts.Systems.Player
             {
                 ref var inputComponent = ref filter.Get1(i);
                 ref var unitMovementComponent = ref filter.Get2(i);
-                ref var unitRotationComponent = ref filter.Get3(i);
+                ref var characterControllerComponent = ref filter.Get3(i);
+                ref var unitRotationComponent = ref filter.Get4(i);
 
-                if (!unitMovementComponent.CharacterController.isGrounded)
+
+                if (!characterControllerComponent.CharacterController.isGrounded)
                     break;
 
                 var currentDegrees = unitRotationComponent.Transform.eulerAngles.y;
