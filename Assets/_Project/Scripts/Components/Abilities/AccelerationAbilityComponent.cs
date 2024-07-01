@@ -1,15 +1,19 @@
-using Assets._Project.Scripts.Components.Abilities.Interfaces;
 using Assets._Project.Scripts.Enums;
-using Assets._Project.Scripts.ScriptableObjects.AbilitiesData;
+using System;
 
 namespace Assets._Project.Scripts.Components.Abilities
 {
-    public struct AccelerationAbilityComponent : IProlongedAbilityComponent
+    [Serializable]
+    public struct AccelerationAbilityComponent
     {
-        public AbilityType AbilityType { get; set; }
-        public float CurrentWorkTime { get; set; }
-        public bool IsActive { get; set; }
-        public AccelerationAbilityData AccelerationAbilityData { get; set; }
+        public AbilityType AbilityType;
+        [NonSerialized] public float CurrentWorkTime;
+        [NonSerialized] public bool IsActive;
 
+        public float EnergyPerSecond;
+        public float EnergyTimer;
+
+        public float ValueSpeedUp;
+        public float ValueSpeedDown;
     }
 }

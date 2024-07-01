@@ -1,14 +1,16 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Assets._Project.Scripts.Components.Unit
 {
-    internal struct UnitMovementComponent
+    [Serializable]
+    public struct UnitMovementComponent
     {
         public float RunningSpeed;
         public float JumpHeight;
         public float GravityValue;
         public float RunningSpeedLeftRightOnFlying;
 
-        public Vector3 Movement;
+        [NonSerialized] public Vector3 Movement;
     }
 }

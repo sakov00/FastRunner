@@ -1,7 +1,10 @@
-﻿namespace Assets._Project.Scripts.Components.Object
+﻿using System;
+
+namespace Assets._Project.Scripts.Components.Object
 {
-    internal struct DamageComponent
+    [Serializable]
+    public struct DamageComponent
     {
-        public float Value { get; set; }
+        public float Value;
     }
 }

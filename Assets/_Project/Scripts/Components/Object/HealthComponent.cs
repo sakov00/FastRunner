@@ -1,8 +1,12 @@
-﻿namespace Assets._Project.Scripts.Components.Object
+﻿using System;
+using UnityEngine;
+
+namespace Assets._Project.Scripts.Components.Object
 {
-    internal struct HealthComponent
+    [Serializable]
+    public struct HealthComponent
     {
-        private float healthPoints;
+        [SerializeField] private float healthPoints;
         public float HealthPoints
         {
             get { return healthPoints; }
@@ -16,9 +20,10 @@
                     healthPoints = value;
             }
         }
-        public float HealthPointsMin { get; set; }
-        public float HealthPointsMax { get; set; }
-        public float CurrentDamageCoolDown { get; set; }
-        public float DamageCoolDown { get; set; }
+
+        public float HealthPointsMin;
+        public float HealthPointsMax;
+        [NonSerialized] public float CurrentDamageCoolDown;
+        public float DamageCoolDown;
     }
 }

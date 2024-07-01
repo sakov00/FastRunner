@@ -1,7 +1,4 @@
 ﻿using Assets._Project.Scripts.Factories;
-using Assets._Project.Scripts.Systems.Init;
-using Leopotam.Ecs;
-using UnityEngine;
 using Zenject;
 
 namespace Assets._Project.Scripts.InjectInstallers
@@ -10,15 +7,8 @@ namespace Assets._Project.Scripts.InjectInstallers
     {
         public override void InstallBindings()
         {
-            BindEcs();
             BindFactories();
             //BindSpawners();
-            BindInitSystems();
-        }
-
-        private void BindEcs()
-        {
-            Container.Rebind<EcsWorld>().AsSingle();
         }
 
         private void BindFactories()
@@ -29,19 +19,6 @@ namespace Assets._Project.Scripts.InjectInstallers
         private void BindSpawners()
         {
             Container.Bind<StoneSpawner>().AsSingle();
-        }
-
-        private void BindInitSystems()
-        {
-            Container.Bind<IEcsInitSystem>().To<PlayerInitSystem>().AsSingle();
-            if (SystemInfo.deviceType == DeviceType.Desktop)
-            {
-                Container.Bind<IEcsInitSystem>().To<InputPCSystem>().AsSingle();
-            }
-            else if (SystemInfo.deviceType == DeviceType.Handheld)
-            {
-                Container.Bind<IEcsInitSystem>().To<InputMobileSystem>().AsSingle();
-            }
         }
     }
 }

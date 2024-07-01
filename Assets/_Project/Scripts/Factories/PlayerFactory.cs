@@ -1,16 +1,8 @@
-﻿using Assets._Project.Scripts.Components;
-using Assets._Project.Scripts.Components.Abilities;
-using Assets._Project.Scripts.Components.Camera;
-using Assets._Project.Scripts.Components.Object;
+﻿using Assets._Project.Scripts.Components.Camera;
 using Assets._Project.Scripts.Components.Player;
-using Assets._Project.Scripts.Components.Unit;
-using Assets._Project.Scripts.Enums;
-using Assets._Project.Scripts.ScriptableObjects;
-using Assets._Project.Scripts.ScriptableObjects.AbilitiesData;
 using Leopotam.Ecs;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using Voody.UniLeo;
 using Zenject;
 
 namespace Assets._Project.Scripts.Factories
@@ -18,28 +10,13 @@ namespace Assets._Project.Scripts.Factories
     public class PlayerFactory
     {
         private readonly DiContainer diContainer;
-        private readonly EcsWorld world;
-
-        private readonly PlayerData playerData;
-        private readonly CameraData cameraData;
-
-        private readonly AccelerationAbilityData accelerationAbilityData;
-        private readonly DoubleJumpAbilityData doubleJumpAbilityData;
-        private readonly EnergyShieldAbilityData energyShieldAbilityData;
 
         private Object _playerPrefab;
         private Object _playerCameraPrefab;
 
-        public PlayerFactory(DiContainer diContainer, EcsWorld world, PlayerData playerData, CameraData cameraData,
-            AccelerationAbilityData accelerationAbilityData, DoubleJumpAbilityData doubleJumpAbilityData, EnergyShieldAbilityData energyShieldAbilityData)
+        public PlayerFactory(DiContainer diContainer)
         {
             this.diContainer = diContainer;
-            this.world = world;
-            this.playerData = playerData;
-            this.cameraData = cameraData;
-            this.accelerationAbilityData = accelerationAbilityData;
-            this.doubleJumpAbilityData = doubleJumpAbilityData;
-            this.energyShieldAbilityData = energyShieldAbilityData;
             LoadResources();
         }
 
@@ -52,23 +29,10 @@ namespace Assets._Project.Scripts.Factories
         public (GameObject PlayerObject, EcsEntity PlayerEntity) CreatePlayer(Vector3 position)
         {
             var playerObject = CreatePlayerGameObject(position);
-            var playerEntity = CreatePlayerEntity();
-            InitializePlayerComponent(in playerEntity);
-            InitializeGameObjectComponent(in playerEntity, playerObject);
-            InitializeInputComponent(in playerEntity);
-            InitializeAnimationComponent(in playerEntity);
-            InitializeCharacterControllerComponent(in playerEntity);
-            InitializeMovementComponent(in playerEntity);
-            InitializeRotationComponent(in playerEntity);
-            InitializeAbilityComponents(in playerEntity);
-            InitializeHealthComponent(in playerEntity);
-            InitializeCollisionComponent(in playerEntity);
+            var playerEntity = WorldHandler.GetWorld().GetFilter(typeof(EcsFilter<PlayerComponent>)).GetEntity(0);
 
             var cameraGameObject = CreateCameraGameObject(position);
-            var cameraEntity = CreateCameraEntity();
-            InitializeCameraMovementComponent(in cameraEntity, cameraGameObject);
-            InitializeFollowComponent(in cameraEntity, in playerEntity);
-            InitializeCameraUIComponent(in cameraEntity, in playerEntity, cameraGameObject);
+            var cameraEntity = WorldHandler.GetWorld().GetFilter(typeof(EcsFilter<CameraMovementComponent>)).GetEntity(0);
 
             var player = (PlayerObject: playerObject, PlayerEntity: playerEntity);
             return player;
@@ -76,150 +40,12 @@ namespace Assets._Project.Scripts.Factories
 
         private GameObject CreatePlayerGameObject(Vector3 position)
         {
-            return diContainer.InstantiatePrefab(_playerPrefab, position, Quaternion.identity, null);
-        }
-
-        private EcsEntity CreatePlayerEntity()
-        {
-            return world.NewEntity();
-        }
-
-        private void InitializePlayerComponent(in EcsEntity playerEntity)
-        {
-            ref var playerComponent = ref playerEntity.Get<PlayerComponent>();
-        }
-
-        private void InitializeGameObjectComponent(in EcsEntity playerEntity, GameObject gameObject)
-        {
-            ref var gameObjectComponent = ref playerEntity.Get<GameObjectComponent>();
-            gameObjectComponent.GameObject = gameObject;
-        }
-
-        private void InitializeInputComponent(in EcsEntity playerEntity)
-        {
-            ref var inputComponent = ref playerEntity.Get<InputComponent>();
-        }
-
-        private void InitializeAnimationComponent(in EcsEntity playerEntity)
-        {
-            ref var unitAnimationComponent = ref playerEntity.Get<UnitAnimationComponent>();
-            unitAnimationComponent.Animator = playerEntity.Get<GameObjectComponent>().GameObject.GetComponent<Animator>();
-            unitAnimationComponent.IsGrounded = "IsGrounded";
-            unitAnimationComponent.IsFalling = "IsFalling";
-            unitAnimationComponent.IsJump = "IsJump";
-            unitAnimationComponent.InputZ = "InputZ";
-            unitAnimationComponent.InputX = "InputX";
-        }
-
-        private void InitializeCharacterControllerComponent(in EcsEntity playerEntity)
-        {
-            ref var characterControllerComponent = ref playerEntity.Get<CharacterControllerComponent>();
-            characterControllerComponent.CharacterController = playerEntity.Get<GameObjectComponent>().GameObject.GetComponent<CharacterController>();
-        }
-
-        private void InitializeMovementComponent(in EcsEntity playerEntity)
-        {
-            ref var unitMovementComponent = ref playerEntity.Get<UnitMovementComponent>();
-            unitMovementComponent.RunningSpeed = playerData.RunningSpeed;
-            unitMovementComponent.JumpHeight = playerData.JumpHeight;
-            unitMovementComponent.GravityValue = playerData.GravityValue;
-            unitMovementComponent.RunningSpeedLeftRightOnFlying = playerData.RunningSpeedLeftRightOnFlying;
-        }
-
-        private void InitializeRotationComponent(in EcsEntity playerEntity)
-        {
-            ref var unitRotationComponent = ref playerEntity.Get<UnitRotationComponent>();
-            unitRotationComponent.LimitRotationAngleY = playerData.LimitRotationAngleY;
-            unitRotationComponent.RotationSpeedOnGround = playerData.RotationSpeedOnGround;
-            unitRotationComponent.RotationSensitiveOnGround = playerData.RotationSensitiveOnGround;
-            unitRotationComponent.RotationSpeedOnFlying = playerData.RotationSpeedOnFlying;
-            unitRotationComponent.RotationSensitiveOnFlying = playerData.RotationSensitiveOnFlying;
-            unitRotationComponent.Transform = playerEntity.Get<GameObjectComponent>().GameObject.transform;
-        }
-
-        private void InitializeAbilityComponents(in EcsEntity playerEntity)
-        {
-            ref var abilityComponent = ref playerEntity.Get<AbilityComponent>();
-            abilityComponent.playerData = playerData;
-
-            abilityComponent.EnergyPointsMax = playerData.EnergyPointsMax;
-            abilityComponent.EnergyPointsMin = playerData.EnergyPointsMin;
-            abilityComponent.EnergyPoints = playerData.EnergyPoints;
-
-            ref var accelerationAbilityComponent = ref playerEntity.Get<AccelerationAbilityComponent>();
-            accelerationAbilityComponent.AbilityType = AbilityType.Acceleration;
-            accelerationAbilityComponent.AccelerationAbilityData = accelerationAbilityData;
-
-            ref var doubleJumpAbilityComponent = ref playerEntity.Get<DoubleJumpAbilityComponent>();
-            doubleJumpAbilityComponent.AbilityType = AbilityType.DoubleJump;
-            doubleJumpAbilityComponent.DoubleJumpAbilityData = doubleJumpAbilityData;
-
-            ref var energyShieldAbilityComponent = ref playerEntity.Get<EnergyShieldAbilityComponent>();
-            energyShieldAbilityComponent.AbilityType = AbilityType.EnergyShield;
-            energyShieldAbilityComponent.EnergyShieldAbilityData = energyShieldAbilityData;
-        }
-
-        private void InitializeHealthComponent(in EcsEntity playerEntity)
-        {
-            ref var healthComponent = ref playerEntity.Get<HealthComponent>();
-
-            healthComponent.HealthPointsMax = playerData.HealthPointsMax;
-            healthComponent.HealthPointsMin = playerData.HealthPointsMin;
-            healthComponent.HealthPoints = playerData.HealthPoints;
-            healthComponent.DamageCoolDown = playerData.DamageCoolDown;
-        }
-
-        private void InitializeCollisionComponent(in EcsEntity playerEntity)
-        {
-            ref var collisionComponent = ref playerEntity.Get<CollisionComponent>();
-
-            collisionComponent.CollisionEntity = new List<EcsEntity>();
+            return (GameObject)Object.Instantiate(_playerPrefab, position, Quaternion.identity);
         }
 
         public GameObject CreateCameraGameObject(Vector3 position)
         {
             return diContainer.InstantiatePrefab(_playerCameraPrefab, position, Quaternion.identity, null);
-        }
-
-        public EcsEntity CreateCameraEntity()
-        {
-            return world.NewEntity();
-        }
-
-        private void InitializeCameraMovementComponent(in EcsEntity cameraEntity, GameObject cameraObject)
-        {
-            ref var cameraMovementComponent = ref cameraEntity.Get<CameraMovementComponent>();
-
-            cameraMovementComponent.SmoothValue = cameraData.SmoothValue;
-            cameraMovementComponent.DistanceFromGround = cameraData.DistanceFromGround;
-            cameraMovementComponent.Transform = cameraObject.transform;
-        }
-
-        private void InitializeFollowComponent(in EcsEntity cameraEntity, in EcsEntity playerEntity)
-        {
-            ref var followComponent = ref cameraEntity.Get<FollowComponent>();
-
-            followComponent.Offset = cameraData.Offset;
-            followComponent.Entity = playerEntity;
-        }
-
-        private void InitializeCameraUIComponent(in EcsEntity cameraEntity, in EcsEntity playerEntity, GameObject cameraObject)
-        {
-            ref var cameraUIComponent = ref cameraEntity.Get<CameraUIComponent>();
-
-            Slider[] sliders = cameraObject.GetComponentsInChildren<Slider>();
-            cameraUIComponent.EnergySlider = sliders[0]; // это костыль надо исправить
-            cameraUIComponent.HealthSlider = sliders[1];
-
-            ref var playerAbility = ref playerEntity.Get<AbilityComponent>();
-            cameraUIComponent.EnergySlider.maxValue = playerAbility.EnergyPointsMax;
-            cameraUIComponent.EnergySlider.minValue = playerAbility.EnergyPointsMin;
-            cameraUIComponent.EnergySlider.value = playerAbility.EnergyPoints;
-
-            ref var playerHealth = ref playerEntity.Get<HealthComponent>();
-            cameraUIComponent.HealthSlider.maxValue = playerHealth.HealthPointsMax;
-            cameraUIComponent.HealthSlider.minValue = playerHealth.HealthPointsMin;
-            cameraUIComponent.HealthSlider.value = playerHealth.HealthPoints;
         }
     }
 }

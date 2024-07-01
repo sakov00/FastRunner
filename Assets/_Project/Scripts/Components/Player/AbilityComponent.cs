@@ -1,10 +1,13 @@
-﻿using Assets._Project.Scripts.ScriptableObjects;
+﻿using Assets._Project.Scripts.Enums;
+using System;
+using UnityEngine;
 
 namespace Assets._Project.Scripts.Components.Player
 {
-    internal struct AbilityComponent
+    [Serializable]
+    public struct AbilityComponent
     {
-        private float energyPoints;
+        [SerializeField] private float energyPoints;
         public float EnergyPoints
         {
             get { return energyPoints; }
@@ -12,20 +15,22 @@ namespace Assets._Project.Scripts.Components.Player
             {
                 if (value < EnergyPointsMin)
                     energyPoints = EnergyPointsMin;
-                if (value > EnergyPointsMax)
+                else if (value > EnergyPointsMax)
                     energyPoints = EnergyPointsMax;
                 else
                     energyPoints = value;
             }
         }
 
-        public float EnergyPointsMin { get; set; }
-        public float EnergyPointsMax { get; set; }
+        public float EnergyPointsMin;
+        public float EnergyPointsMax;
 
-        public bool AccelerationAbilityActivated;
-        public bool DoubleJumpAbilityActivated;
-        public bool EnergyShieldAbilityActivated;
+        public AbilityType FirstAbilityType;
+        public AbilityType SecondAbilityType;
+        public AbilityType ThirdAbilityType;
 
-        public PlayerData playerData;
+        [NonSerialized] public bool AccelerationAbilityActivated;
+        [NonSerialized] public bool DoubleJumpAbilityActivated;
+        [NonSerialized] public bool EnergyShieldAbilityActivated;
     }
 }

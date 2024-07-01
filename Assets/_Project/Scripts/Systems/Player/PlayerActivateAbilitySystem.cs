@@ -6,18 +6,19 @@ namespace Assets._Project.Scripts.Systems.Player
 {
     internal class PlayerActivateAbilitySystem : IEcsRunSystem
     {
+        private readonly EcsWorld world = null;
         private readonly EcsFilter<InputComponent, AbilityComponent> filter = null;
 
         public void Run()
         {
-            foreach (var entity in filter)
+            foreach (var entityIndex in filter)
             {
-                ref var inputComponent = ref filter.Get1(entity);
-                ref var abilityComponent = ref filter.Get2(entity);
+                ref var inputComponent = ref filter.Get1(entityIndex);
+                ref var abilityComponent = ref filter.Get2(entityIndex);
 
-                ProcessAbility(inputComponent.OnFirstAbility, ref abilityComponent, abilityComponent.playerData.FirstAbilityType);
-                ProcessAbility(inputComponent.OnSecondAbility, ref abilityComponent, abilityComponent.playerData.SecondAbilityType);
-                ProcessAbility(inputComponent.OnThirdAbility, ref abilityComponent, abilityComponent.playerData.ThirdAbilityType);
+                ProcessAbility(inputComponent.OnFirstAbility, ref abilityComponent, abilityComponent.FirstAbilityType);
+                ProcessAbility(inputComponent.OnSecondAbility, ref abilityComponent, abilityComponent.SecondAbilityType);
+                ProcessAbility(inputComponent.OnThirdAbility, ref abilityComponent, abilityComponent.ThirdAbilityType);
             }
         }
 

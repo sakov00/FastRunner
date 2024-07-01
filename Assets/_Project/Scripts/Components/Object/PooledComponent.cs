@@ -1,10 +1,12 @@
 ﻿using Assets._Project.Scripts.Factories;
+using System;
 
 namespace Assets._Project.Scripts.Components.Object
 {
-    internal struct PooledComponent
+    [Serializable]
+    public struct PooledComponent
     {
-        public ObjectPool ObjectPool { get; set; }
-        public bool IsActive { get; set; }
+        public ObjectPool ObjectPool;
+        public bool IsActive;
     }
 }

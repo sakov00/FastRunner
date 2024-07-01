@@ -1,6 +1,9 @@
-﻿namespace Assets._Project.Scripts.Components.Player
+﻿using System;
+
+namespace Assets._Project.Scripts.Components.Player
 {
-    internal struct PlayerComponent
+    [Serializable]
+    public struct PlayerComponent
     {
     }
 }

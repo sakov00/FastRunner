@@ -1,10 +1,12 @@
-﻿using UnityEngine.UI;
+﻿using System;
+using UnityEngine.UI;
 
 namespace Assets._Project.Scripts.Components.Camera
 {
-    internal struct CameraUIComponent
+    [Serializable]
+    public struct CameraUIComponent
     {
-        public Slider HealthSlider { get; set; }
-        public Slider EnergySlider { get; set; }
+        public Slider HealthSlider;
+        public Slider EnergySlider;
     }
 }

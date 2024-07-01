@@ -31,7 +31,7 @@ namespace Assets._Project.Scripts.Systems.Ability
                     ActivateAcceleration(ref unitMovement, ref accelerationAbility);
                 }
 
-                if (accelerationAbility.CurrentWorkTime < accelerationAbility.AccelerationAbilityData.EnergyTimer)
+                if (accelerationAbility.CurrentWorkTime < accelerationAbility.EnergyTimer)
                 {
                     MaintainAcceleration(ref ability, ref accelerationAbility);
                 }
@@ -44,21 +44,21 @@ namespace Assets._Project.Scripts.Systems.Ability
 
         private void ActivateAcceleration(ref UnitMovementComponent unitMovement, ref AccelerationAbilityComponent accelerationAbility)
         {
-            unitMovement.RunningSpeed += accelerationAbility.AccelerationAbilityData.ValueSpeedUp;
+            unitMovement.RunningSpeed += accelerationAbility.ValueSpeedUp;
             accelerationAbility.IsActive = true;
         }
 
         private void MaintainAcceleration(ref AbilityComponent ability, ref AccelerationAbilityComponent accelerationAbility)
         {
             accelerationAbility.CurrentWorkTime += Time.fixedDeltaTime;
-            ability.EnergyPoints -= accelerationAbility.AccelerationAbilityData.EnergyPerSecond * Time.fixedDeltaTime;
+            ability.EnergyPoints -= accelerationAbility.EnergyPerSecond * Time.fixedDeltaTime;
         }
 
         private void DeactivateAcceleration(ref UnitMovementComponent unitMovement, ref AccelerationAbilityComponent accelerationAbility)
         {
             if (accelerationAbility.IsActive)
             {
-                unitMovement.RunningSpeed -= accelerationAbility.AccelerationAbilityData.ValueSpeedDown;
+                unitMovement.RunningSpeed += accelerationAbility.ValueSpeedDown;
             }
             accelerationAbility.CurrentWorkTime = 0;
             accelerationAbility.IsActive = false;

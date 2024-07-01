@@ -1,12 +1,13 @@
-﻿using Leopotam.Ecs;
+﻿using System;
 using UnityEngine;
 
 namespace Assets._Project.Scripts.Components
 {
-    internal struct FollowComponent
+    [Serializable]
+    public struct FollowComponent
     {
         public Vector3 Offset;
 
-        public EcsEntity Entity;
+        public Transform Transform;
     }
 }

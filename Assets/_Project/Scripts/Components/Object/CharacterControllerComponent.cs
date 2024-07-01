@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Assets._Project.Scripts.Components.Object
 {
-    internal struct CharacterControllerComponent
+    public struct CharacterControllerComponent
     {
-        public CharacterController CharacterController { get; set; }
+        public CharacterController CharacterController;
     }
 }

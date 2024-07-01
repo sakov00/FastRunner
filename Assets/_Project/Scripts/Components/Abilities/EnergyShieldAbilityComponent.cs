@@ -1,15 +1,16 @@
-using Assets._Project.Scripts.Components.Abilities.Interfaces;
 using Assets._Project.Scripts.Enums;
-using Assets._Project.Scripts.ScriptableObjects.AbilitiesData;
+using System;
 
 namespace Assets._Project.Scripts.Components.Abilities
 {
-    public struct EnergyShieldAbilityComponent : IProlongedAbilityComponent
+    [Serializable]
+    public struct EnergyShieldAbilityComponent
     {
-        public AbilityType AbilityType { get; set; }
-        public float CurrentWorkTime { get; set; }
-        public bool IsActive { get; set; }
-        public EnergyShieldAbilityData EnergyShieldAbilityData { get; set; }
+        public AbilityType AbilityType;
+        public float CurrentWorkTime;
+        public bool IsActive;
 
+        public float EnergyPerSecond;
+        public float EnergyTimer;
     }
 }

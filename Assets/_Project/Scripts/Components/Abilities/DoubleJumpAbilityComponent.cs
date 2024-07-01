@@ -1,13 +1,14 @@
-using Assets._Project.Scripts.Components.Abilities.Interfaces;
 using Assets._Project.Scripts.Enums;
-using Assets._Project.Scripts.ScriptableObjects.AbilitiesData;
+using System;
 
 namespace Assets._Project.Scripts.Components.Abilities
 {
-    public struct DoubleJumpAbilityComponent : IInstantAbilityComponent
+    [Serializable]
+    public struct DoubleJumpAbilityComponent
     {
-        public AbilityType AbilityType { get; set; }
-        public bool CanDoubleJump { get; set; }
-        public DoubleJumpAbilityData DoubleJumpAbilityData { get; set; }
+        public AbilityType AbilityType;
+        public bool CanDoubleJump;
+
+        public float EnergyCost;
     }
 }

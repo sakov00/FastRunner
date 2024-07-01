@@ -1,8 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Assets._Project.Scripts.Components.Unit
 {
-    internal struct UnitRotationComponent
+    [Serializable]
+    public struct UnitRotationComponent
     {
         public float LimitRotationAngleY;
 
@@ -14,7 +16,7 @@ namespace Assets._Project.Scripts.Components.Unit
 
         public float RotationSensitiveOnFlying;
 
-        public Quaternion Rotation;
+        [NonSerialized] public Quaternion Rotation;
 
         public Transform Transform;
     }

@@ -1,32 +1,30 @@
-﻿using Assets._Project.Scripts.Systems;
+﻿using Assets._Project.Scripts.Spawners;
+using Assets._Project.Scripts.Systems;
 using Assets._Project.Scripts.Systems.Ability;
+using Assets._Project.Scripts.Systems.Init;
 using Assets._Project.Scripts.Systems.Object;
 using Assets._Project.Scripts.Systems.Player;
 using Leopotam.Ecs;
 using UnityEngine;
-using Zenject;
+using Voody.UniLeo;
 
 namespace Assets._Project.Scripts.Bootstrap
 {
     public class EcsGameStartUp : MonoBehaviour
     {
         private EcsWorld world;
-        private IEcsInitSystem[] initSystems;
 
         private EcsSystems initUpdateSystems;
         private EcsSystems fixedUpdateSystems;
         private EcsSystems updateSystems;
         private EcsSystems lateUpdateSystems;
 
-        [Inject]
-        private void Contract(EcsWorld world, IEcsInitSystem[] initSystems)
-        {
-            this.initSystems = initSystems;
-            this.world = world;
-        }
 
         private void Start()
         {
+            world = new EcsWorld();
+            WorldHandler.Init(world);
+
             DeclareInitSystems();
             DeclareFixedUpdateSystems();
             DeclareUpdateSystems();
@@ -37,11 +35,16 @@ namespace Assets._Project.Scripts.Bootstrap
         {
             initUpdateSystems = new EcsSystems(world);
 
-            foreach (var initSystem in initSystems)
+            if (SystemInfo.deviceType == DeviceType.Desktop)
             {
-                initUpdateSystems.Add(initSystem);
+                initUpdateSystems.Add(new InputPCSystem());
+            }
+            else if (SystemInfo.deviceType == DeviceType.Handheld)
+            {
+                initUpdateSystems.Add(new InputMobileSystem());
             }
 
+            initUpdateSystems.ConvertScene();
             initUpdateSystems.Init();
         }
 
@@ -63,6 +66,7 @@ namespace Assets._Project.Scripts.Bootstrap
             fixedUpdateSystems.Add(new PlayerUISystem());
 
             fixedUpdateSystems.Add(new GameOverSystem());
+
             fixedUpdateSystems.Init();
         }
 

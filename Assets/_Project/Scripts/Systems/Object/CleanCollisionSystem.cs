@@ -12,7 +12,10 @@ namespace Assets._Project.Scripts.Systems.Object
             foreach (var firstEntity in collisionFilter1)
             {
                 ref var collisionComponent = ref collisionFilter1.Get1(firstEntity);
-                collisionComponent.CollisionEntity.Clear();
+                if (collisionComponent.CollisionEntity == null)
+                    collisionComponent.CollisionEntity = new System.Collections.Generic.List<EcsEntity>();
+                else
+                    collisionComponent.CollisionEntity.Clear();
             }
         }
     }

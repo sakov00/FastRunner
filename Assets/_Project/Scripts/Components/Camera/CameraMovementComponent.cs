@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Assets._Project.Scripts.Components.Camera
 {
-    internal struct CameraMovementComponent
+    [Serializable]
+    public struct CameraMovementComponent
     {
-        public Transform Transform;
+        [NonSerialized] public Transform Transform;
 
         public float SmoothValue;
 

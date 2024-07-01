@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Assets._Project.Scripts.Components.Unit
 {
-    internal struct UnitAnimationComponent
+    [Serializable]
+    public struct UnitAnimationComponent
     {
-        public Animator Animator;
+        [NonSerialized] public Animator Animator;
 
         public string IsGrounded;
         public string IsFalling;
