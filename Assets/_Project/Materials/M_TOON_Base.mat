@@ -17,7 +17,7 @@ Material:
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
+  m_CustomRenderQueue: 2450
   stringTagMap: {}
   disabledShaderPasses: []
   m_LockedProperties: 
@@ -54,6 +54,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Clip: 0
     - _Distance: 2.91
     - _DivideSize: 0
     - _Ed1: 0.06
@@ -74,7 +75,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color_1: {r: 0.5, g: 0.39955148, b: 0.23103853, a: 1}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
-    - _PlayerPos: {r: 0, g: 71.24115, b: -26.864172, a: 0}
+    - _PlayerPos: {r: 35.954002, g: -96.06749, b: 1963.8604, a: 0}
     - _Pos: {r: 0, g: 0, b: 0, a: 0}
     - _Tilling_and_offset: {r: 1, g: 1, b: 0, a: 0}
     - _Vector2: {r: 0, g: 0, b: 0, a: 0}

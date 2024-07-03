@@ -17,8 +17,8 @@ MonoBehaviour:
   JumpHeight: 5
   GravityValue: -20
   EnergyValue: 200
-  LimitRotationAngleY: 66.5
-  RotationSpeedOnGround: 10
+  LimitRotationAngleY: 360
+  RotationSpeedOnGround: 15.1
   RotationSensitiveOnGround: 10
   RotationSpeedOnFlying: 5
   RotationSensitiveOnFlying: 10
