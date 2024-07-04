@@ -17,7 +17,5 @@ namespace Assets._Project.Scripts.Components.Unit
         public float RotationSensitiveOnFlying;
 
         [NonSerialized] public Quaternion Rotation;
-
-        public Transform Transform;
     }
 }

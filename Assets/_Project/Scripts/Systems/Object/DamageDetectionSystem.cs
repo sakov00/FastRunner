@@ -6,28 +6,38 @@ namespace Assets._Project.Scripts.Systems.Object
 {
     public class DamageDetectionSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<HealthComponent, CollisionComponent> filter = null;
+        private readonly EcsFilter<TriggerComponent> filter = null;
 
         public void Run()
         {
             foreach (var entity in filter)
             {
-                ref var healthComponent = ref filter.Get1(entity);
-                ref var collisionComponent = ref filter.Get2(entity);
+                ref var triggerComponent = ref filter.Get1(entity);
 
-                for (int i = 0; i < collisionComponent.CollisionEntity.Count; i++)
+                if (!triggerComponent.TargetEntity.HasValue)
+                    continue;
+
+                if(!triggerComponent.SourceEntity.Value.Has<DamageComponent>() ||
+                    !triggerComponent.TargetEntity.Value.Has<HealthComponent>())
+                    continue;
+
+                ref var sourceDamageComponent = ref triggerComponent.SourceEntity.Value.Get<DamageComponent>();
+                ref var targetHealthComponent = ref triggerComponent.TargetEntity.Value.Get<HealthComponent>();
+
+                if (targetHealthComponent.CurrentDamageCoolDown > targetHealthComponent.DamageCoolDown)
                 {
-                    if (collisionComponent.CollisionEntity[i] == EcsEntity.Null)
-                        continue;
+                    targetHealthComponent.CurrentDamageCoolDown = 0;
+                    targetHealthComponent.HealthPoints -= sourceDamageComponent.Value;
+                    triggerComponent.TargetEntity = null;
 
-                    ref var damageComponent = ref collisionComponent.CollisionEntity[i].Get<DamageComponent>();
-                    if (healthComponent.CurrentDamageCoolDown > healthComponent.DamageCoolDown)
-                    {
-                        healthComponent.CurrentDamageCoolDown = 0;
-                        healthComponent.HealthPoints -= damageComponent.Value;
-                    }
+                    ref var gameObjectComponent = ref triggerComponent.SourceEntity.Value.Get<GameObjectComponent>();
+                    GameObject.Destroy(gameObjectComponent.GameObject);
+                    triggerComponent.SourceEntity.Value.Destroy();
                 }
-                healthComponent.CurrentDamageCoolDown += Time.fixedDeltaTime;
+                else
+                {
+                    triggerComponent.TargetEntity = null;
+                }
             }
         }
     }

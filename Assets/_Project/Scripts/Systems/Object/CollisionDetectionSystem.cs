@@ -6,35 +6,52 @@ namespace Assets._Project.Scripts.Systems.Object
 {
     public class CollisionDetectionSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<CollisionComponent, ColliderComponent> collisionFilter1 = null;
-        private readonly EcsFilter<CollisionComponent, ColliderComponent> collisionFilter2 = null;
+        private readonly EcsFilter<ColliderComponent, TransformComponent> collisionFilter = null;
 
         public void Run()
         {
-            foreach (var firstEntity in collisionFilter1)
+            for (int i = 0; i < collisionFilter.GetEntitiesCount(); i++)
             {
-                ref var firstCollisionComponent = ref collisionFilter1.Get1(firstEntity);
-                ref var firstColliderComponent = ref collisionFilter1.Get2(firstEntity);
+                ref var firstColliderComponent = ref collisionFilter.Get1(i);
+                ref var firstTransformComponent = ref collisionFilter.Get2(i);
 
-                foreach (var secondEntity in collisionFilter2)
+                if(!firstColliderComponent.IsCheckCollisions)
+                    continue;
+
+                for (int j = 0; j < collisionFilter.GetEntitiesCount(); j++)
                 {
-                    if (collisionFilter1.GetEntity(firstEntity) == collisionFilter2.GetEntity(secondEntity))
+                    if (collisionFilter.GetEntity(i) == collisionFilter.GetEntity(j))
                     {
                         continue;
                     }
 
-                    ref var secondCollisionComponent = ref collisionFilter2.Get1(secondEntity);
-                    ref var secondColliderComponent = ref collisionFilter2.Get2(secondEntity);
+                    ref var secondColliderComponent = ref collisionFilter.Get1(j);
+                    ref var secondTransformComponent = ref collisionFilter.Get2(j);
 
-                    if (firstColliderComponent.Collider == null || secondColliderComponent.Collider == null)
+                    if (Vector3.Distance(firstTransformComponent.transform.position, secondTransformComponent.transform.position) > 10)
                     {
                         continue;
                     }
 
-                    if (IsColliding(firstColliderComponent.Collider, secondColliderComponent.Collider))
+                    if (secondColliderComponent.Collider.isTrigger)
                     {
-                        firstCollisionComponent.CollisionEntity.Add(collisionFilter2.GetEntity(secondEntity));
-                        secondCollisionComponent.CollisionEntity.Add(collisionFilter1.GetEntity(firstEntity));
+                        if (collisionFilter.GetEntity(i).Has<TriggerComponent>())
+                            continue;
+
+                        if (IsColliding(firstColliderComponent.Collider, secondColliderComponent.Collider))
+                        {
+                            ref var triggerComponent = ref collisionFilter.GetEntity(j).Get<TriggerComponent>();
+                            triggerComponent.SourceEntity = collisionFilter.GetEntity(j);
+                            triggerComponent.TargetEntity = collisionFilter.GetEntity(i);
+                        }
+                    }
+                    else
+                    {
+                        if (IsColliding(firstColliderComponent.Collider, secondColliderComponent.Collider))
+                        {
+                            ref var collisionComponent = ref collisionFilter.GetEntity(i).Get<CollisionComponent>();
+                            collisionComponent.CollisionEntity.Add(collisionFilter.GetEntity(j));
+                        }
                     }
                 }
             }

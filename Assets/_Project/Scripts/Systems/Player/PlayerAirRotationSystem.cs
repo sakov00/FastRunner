@@ -8,7 +8,7 @@ namespace Assets._Project.Scripts.Systems.Player
 {
     internal class PlayerAirRotationSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<InputComponent, UnitMovementComponent, CharacterControllerComponent, UnitRotationComponent> filter = null;
+        private readonly EcsFilter<InputComponent, UnitMovementComponent, CharacterControllerComponent, UnitRotationComponent, TransformComponent> filter = null;
         public void Run()
         {
             foreach (var i in filter)
@@ -17,6 +17,7 @@ namespace Assets._Project.Scripts.Systems.Player
                 ref var unitMovementComponent = ref filter.Get2(i);
                 ref var characterControllerComponent = ref filter.Get3(i);
                 ref var unitRotationComponent = ref filter.Get4(i);
+                ref var transformComponent = ref filter.Get5(i);
 
                 if (characterControllerComponent.CharacterController.isGrounded)
                     break;
@@ -39,12 +40,12 @@ namespace Assets._Project.Scripts.Systems.Player
                 float clampedRotationAngleZ = Mathf.Clamp(currentDegreesZ, -unitRotationComponent.LimitRotationAngleY, unitRotationComponent.LimitRotationAngleY);
 
                 RaycastHit hit;
-                Physics.Raycast(unitRotationComponent.Transform.position, Vector3.down, out hit);
+                Physics.Raycast(transformComponent.transform.position, Vector3.down, out hit);
                 Quaternion surfaceRotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
 
                 unitRotationComponent.Rotation = Quaternion.Euler(surfaceRotation.eulerAngles.x, clampedRotationAngleY, clampedRotationAngleZ);
-                unitRotationComponent.Rotation = Quaternion.Lerp(unitRotationComponent.Transform.rotation, unitRotationComponent.Rotation, unitRotationComponent.RotationSensitiveOnFlying * Time.deltaTime);
-                unitRotationComponent.Transform.rotation = unitRotationComponent.Rotation;
+                unitRotationComponent.Rotation = Quaternion.Lerp(transformComponent.transform.rotation, unitRotationComponent.Rotation, unitRotationComponent.RotationSensitiveOnFlying * Time.deltaTime);
+                transformComponent.transform.rotation = unitRotationComponent.Rotation;
             }
         }
     }

@@ -8,7 +8,7 @@ namespace Assets._Project.Scripts.Systems.Player
 {
     internal class PlayerGroundRotationSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<InputComponent, UnitMovementComponent, CharacterControllerComponent, UnitRotationComponent> filter = null;
+        private readonly EcsFilter<InputComponent, UnitMovementComponent, CharacterControllerComponent, UnitRotationComponent, TransformComponent> filter = null;
 
         public void Run()
         {
@@ -18,12 +18,12 @@ namespace Assets._Project.Scripts.Systems.Player
                 ref var unitMovementComponent = ref filter.Get2(i);
                 ref var characterControllerComponent = ref filter.Get3(i);
                 ref var unitRotationComponent = ref filter.Get4(i);
-
+                ref var transformComponent = ref filter.Get5(i);
 
                 if (!characterControllerComponent.CharacterController.isGrounded)
                     break;
 
-                var currentDegrees = unitRotationComponent.Transform.eulerAngles.y;
+                var currentDegrees = transformComponent.transform.eulerAngles.y;
                 var rotationSpeed = unitRotationComponent.RotationSpeedOnGround;
                 currentDegrees += inputComponent.MovementInput.x * rotationSpeed;
 
@@ -34,12 +34,12 @@ namespace Assets._Project.Scripts.Systems.Player
                 float clampedRotationAngle = Mathf.Clamp(currentDegrees, -unitRotationComponent.LimitRotationAngleY, unitRotationComponent.LimitRotationAngleY);
 
                 RaycastHit hit;
-                Physics.Raycast(unitRotationComponent.Transform.position, Vector3.down, out hit);
+                Physics.Raycast(transformComponent.transform.position, Vector3.down, out hit);
                 Quaternion surfaceRotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
 
                 unitRotationComponent.Rotation = Quaternion.Euler(surfaceRotation.eulerAngles.x, clampedRotationAngle, surfaceRotation.eulerAngles.z);
-                unitRotationComponent.Rotation = Quaternion.Lerp(unitRotationComponent.Transform.rotation, unitRotationComponent.Rotation, unitRotationComponent.RotationSensitiveOnGround * Time.deltaTime);
-                unitRotationComponent.Transform.rotation = unitRotationComponent.Rotation;
+                unitRotationComponent.Rotation = Quaternion.Lerp(transformComponent.transform.rotation, unitRotationComponent.Rotation, unitRotationComponent.RotationSensitiveOnGround * Time.deltaTime);
+                transformComponent.transform.rotation = unitRotationComponent.Rotation;
             }
         }
     }

@@ -59,6 +59,7 @@ namespace Assets._Project.Scripts.Bootstrap
 
             fixedUpdateSystems.Add(new CleanCollisionSystem());
             fixedUpdateSystems.Add(new CollisionDetectionSystem());
+            fixedUpdateSystems.Add(new HealthSystem());
             fixedUpdateSystems.Add(new DamageDetectionSystem());
 
             fixedUpdateSystems.Add(new ActivateSystem());

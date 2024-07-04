@@ -3,8 +3,11 @@ using UnityEngine;
 
 namespace Assets._Project.Scripts.Components.Object
 {
+    [Serializable]
     public struct ColliderComponent
     {
-        public Collider Collider;
+        [NonSerialized] public Collider Collider;
+
+        public bool IsCheckCollisions;
     }
 }
