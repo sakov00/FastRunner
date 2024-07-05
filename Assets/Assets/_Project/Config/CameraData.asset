@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6bd0b2eda8863841a081d9f52deadbe, type: 3}
   m_Name: CameraData
   m_EditorClassIdentifier: 
-  SmoothValue: 5
-  DistanceFromGround: 4.5
-  Offset: {x: 0, y: 2, z: -1.44}
+  SmoothValue: 8
+  DistanceFromGround: 4
+  Offset: {x: 0, y: 2.25, z: -2.25}

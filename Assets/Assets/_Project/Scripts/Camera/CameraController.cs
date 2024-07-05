@@ -11,6 +11,7 @@ namespace Assets._Project.Scripts.Camera
         private CharacterController _characterController;
 
         [field: SerializeField] private Transform Target { get; set; }
+        [field: SerializeField] private Transform TargetCam { get; set; }
 
         [Inject]
         private void Contract(CameraData cameraData)
@@ -28,6 +29,7 @@ namespace Assets._Project.Scripts.Camera
         {
             var targetAngleY = Target.eulerAngles.y;
             var offset = _cameraData.Offset;
+            //Vector3 targetOffset = _cameraData.TargetOffset;
             Vector3 rotationOffset = Quaternion.Euler(0, targetAngleY, 0) * offset;
             Vector3 newCameraPosition = Target.position + rotationOffset;
 
@@ -40,7 +42,7 @@ namespace Assets._Project.Scripts.Camera
             }
 
             _cameraView.Move(Vector3.Lerp(transform.position, newCameraPosition, _cameraData.SmoothValue * Time.deltaTime));
-            _cameraView.LookAt(Target);
+            _cameraView.LookAt(TargetCam);
         }
     }
 }
