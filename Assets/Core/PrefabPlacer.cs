@@ -13,6 +13,8 @@ public class PrefabPlacer : MonoBehaviour
 {
     public List<GameObject> prefabs;
     public List<GameObject> newPrefabs;
+    public List<Material> materials;
+    public int selectedMaterialIndex = -1;
     [HideInInspector]
     public int selectedPrefabIndex = -1;
     [HideInInspector]
@@ -38,11 +40,12 @@ public class PrefabPlacer : MonoBehaviour
     public float minRandomAngleZ;
     [HideInInspector]
     public float maxRandomAngleZ;
+    [HideInInspector]
+    public Quaternion prefabStartRotation;
+
     private float randomAngleX;
     private float randomAngleY;
     private float randomAngleZ;
-    [HideInInspector]
-    public Quaternion prefabStartRotation;
 
     [System.Serializable]
     public struct PrefabReplacementInfo
@@ -59,9 +62,11 @@ public class PrefabPlacer : MonoBehaviour
     [HideInInspector]
     public bool applyScaleOfNewPrefab = true;
 
-    public bool loadPrefabsFromFolder = false; // Flag to load prefabs from folder
     public bool clearCurrenPrefabsListBeforAddFromFolder;
-    public string folderPath; // Folder path for prefabs
+    private string folderPath; // Folder path for prefabs
+
+    public bool clearCurrentMaterialsListBeforeAddFromFolder;
+    private string materialsFolderPath; // Folder path for materials
 
 #if UNITY_EDITOR
     private void OnEnable()
@@ -108,15 +113,9 @@ public class PrefabPlacer : MonoBehaviour
             }
         }
 
-        if (currentEvent.type == EventType.KeyDown && currentEvent.keyCode == KeyCode.R)
+        if (currentEvent.type == EventType.KeyDown && currentEvent.keyCode == KeyCode.M)
         {
-            ReplaceSelectedPrefab();
-        }
-
-        if (currentEvent.type == EventType.KeyDown && currentEvent.keyCode == KeyCode.T)
-        {
-            RevertPrefabReplacements();
-            UpdateCurrentPrefabs();
+            AssignMaterialToObjectsUnderPointer();
         }
     }
 
@@ -323,25 +322,69 @@ public class PrefabPlacer : MonoBehaviour
     }
 
     public void LoadPrefabsFromFolder()
+{
+    // Открываем панель выбора папки
+    string folderPath = EditorUtility.OpenFolderPanel("Select Folder with Prefabs", "Assets", "");
+
+    // Проверяем, что путь не пустой и содержит путь в пределах папки Assets
+    if (!string.IsNullOrEmpty(folderPath) && folderPath.StartsWith(Application.dataPath))
     {
-        if (!string.IsNullOrEmpty(folderPath) && loadPrefabsFromFolder)
+        // Преобразуем путь в относительный путь относительно папки Assets
+        string relativePath = FileUtil.GetProjectRelativePath(folderPath);
+
+        // Находим все префабы в выбранной папке
+        string[] prefabGuids = AssetDatabase.FindAssets("t:Prefab", new[] { relativePath });
+
+        // Очистить список префабов, если необходимо
+        if (clearCurrenPrefabsListBeforAddFromFolder)
         {
-            string[] prefabGuids = AssetDatabase.FindAssets("t:Prefab", new[] { folderPath });
-            if (clearCurrenPrefabsListBeforAddFromFolder)
+            prefabs.Clear();
+        }
+
+        foreach (string guid in prefabGuids)
+        {
+            string path = AssetDatabase.GUIDToAssetPath(guid);
+            GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(path);
+            if (prefab != null && !prefabs.Contains(prefab))
             {
-                prefabs.Clear();
-            }
-            foreach (string guid in prefabGuids)
-            {
-                string path = AssetDatabase.GUIDToAssetPath(guid);
-                GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(path);
-                if (prefab != null && !prefabs.Contains(prefab))
-                {
-                    prefabs.Add(prefab);
-                }
+                prefabs.Add(prefab);
+                Debug.Log($"Added prefab: {prefab.name}");
             }
         }
+
+        Debug.Log("Prefabs loaded from folder.");
     }
+    else
+    {
+        Debug.LogWarning("Invalid folder path selected.");
+    }
+}
+
+    public void LoadMaterialsFromFolder()
+{
+    string materialsFolderPath = EditorUtility.OpenFolderPanel("Select Folder with Materials", "Assets", "");
+    if (string.IsNullOrEmpty(materialsFolderPath))
+        return;
+
+    materialsFolderPath = FileUtil.GetProjectRelativePath(materialsFolderPath); // Убедитесь, что путь начинается с Assets
+
+    string[] materialGUIDs = AssetDatabase.FindAssets("t:Material", new[] { materialsFolderPath });
+
+    if (clearCurrentMaterialsListBeforeAddFromFolder)
+    {
+        materials.Clear();
+    }
+
+    foreach (string guid in materialGUIDs)
+    {
+        string path = AssetDatabase.GUIDToAssetPath(guid);
+        Material material = AssetDatabase.LoadAssetAtPath<Material>(path);
+        if (material != null && !materials.Contains(material))
+        {
+            materials.Add(material);
+        }
+    }
+}
 
     private bool NameContainsWords(string name, string words)
     {
@@ -350,5 +393,37 @@ public class PrefabPlacer : MonoBehaviour
 
         return nameParts.Any(np => wordsParts.Any(wp => wp.Contains(np) || np.Contains(wp)));
     }
+
+    private void AssignMaterialToObjectsUnderPointer()
+    {
+        if (selectedMaterialIndex >= 0 && selectedMaterialIndex < materials.Count && materials[selectedMaterialIndex] != null)
+        {
+            Ray ray = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+            {
+                GameObject hitObject = hit.collider.gameObject;
+                Renderer hitRenderer = hitObject.GetComponent<Renderer>();
+
+                if (hitRenderer != null)
+                {
+                    Undo.RecordObject(hitRenderer, "Assign Material");
+                    hitRenderer.sharedMaterial = materials[selectedMaterialIndex];
+                    Debug.Log("Assigned material to object: " + hitObject.name);
+                }
+                else
+                {
+                    Debug.LogWarning("The object does not have a Renderer component.");
+                }
+            }
+        }
+        else
+        {
+            Debug.LogWarning("No material selected or material not assigned.");
+        }
+    }
+
+    
 #endif
 }
