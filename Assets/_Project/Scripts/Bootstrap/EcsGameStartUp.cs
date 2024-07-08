@@ -66,6 +66,8 @@ namespace Assets._Project.Scripts.Bootstrap
 
             fixedUpdateSystems.Add(new PlayerUISystem());
 
+            fixedUpdateSystems.Add(new DestroyObjectSystem()); 
+
             fixedUpdateSystems.Add(new GameOverSystem());
 
             fixedUpdateSystems.Init();

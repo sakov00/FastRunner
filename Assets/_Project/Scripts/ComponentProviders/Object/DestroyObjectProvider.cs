@@ -3,5 +3,5 @@ using Voody.UniLeo;
 
 namespace Assets._Project.Scripts.ComponentProviders.Object
 {
-    public sealed class DamageComponentProvider : MonoProvider<DamageComponent> { }
+    public class DestroyObjectProvider : MonoProvider<DestroyObjectComponent> { }
 }

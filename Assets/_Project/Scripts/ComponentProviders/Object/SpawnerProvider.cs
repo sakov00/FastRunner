@@ -3,5 +3,5 @@ using Voody.UniLeo;
 
 namespace Assets._Project.Scripts.ComponentProviders.Object
 {
-    public sealed class HealthComponentProvider : MonoProvider<HealthComponent> { }
+    public class SpawnerProvider : MonoProvider<SpawnerComponent>{ }
 }

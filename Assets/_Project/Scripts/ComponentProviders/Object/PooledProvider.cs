@@ -3,5 +3,5 @@ using Voody.UniLeo;
 
 namespace Assets._Project.Scripts.ComponentProviders.Object
 {
-    public sealed class TriggerComponentProvider : MonoProvider<TriggerComponent> { }
+    public sealed class PooledProvider : MonoProvider<PooledComponent> { }
 }

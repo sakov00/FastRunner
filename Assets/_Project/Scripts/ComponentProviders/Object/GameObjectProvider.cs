@@ -3,7 +3,7 @@ using Voody.UniLeo;
 
 namespace Assets._Project.Scripts.ComponentProviders.Object
 {
-    public sealed class GameObjectComponentProvider : MonoProvider<GameObjectComponent>
+    public sealed class GameObjectProvider : MonoProvider<GameObjectComponent>
     {
         private void Awake()
         {

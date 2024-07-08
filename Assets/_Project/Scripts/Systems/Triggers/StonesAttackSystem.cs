@@ -4,14 +4,23 @@ using Leopotam.Ecs;
 
 public class StonesAttackSystem : IEcsRunSystem
 {
-    private readonly EcsFilter<PlayerComponent, ColliderComponent> filter = null;
+    private readonly EcsFilter<TriggerComponent> filter = null;
 
     public void Run()
     {
         foreach (var entityIndex in filter)
         {
-            ref var playerComponent = ref filter.Get1(entityIndex);
-            ref var colliderComponent = ref filter.Get2(entityIndex);
+            ref var triggerComponent = ref filter.Get1(entityIndex);
+
+            if (!triggerComponent.TargetEntity.HasValue)
+                continue;
+
+            if (!triggerComponent.SourceEntity.Value.Has<SpawnerComponent>() ||
+                !triggerComponent.TargetEntity.Value.Has<PlayerComponent>())
+                continue;
+
+            ref var sourceSpawnerComponent = ref triggerComponent.SourceEntity.Value.Get<SpawnerComponent>();
+            ref var targetPlayerComponent = ref triggerComponent.TargetEntity.Value.Get<PlayerComponent>();
         }
     }
 }

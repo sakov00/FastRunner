@@ -4,7 +4,7 @@ using Voody.UniLeo;
 
 namespace Assets._Project.Scripts.ComponentProviders.Object
 {
-    public sealed class ColliderComponentProvider : MonoProvider<ColliderComponent>
+    public sealed class ColliderProvider : MonoProvider<ColliderComponent>
     {
         private void Awake()
         {

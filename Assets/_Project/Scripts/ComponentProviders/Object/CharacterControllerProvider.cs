@@ -4,11 +4,11 @@ using Voody.UniLeo;
 
 namespace Assets._Project.Scripts.ComponentProviders.Object
 {
-    public sealed class TransformComponentProvider : MonoProvider<TransformComponent> 
+    public sealed class CharacterControllerProvider : MonoProvider<CharacterControllerComponent>
     {
         private void Awake()
         {
-            value.transform = GetComponent<Transform>();
+            value.CharacterController = GetComponent<CharacterController>();
         }
     }
 }

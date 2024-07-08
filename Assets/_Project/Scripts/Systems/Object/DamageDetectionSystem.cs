@@ -18,7 +18,7 @@ namespace Assets._Project.Scripts.Systems.Object
                     continue;
 
                 if(!triggerComponent.SourceEntity.Value.Has<DamageComponent>() ||
-                    !triggerComponent.TargetEntity.Value.Has<HealthComponent>())
+                   !triggerComponent.TargetEntity.Value.Has<HealthComponent>())
                     continue;
 
                 ref var sourceDamageComponent = ref triggerComponent.SourceEntity.Value.Get<DamageComponent>();
@@ -30,9 +30,8 @@ namespace Assets._Project.Scripts.Systems.Object
                     targetHealthComponent.HealthPoints -= sourceDamageComponent.Value;
                     triggerComponent.TargetEntity = null;
 
-                    ref var gameObjectComponent = ref triggerComponent.SourceEntity.Value.Get<GameObjectComponent>();
-                    GameObject.Destroy(gameObjectComponent.GameObject);
-                    triggerComponent.SourceEntity.Value.Destroy();
+                    ref var destroyObjectComponent = ref triggerComponent.SourceEntity.Value.Get<DestroyObjectComponent>();
+                    destroyObjectComponent.IsActivateDestroy = true;
                 }
                 else
                 {
