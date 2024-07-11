@@ -25,7 +25,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTexture:
-        m_Texture: {fileID: 2800000, guid: 384652dcb96fbc7499c3cb92b6ec8cf6, type: 3}
+        m_Texture: {fileID: 2800000, guid: d009653653d50d74dafde5b1c4890e2f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_56d9582398fe40629ba023ffd9a27a81_Texture_1_Texture2D:
@@ -54,13 +54,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Clip: 0.13
+    - _Clip: 0.97
     - _Distance: 2.91
     - _DivideSize: 0
     - _Ed1: 0.06
     - _Ed1_1: 1.46
-    - _Float: 7.09
+    - _Float: 1.85
     - _Float_1: 0
+    - _Height: 34.05
     - _L1: 0.48
     - _L2: 2.56
     - _Max: 0.72
@@ -71,14 +72,18 @@ Material:
     - _Shades: -1.14
     - _Size: 2.04
     - _Smooth: 0
+    - _noiaescale: 0
+    - _step: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color_1: {r: 0.5, g: 0.39955148, b: 0.23103853, a: 1}
+    - _Color_2: {r: 0.2153626, g: 0.6132076, b: 0.1648718, a: 0}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
     - _PlayerPos: {r: 35.954002, g: -96.06749, b: 1963.8604, a: 0}
     - _Pos: {r: 0, g: 0, b: 0, a: 0}
     - _Tilling_and_offset: {r: 1, g: 1, b: 0, a: 0}
     - _Vector2: {r: 0, g: 0, b: 0, a: 0}
+    - _Vector2_1: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &8834944652192120342
 MonoBehaviour:

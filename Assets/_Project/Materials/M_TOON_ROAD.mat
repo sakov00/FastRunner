@@ -51,6 +51,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _Distance: 0.09
+    - _Height: 2.31
     - _Max: 0.64
     - _Min: 3.03
     - _QueueControl: 0
