@@ -17,7 +17,15 @@ namespace Assets._Project.Scripts.Systems.Object
                 ref var transformComponent = ref filter.Get3(indexEntity);
 
                 if (!destroyObjectComponent.IsActivateDestroy)
+                {
                     continue;
+                }
+
+                if (destroyObjectComponent.CurrentTime < destroyObjectComponent.DestroyTime)
+                {
+                    destroyObjectComponent.CurrentTime += Time.fixedDeltaTime;
+                    continue;
+                }
 
                 GameObject.Destroy(gameObjectComponent.GameObject);
 

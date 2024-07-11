@@ -28,7 +28,7 @@ namespace Assets._Project.Scripts.Systems.Object
                     ref var secondColliderComponent = ref collisionFilter.Get1(j);
                     ref var secondTransformComponent = ref collisionFilter.Get2(j);
 
-                    if (Vector3.Distance(firstTransformComponent.transform.position, secondTransformComponent.transform.position) > 10)
+                    if (Vector3.Distance(firstTransformComponent.transform.position, secondTransformComponent.transform.position) > 20)
                     {
                         continue;
                     }

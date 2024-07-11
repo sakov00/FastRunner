@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 8157285174115106246}
   - component: {fileID: 6738211935715998165}
   - component: {fileID: 5772518262779638171}
+  - component: {fileID: 4985504609472166187}
   m_Layer: 0
   m_Name: PlayerCamera
   m_TagString: Untagged
@@ -145,7 +146,7 @@ Camera:
   m_ShutterSpeed: 0.005
   m_Aperture: 16
   m_FocusDistance: 10
-  m_FocalLength: 50
+  m_FocalLength: 20.78461
   m_BladeCount: 5
   m_Curvature: {x: 2, y: 11}
   m_BarrelClipping: 0.25
@@ -160,7 +161,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 250
-  field of view: 60
+  field of view: 75
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -256,9 +257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value:
-    Transform: {fileID: 985510349278067117}
     SmoothValue: 5
-    DistanceFromGround: 3
 --- !u!114 &5772518262779638171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,8 +271,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value:
-    Offset: {x: 0, y: 1, z: -5}
+    Offset: {x: 0, y: 3, z: -2.5}
     Transform: {fileID: 0}
+--- !u!114 &4985504609472166187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3558692465583354073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b92119809e8b24346a556f2a11f5b247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4012809960809033259
 GameObject:
   m_ObjectHideFlags: 0

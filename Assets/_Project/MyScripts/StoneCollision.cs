@@ -6,21 +6,11 @@ public class StoneCollision : MonoBehaviour
     public float raycastDistance;
     public Transform raycastPoint;
     public float speed;
-    public Material mat;
-    public GameObject flame;
-    public GameObject secondFlame;
     public GameObject spotPS;
     public GameObject psDust;
-    MeshRenderer meshRenderer;
-    Rigidbody rb;
     public bool hitG;
 
-    private void Start()
-    {
-        rb = GetComponent<Rigidbody>();
-        meshRenderer = flame.GetComponent<MeshRenderer>();
-        mat = secondFlame.GetComponent<MeshRenderer>().material;
-    }
+
     void Update()
     {
         Raycast();
@@ -32,11 +22,7 @@ public class StoneCollision : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(raycastPoint.position, -Vector3.up, out hit, raycastDistance, 1 << 3))
         {
-            meshRenderer.material = mat;
-            float h = mat.GetFloat("_Height");
             speed = 0;
-            h -= 1f * Time.deltaTime;
-            mat.SetFloat("_Height", h);
             psDust.SetActive(true);
         }
         if (Physics.Raycast(raycastPoint.position, -Vector3.up, out hit, 1000, 1 << 3) && !hitG)

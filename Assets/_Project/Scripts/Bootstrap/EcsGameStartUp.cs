@@ -1,6 +1,7 @@
 ﻿using Assets._Project.Scripts.Spawners;
 using Assets._Project.Scripts.Systems;
 using Assets._Project.Scripts.Systems.Ability;
+using Assets._Project.Scripts.Systems.Effect;
 using Assets._Project.Scripts.Systems.Init;
 using Assets._Project.Scripts.Systems.Object;
 using Assets._Project.Scripts.Systems.Player;
@@ -44,7 +45,6 @@ namespace Assets._Project.Scripts.Bootstrap
                 initUpdateSystems.Add(new InputMobileSystem());
             }
 
-            initUpdateSystems.ConvertScene();
             initUpdateSystems.Init();
         }
 
@@ -66,10 +66,12 @@ namespace Assets._Project.Scripts.Bootstrap
 
             fixedUpdateSystems.Add(new PlayerUISystem());
 
-            fixedUpdateSystems.Add(new DestroyObjectSystem()); 
+            fixedUpdateSystems.Add(new DestroyObjectSystem());
+            fixedUpdateSystems.Add(new StonesAttackSystem());
 
             fixedUpdateSystems.Add(new GameOverSystem());
 
+            fixedUpdateSystems.ConvertScene();
             fixedUpdateSystems.Init();
         }
 
@@ -77,11 +79,14 @@ namespace Assets._Project.Scripts.Bootstrap
         {
             updateSystems = new EcsSystems(world);
 
+            updateSystems.Add(new GravitySystem());
             updateSystems.Add(new PlayerAnimationSystem());
             updateSystems.Add(new PlayerGroundMovementSystem());
             updateSystems.Add(new PlayerGroundRotationSystem());
             updateSystems.Add(new PlayerAirMovementSystem());
             updateSystems.Add(new PlayerAirRotationSystem());
+            
+            updateSystems.Add(new EffectSystem());
 
             updateSystems.Init();
         }
