@@ -17,7 +17,7 @@ Material:
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
+  m_CustomRenderQueue: 2450
   stringTagMap: {}
   disabledShaderPasses: []
   m_LockedProperties: 
@@ -42,15 +42,29 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Clip: 0
+    - _Distance: 0.1
+    - _Ed1: 0
+    - _Ed1_1: 0
+    - _Height: 0.1
+    - _L1: 0
+    - _L2: 0
     - _Max: 135.2
     - _Min: 49.84
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Shades: 3.57
+    - _Size: 0.1
     - _Smooth: -2
+    - _noiaescale: 0
+    - _step: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color_1: {r: 0, g: 0, b: 0, a: 0}
+    - _Color_2: {r: 0, g: 0, b: 0, a: 0}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
+    - _PlayerPos: {r: 0, g: 0, b: 0, a: 0}
+    - _Pos: {r: 0, g: 0, b: 0, a: 0}
     - _Tilling_and_offset: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &1309495273733701677
