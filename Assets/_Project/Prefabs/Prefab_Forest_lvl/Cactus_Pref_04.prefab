@@ -11,17 +11,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: b243450538dc9984fa66574e1ffe5287,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -25.51
+      value: -15.336786
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b243450538dc9984fa66574e1ffe5287,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -10.8
+      value: -2.35
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b243450538dc9984fa66574e1ffe5287,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 80.85
+      value: 10.188141
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b243450538dc9984fa66574e1ffe5287,
         type: 3}
@@ -254,6 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value:
-    ParticleSystem: {fileID: 0}
+    Effect: {fileID: 1839246063928096219, guid: cf0af969db33b1a40999db45cc42aafe,
+      type: 3}
     IsActivateDestroy: 0
     DestroyTime: 0

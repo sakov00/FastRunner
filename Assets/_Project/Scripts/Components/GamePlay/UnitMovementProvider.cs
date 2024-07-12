@@ -2,7 +2,7 @@
 using UnityEngine;
 using Voody.UniLeo;
 
-namespace Assets._Project.Scripts.Components.Unit
+namespace Assets._Project.Scripts.Components.GamePlay
 {
     public sealed class UnitMovementProvider : MonoProvider<UnitMovementComponent> { }
 

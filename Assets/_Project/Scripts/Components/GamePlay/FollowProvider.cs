@@ -2,7 +2,7 @@
 using UnityEngine;
 using Voody.UniLeo;
 
-namespace Assets._Project.Scripts.Components
+namespace Assets._Project.Scripts.Components.GamePlay
 {
     public sealed class FollowProvider : MonoProvider<FollowComponent> { }
 

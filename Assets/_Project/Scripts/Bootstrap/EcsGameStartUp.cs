@@ -1,10 +1,10 @@
-﻿using Assets._Project.Scripts.Spawners;
-using Assets._Project.Scripts.Systems;
-using Assets._Project.Scripts.Systems.Ability;
-using Assets._Project.Scripts.Systems.Effect;
-using Assets._Project.Scripts.Systems.Init;
-using Assets._Project.Scripts.Systems.Object;
-using Assets._Project.Scripts.Systems.Player;
+﻿using Assets._Project.Scripts.Systems.Common;
+using Assets._Project.Scripts.Systems.GamePlay;
+using Assets._Project.Scripts.Systems.GamePlay.Abilities;
+using Assets._Project.Scripts.Systems.GamePlay.InputDevice;
+using Assets._Project.Scripts.Systems.Physics;
+using Assets._Project.Scripts.Systems.Rendering;
+using Assets._Project.Scripts.Systems.UI;
 using Leopotam.Ecs;
 using UnityEngine;
 using Voody.UniLeo;
@@ -25,6 +25,8 @@ namespace Assets._Project.Scripts.Bootstrap
         {
             world = new EcsWorld();
             WorldHandler.Init(world);
+
+            Application.targetFrameRate = 120;
 
             DeclareInitSystems();
             DeclareFixedUpdateSystems();
@@ -52,7 +54,7 @@ namespace Assets._Project.Scripts.Bootstrap
         {
             fixedUpdateSystems = new EcsSystems(world);
 
-            fixedUpdateSystems.Add(new PlayerActivateAbilitySystem());
+            fixedUpdateSystems.Add(new ActivateAbilitySystem());
             fixedUpdateSystems.Add(new AccelerationAbilitySystem());
             fixedUpdateSystems.Add(new DoubleJumpAbilitySystem());
             fixedUpdateSystems.Add(new EnergyShieldAbilitySystem());
@@ -85,8 +87,11 @@ namespace Assets._Project.Scripts.Bootstrap
             updateSystems.Add(new PlayerGroundRotationSystem());
             updateSystems.Add(new PlayerAirMovementSystem());
             updateSystems.Add(new PlayerAirRotationSystem());
-            
+
+            updateSystems.Add(new AttentionSystem());
             updateSystems.Add(new EffectSystem());
+            updateSystems.Add(new StoneEffectsSystem());
+            
 
             updateSystems.Init();
         }

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Voody.UniLeo;
 
-namespace Assets._Project.Scripts.Components.Object
+namespace Assets._Project.Scripts.Components.Common
 {
     public sealed class GameObjectProvider : MonoProvider<GameObjectComponent>
     {

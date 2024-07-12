@@ -123,7 +123,7 @@ public class RCLPG : MonoBehaviour
             }
         }
 
-        lprobe.probePositions = probePositions.ToArray();
+        //lprobe.probePositions = probePositions.ToArray();
     }
 
     void OnDrawGizmos()

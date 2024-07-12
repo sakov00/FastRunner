@@ -2,7 +2,7 @@
 using System;
 using Voody.UniLeo;
 
-namespace Assets._Project.Scripts.Components.Hierarchy
+namespace Assets._Project.Scripts.Components.Common
 {
     public sealed class ChildProvider : MonoProvider<ChildComponent> { }
 

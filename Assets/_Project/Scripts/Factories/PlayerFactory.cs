@@ -1,5 +1,4 @@
-﻿using Assets._Project.Scripts.Components.Camera;
-using Assets._Project.Scripts.Components.Player;
+﻿using Assets._Project.Scripts.Components.GamePlay;
 using Leopotam.Ecs;
 using UnityEngine;
 using Voody.UniLeo;

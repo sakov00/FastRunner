@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Voody.UniLeo;
 
-namespace Assets._Project.Scripts.Components.Player
+namespace Assets._Project.Scripts.Components.GamePlay
 {
     public sealed class InputProvider : MonoProvider<InputComponent> { }
 

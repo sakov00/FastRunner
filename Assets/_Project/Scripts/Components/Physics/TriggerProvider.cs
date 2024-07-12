@@ -2,7 +2,7 @@
 using System;
 using Voody.UniLeo;
 
-namespace Assets._Project.Scripts.Components.Object
+namespace Assets._Project.Scripts.Components.Physics
 {
     public sealed class TriggerProvider : MonoProvider<TriggerComponent> { }
 

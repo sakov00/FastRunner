@@ -2,15 +2,13 @@
 using UnityEngine;
 using Voody.UniLeo;
 
-namespace Assets._Project.Scripts.Components.Effect
+namespace Assets._Project.Scripts.Components.Rendering
 {
-    public sealed class EffectProvider : MonoProvider<EffectComponent> { }
+    public sealed class EffectProvider : MonoProvider<EffectsComponent> { }
 
     [Serializable]
-    public struct EffectComponent
+    public struct EffectsComponent
     {
-        public GameObject Effect;
-
-        public bool IsActivateEffect;
+        public GameObject[] Effects;
     }
 }

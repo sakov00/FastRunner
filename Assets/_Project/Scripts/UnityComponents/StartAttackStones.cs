@@ -1,6 +1,4 @@
-using Leopotam.Ecs;
 using UnityEngine;
-using Zenject;
 
 namespace Assets._Project.Scripts.UnityComponents
 {

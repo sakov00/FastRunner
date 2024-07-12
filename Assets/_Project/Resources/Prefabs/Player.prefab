@@ -5318,13 +5318,12 @@ GameObject:
   - component: {fileID: 6321568637708372089}
   - component: {fileID: 6971368992687166293}
   - component: {fileID: 6583049082614183547}
-  - component: {fileID: 1480705181222016804}
-  - component: {fileID: 4579102822356768800}
-  - component: {fileID: 918825117029735576}
+  - component: {fileID: 72927297197194912}
+  - component: {fileID: 722645144187291512}
+  - component: {fileID: 1503231157373602752}
   - component: {fileID: 4865534767036958595}
   - component: {fileID: 2002505091001307694}
-  - component: {fileID: 1137098804812982809}
-  - component: {fileID: 5846371597385762084}
+  - component: {fileID: 6842506973586174327}
   - component: {fileID: 2432960392058396465}
   - component: {fileID: 2399647371889603051}
   - component: {fileID: 702917961129484812}
@@ -5520,7 +5519,7 @@ MonoBehaviour:
     FirstAbilityType: 0
     SecondAbilityType: 1
     ThirdAbilityType: 2
---- !u!114 &1480705181222016804
+--- !u!114 &72927297197194912
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5529,7 +5528,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2499697830385207022}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3acbf4cb3435204cacdebc9b97fb640, type: 3}
+  m_Script: {fileID: 11500000, guid: cf12119e39c382148a5d382c4be93171, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   value:
@@ -5538,7 +5537,7 @@ MonoBehaviour:
     EnergyTimer: 10
     ValueSpeedUp: 20
     ValueSpeedDown: -20
---- !u!114 &4579102822356768800
+--- !u!114 &722645144187291512
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5547,14 +5546,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2499697830385207022}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61e6fe3d27c85de4a9cfdd95308e32fb, type: 3}
+  m_Script: {fileID: 11500000, guid: 0a59f18418f768c46838343b12e097e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   value:
     AbilityType: 1
     CanDoubleJump: 1
     EnergyCost: 50
---- !u!114 &918825117029735576
+--- !u!114 &1503231157373602752
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5563,7 +5562,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2499697830385207022}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b7bc3cc1717f444aa0e681405d1fffb, type: 3}
+  m_Script: {fileID: 11500000, guid: ce3de4757083f7a4fa750d261fcb9688, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   value:
@@ -5604,7 +5603,7 @@ MonoBehaviour:
   value:
     HealthSlider: {fileID: 0}
     EnergySlider: {fileID: 0}
---- !u!114 &1137098804812982809
+--- !u!114 &6842506973586174327
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5613,23 +5612,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2499697830385207022}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ecfdeaae6879f6458ca07bf50a1f933, type: 3}
+  m_Script: {fileID: 11500000, guid: 2bad2b1803bb6544c9cddedc288c5ebf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   value:
     IsCheckCollisions: 1
---- !u!114 &5846371597385762084
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2499697830385207022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e24b783d82160243b2c954b8706521f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2432960392058396465
 MonoBehaviour:
   m_ObjectHideFlags: 0

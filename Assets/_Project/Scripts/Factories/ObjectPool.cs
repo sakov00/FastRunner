@@ -1,4 +1,4 @@
-﻿using Assets._Project.Scripts.Components.Object;
+﻿using Assets._Project.Scripts.Components.GamePlay;
 using Leopotam.Ecs;
 using System.Collections.Generic;
 

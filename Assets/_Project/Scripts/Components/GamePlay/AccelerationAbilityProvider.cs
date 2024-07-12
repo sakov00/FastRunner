@@ -2,7 +2,7 @@ using Assets._Project.Scripts.Enums;
 using System;
 using Voody.UniLeo;
 
-namespace Assets._Project.Scripts.Components.Abilities
+namespace Assets._Project.Scripts.Components.GamePlay
 {
     public class AccelerationAbilityProvider : MonoProvider<AccelerationAbilityComponent> { }
 

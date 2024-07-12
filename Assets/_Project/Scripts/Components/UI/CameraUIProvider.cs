@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using Voody.UniLeo;
 
-namespace Assets._Project.Scripts.Components.Camera
+namespace Assets._Project.Scripts.Components.UI
 {
     public sealed class CameraUIProvider : MonoProvider<CameraUIComponent> { }
 

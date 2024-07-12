@@ -15,10 +15,5 @@ namespace Assets._Project.Scripts.InjectInstallers
         {
             Container.Bind<PlayerFactory>().AsSingle();
         }
-
-        private void BindSpawners()
-        {
-            Container.Bind<StoneSpawner>().AsSingle();
-        }
     }
 }
