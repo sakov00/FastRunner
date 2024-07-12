@@ -81,6 +81,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -1504981713932161579, guid: 11ec449e33c68f4459655ba98c2d20ed,
         type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: 11ec449e33c68f4459655ba98c2d20ed,
+        type: 3}
       propertyPath: m_MinimumChartSize
       value: 4
       objectReference: {fileID: 0}
