@@ -26,8 +26,6 @@ namespace Assets._Project.Scripts.Bootstrap
             world = new EcsWorld();
             WorldHandler.Init(world);
 
-            Application.targetFrameRate = 120;
-
             DeclareInitSystems();
             DeclareFixedUpdateSystems();
             DeclareUpdateSystems();
@@ -68,9 +66,9 @@ namespace Assets._Project.Scripts.Bootstrap
 
             fixedUpdateSystems.Add(new PlayerUISystem());
 
-            fixedUpdateSystems.Add(new DestroyObjectSystem());
             fixedUpdateSystems.Add(new StonesAttackSystem());
 
+            fixedUpdateSystems.Add(new DestroyObjectSystem());
             fixedUpdateSystems.Add(new GameOverSystem());
 
             fixedUpdateSystems.ConvertScene();
@@ -91,7 +89,6 @@ namespace Assets._Project.Scripts.Bootstrap
             updateSystems.Add(new AttentionSystem());
             updateSystems.Add(new EffectSystem());
             updateSystems.Add(new StoneEffectsSystem());
-            
 
             updateSystems.Init();
         }

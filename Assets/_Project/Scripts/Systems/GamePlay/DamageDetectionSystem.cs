@@ -15,28 +15,29 @@ namespace Assets._Project.Scripts.Systems.GamePlay
             {
                 ref var triggerComponent = ref filter.Get1(entity);
 
-                if (!triggerComponent.TargetEntity.HasValue)
+                if (triggerComponent.SourceEntity.IsNull() || 
+                    triggerComponent.TargetEntity.IsNull())
                     continue;
 
-                if (!triggerComponent.SourceEntity.Value.Has<DamageComponent>() ||
-                   !triggerComponent.TargetEntity.Value.Has<HealthComponent>())
+                if (!triggerComponent.SourceEntity.Has<DamageComponent>() ||
+                    !triggerComponent.TargetEntity.Has<HealthComponent>())
                     continue;
 
-                ref var sourceDamageComponent = ref triggerComponent.SourceEntity.Value.Get<DamageComponent>();
-                ref var targetHealthComponent = ref triggerComponent.TargetEntity.Value.Get<HealthComponent>();
+                ref var sourceDamageComponent = ref triggerComponent.SourceEntity.Get<DamageComponent>();
+                ref var targetHealthComponent = ref triggerComponent.TargetEntity.Get<HealthComponent>();
 
                 if (targetHealthComponent.CurrentDamageCoolDown > targetHealthComponent.DamageCoolDown)
                 {
                     targetHealthComponent.CurrentDamageCoolDown = 0;
                     targetHealthComponent.HealthPoints -= sourceDamageComponent.Value;
-                    triggerComponent.TargetEntity = null;
+                    triggerComponent.TargetEntity = EcsEntity.Null;
 
-                    ref var destroyObjectComponent = ref triggerComponent.SourceEntity.Value.Get<DestroyObjectComponent>();
+                    ref var destroyObjectComponent = ref triggerComponent.SourceEntity.Get<DestroyObjectComponent>();
                     destroyObjectComponent.IsActivateDestroy = true;
                 }
                 else
                 {
-                    triggerComponent.TargetEntity = null;
+                    triggerComponent.TargetEntity = EcsEntity.Null;
                 }
             }
         }

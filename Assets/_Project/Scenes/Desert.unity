@@ -31970,14 +31970,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55c1daec2c5a0e64d8e8cb6881cc1623, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ProbeVolume:
-    m_Center: {x: 0, y: 73.7, z: 1259.5}
-    m_Extent: {x: 300, y: 100, z: 2500}
-  Subdivisions: {x: 100, y: 1, z: 800}
-  steps: {x: 1, y: 1, z: 1}
-  TagGroundAccountingObject:
-  - Ground
-  Auto: 0
 --- !u!4 &269976785
 Transform:
   m_ObjectHideFlags: 0
@@ -43442,6 +43434,21 @@ PrefabInstance:
       propertyPath: value.Transform
       value: 
       objectReference: {fileID: 937916619}
+    - target: {fileID: 5772518262779638171, guid: 2261ec80bd0e7444abe1d1c7e48af0ef,
+        type: 3}
+      propertyPath: value.OffsetLookAt.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5772518262779638171, guid: 2261ec80bd0e7444abe1d1c7e48af0ef,
+        type: 3}
+      propertyPath: value.OffsetPosition.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5772518262779638171, guid: 2261ec80bd0e7444abe1d1c7e48af0ef,
+        type: 3}
+      propertyPath: value.OffsetPosition.z
+      value: -5
+      objectReference: {fileID: 0}
     - target: {fileID: 6872028282996394528, guid: 2261ec80bd0e7444abe1d1c7e48af0ef,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -43450,6 +43457,11 @@ PrefabInstance:
     - target: {fileID: 6872028282996394528, guid: 2261ec80bd0e7444abe1d1c7e48af0ef,
         type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8157285174115106246, guid: 2261ec80bd0e7444abe1d1c7e48af0ef,
+        type: 3}
+      propertyPath: convertMode
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -46544,6 +46556,24 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1545782000}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1550266775 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2499697830385207022, guid: 003d85f443ef907479b27f9d231154b1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1742750935}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1550266795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1550266775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8729bb2c54eecdb4ca6281d3f17176d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1557373360 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7750089897101633864, guid: ddbfb67596610104daaf0a78f1b2c35f,
@@ -48479,10 +48509,19 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3196221609830167337, guid: 003d85f443ef907479b27f9d231154b1,
+        type: 3}
+      propertyPath: convertMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2499697830385207022, guid: 003d85f443ef907479b27f9d231154b1,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1550266795}
   m_SourcePrefab: {fileID: 100100000, guid: 003d85f443ef907479b27f9d231154b1, type: 3}
 --- !u!1001 &1743423426
 PrefabInstance:
@@ -54722,6 +54761,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 1932b62fe0b818541bc33027a0a46eea, type: 2}
+    - target: {fileID: 7793100634084828415, guid: ec6a68427a972d84ea194cc22c344bf0,
+        type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

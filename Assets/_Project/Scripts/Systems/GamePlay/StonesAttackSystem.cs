@@ -15,16 +15,16 @@ public class StonesAttackSystem : IEcsRunSystem
         {
             ref var triggerComponent = ref filter.Get1(entityIndex);
 
-            if (!triggerComponent.TargetEntity.HasValue)
+            if (triggerComponent.TargetEntity.IsNull())
                 continue;
 
-            if (!triggerComponent.SourceEntity.Value.Has<SpawnerComponent>() ||
-                !triggerComponent.TargetEntity.Value.Has<PlayerComponent>())
+            if (!triggerComponent.SourceEntity.Has<SpawnerComponent>() ||
+                !triggerComponent.TargetEntity.Has<PlayerComponent>())
                 continue;
 
-            ref var sourceSpawnerComponent = ref triggerComponent.SourceEntity.Value.Get<SpawnerComponent>();
-            ref var targetPlayerComponent = ref triggerComponent.TargetEntity.Value.Get<PlayerComponent>();
-            ref var targetTransformComponent = ref triggerComponent.TargetEntity.Value.Get<TransformComponent>();
+            ref var sourceSpawnerComponent = ref triggerComponent.SourceEntity.Get<SpawnerComponent>();
+            ref var targetPlayerComponent = ref triggerComponent.TargetEntity.Get<PlayerComponent>();
+            ref var targetTransformComponent = ref triggerComponent.TargetEntity.Get<TransformComponent>();
 
             if (sourceSpawnerComponent.CurrentTime > sourceSpawnerComponent.CoolDown)
             {

@@ -9,7 +9,7 @@ namespace Assets._Project.Scripts.Components.Physics
     [Serializable]
     public struct TriggerComponent
     {
-        public EcsEntity? SourceEntity;
-        public EcsEntity? TargetEntity;
+        public EcsEntity SourceEntity;
+        public EcsEntity TargetEntity;
     }
 }

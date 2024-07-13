@@ -18,12 +18,12 @@ namespace Assets._Project.Scripts.Systems.GamePlay
                 ref var followComponent = ref filter.Get3(component);
 
                 var targetAngleY = followComponent.Transform.eulerAngles.y;
-                var offset = followComponent.Offset;
+                var offset = followComponent.OffsetPosition;
                 Vector3 rotationOffset = Quaternion.Euler(0, targetAngleY, 0) * offset;
                 Vector3 newCameraPosition = followComponent.Transform.position + rotationOffset;
 
                 transformComponent.transform.position = Vector3.Lerp(transformComponent.transform.position, newCameraPosition, cameraComponent.SmoothValue * Time.deltaTime);
-                transformComponent.transform.LookAt(followComponent.Transform);
+                transformComponent.transform.LookAt(followComponent.Transform.position + followComponent.OffsetLookAt);
             }
         }
     }

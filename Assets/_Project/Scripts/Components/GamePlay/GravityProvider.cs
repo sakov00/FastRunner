@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 using Voody.UniLeo;
 
 namespace Assets._Project.Scripts.Components.GamePlay
@@ -9,8 +10,6 @@ namespace Assets._Project.Scripts.Components.GamePlay
     public struct GravityComponent
     {
         public float GravityValue;
-
-        public float LengthRay;
         public bool IsGrounded;
     }
 }

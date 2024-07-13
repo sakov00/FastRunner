@@ -5171,10 +5171,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e7b9e6caed077d04e99aa921094f7e8d,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8933190494691538913}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e7b9e6caed077d04e99aa921094f7e8d,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 3266837514629398941}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e7b9e6caed077d04e99aa921094f7e8d,
         type: 3}
@@ -5212,6 +5208,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2180002172727062216}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e7b9e6caed077d04e99aa921094f7e8d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4970171678119870151}
   m_SourcePrefab: {fileID: 100100000, guid: e7b9e6caed077d04e99aa921094f7e8d, type: 3}
 --- !u!1 &7134520434029549057 stripped
 GameObject:
@@ -5238,26 +5238,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.5319355, y: 6.149618, z: 3.5319352}
-  m_Center: {x: 0.00000047664832, y: 2.52, z: 1.4809487e-11}
---- !u!114 &8933190494691538913
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7134520434029549057}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1870de83c1297f45ab911ab5130e6d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  raycastDistance: 1
-  raycastPoint: {fileID: 7977796199339827245}
-  speed: 55
-  spotPS: {fileID: 2114138834335489626, guid: b99193e0d99753b4b9ac2ae72231e70a, type: 3}
-  psDust: {fileID: 5968570986115060532}
-  hitG: 0
+  m_Size: {x: 3.5319355, y: 5.589564, z: 3.5319352}
+  m_Center: {x: 0.00000047683716, y: 2.8000271, z: 0}
 --- !u!114 &3266837514629398941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5296,7 +5278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value:
-    IsCheckCollisions: 0
+    IsCheckCollisions: 1
 --- !u!114 &8231459960987808816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5354,7 +5336,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value:
     GravityValue: 60
-    LengthRay: 0.3
     IsGrounded: 0
 --- !u!114 &2199853831736896794
 MonoBehaviour:
@@ -5398,6 +5379,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 519c0f970e6335746844f9d17f59983e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4970171678119870151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7134520434029549057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8729bb2c54eecdb4ca6281d3f17176d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &7514599181783698619 stripped

@@ -9,7 +9,9 @@ namespace Assets._Project.Scripts.Components.GamePlay
     [Serializable]
     public struct FollowComponent
     {
-        public Vector3 Offset;
+        public Vector3 OffsetPosition;
+
+        public Vector3 OffsetLookAt;
 
         public Transform Transform;
     }
