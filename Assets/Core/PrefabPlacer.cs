@@ -1,10 +1,10 @@
 using UnityEngine;
+using System.Collections.Generic;
+using System.Linq;
 
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
-using System.Collections.Generic;
-using System.Linq;
 
 #if UNITY_EDITOR
 [ExecuteInEditMode]
@@ -321,70 +321,70 @@ public class PrefabPlacer : MonoBehaviour
         Debug.Log("Updated current prefabs list after revert.");
     }
 
-    public void LoadPrefabsFromFolder()
-{
-    // Открываем панель выбора папки
-    string folderPath = EditorUtility.OpenFolderPanel("Select Folder with Prefabs", "Assets", "");
-
-    // Проверяем, что путь не пустой и содержит путь в пределах папки Assets
-    if (!string.IsNullOrEmpty(folderPath) && folderPath.StartsWith(Application.dataPath))
+    public void LoadPrefabsFromFolder(List<GameObject> pref)
     {
-        // Преобразуем путь в относительный путь относительно папки Assets
-        string relativePath = FileUtil.GetProjectRelativePath(folderPath);
+        // Открываем панель выбора папки
+        string folderPath = EditorUtility.OpenFolderPanel("Select Folder with Prefabs", "Assets", "");
 
-        // Находим все префабы в выбранной папке
-        string[] prefabGuids = AssetDatabase.FindAssets("t:Prefab", new[] { relativePath });
-
-        // Очистить список префабов, если необходимо
-        if (clearCurrenPrefabsListBeforAddFromFolder)
+        // Проверяем, что путь не пустой и содержит путь в пределах папки Assets
+        if (!string.IsNullOrEmpty(folderPath) && folderPath.StartsWith(Application.dataPath))
         {
-            prefabs.Clear();
-        }
+            // Преобразуем путь в относительный путь относительно папки Assets
+            string relativePath = FileUtil.GetProjectRelativePath(folderPath);
 
-        foreach (string guid in prefabGuids)
-        {
-            string path = AssetDatabase.GUIDToAssetPath(guid);
-            GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(path);
-            if (prefab != null && !prefabs.Contains(prefab))
+            // Находим все префабы в выбранной папке
+            string[] prefabGuids = AssetDatabase.FindAssets("t:Prefab", new[] { relativePath });
+
+            // Очистить список префабов, если необходимо
+            if (clearCurrenPrefabsListBeforAddFromFolder)
             {
-                prefabs.Add(prefab);
-                Debug.Log($"Added prefab: {prefab.name}");
+                pref.Clear();
             }
-        }
 
-        Debug.Log("Prefabs loaded from folder.");
+            foreach (string guid in prefabGuids)
+            {
+                string path = AssetDatabase.GUIDToAssetPath(guid);
+                GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(path);
+                if (prefab != null && !pref.Contains(prefab))
+                {
+                    pref.Add(prefab);
+                    Debug.Log($"Added prefab: {prefab.name}");
+                }
+            }
+
+            Debug.Log("Prefabs loaded from folder.");
+        }
+        else
+        {
+            Debug.LogWarning("Invalid folder path selected.");
+        }
     }
-    else
-    {
-        Debug.LogWarning("Invalid folder path selected.");
-    }
-}
 
     public void LoadMaterialsFromFolder()
-{
-    string materialsFolderPath = EditorUtility.OpenFolderPanel("Select Folder with Materials", "Assets", "");
-    if (string.IsNullOrEmpty(materialsFolderPath))
-        return;
-
-    materialsFolderPath = FileUtil.GetProjectRelativePath(materialsFolderPath); // Убедитесь, что путь начинается с Assets
-
-    string[] materialGUIDs = AssetDatabase.FindAssets("t:Material", new[] { materialsFolderPath });
-
-    if (clearCurrentMaterialsListBeforeAddFromFolder)
     {
-        materials.Clear();
-    }
+        string materialsFolderPath = EditorUtility.OpenFolderPanel("Select Folder with Materials", "Assets", "");
+        if (string.IsNullOrEmpty(materialsFolderPath))
+            return;
 
-    foreach (string guid in materialGUIDs)
-    {
-        string path = AssetDatabase.GUIDToAssetPath(guid);
-        Material material = AssetDatabase.LoadAssetAtPath<Material>(path);
-        if (material != null && !materials.Contains(material))
+        materialsFolderPath = FileUtil.GetProjectRelativePath(materialsFolderPath); // Убедитесь, что путь начинается с Assets
+
+        string[] materialGUIDs = AssetDatabase.FindAssets("t:Material", new[] { materialsFolderPath });
+
+        if (clearCurrentMaterialsListBeforeAddFromFolder)
         {
-            materials.Add(material);
+            materials.Clear();
+        }
+
+        foreach (string guid in materialGUIDs)
+        {
+            string path = AssetDatabase.GUIDToAssetPath(guid);
+            Material material = AssetDatabase.LoadAssetAtPath<Material>(path);
+            if (material != null && !materials.Contains(material))
+            {
+                materials.Add(material);
+            }
         }
     }
-}
 
     private bool NameContainsWords(string name, string words)
     {
@@ -424,6 +424,18 @@ public class PrefabPlacer : MonoBehaviour
         }
     }
 
-    
+    public void SortPrefabsByName(List<GameObject> pref)
+{
+    pref = pref.OrderBy(prefab => {
+        string name = prefab.name;
+        string[] parts = name.Split('_');
+        string mainPart = parts[0];
+        int numberPart = parts.Length > 1 && int.TryParse(parts[1], out int number) ? number : 0;
+        return (mainPart, numberPart);
+    }).ToList();
+
+    Debug.Log("Prefabs sorted by name with numbering considered.");
+}
 #endif
 }
+

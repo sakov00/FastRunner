@@ -25,7 +25,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTexture:
-        m_Texture: {fileID: 2800000, guid: 384652dcb96fbc7499c3cb92b6ec8cf6, type: 3}
+        m_Texture: {fileID: 2800000, guid: 54a69fc1eef42d3468cf4203f3c20c58, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_56d9582398fe40629ba023ffd9a27a81_Texture_1_Texture2D:
@@ -63,17 +63,17 @@ Material:
     - _Float_1: 0
     - _L1: 0.48
     - _L2: 2.56
-    - _Max: 0.72
-    - _Min: 2.2
+    - _Max: 0.73
+    - _Min: 1.94
     - _Pos: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Shades: -1.14
+    - _Shades: -1.22
     - _Size: 2.04
     - _Smooth: 0
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color_1: {r: 0.5, g: 0.39955148, b: 0.23103853, a: 1}
+    - _Color: {r: 0.7830189, g: 0.7830189, b: 0.7830189, a: 1}
+    - _Color_1: {r: 0.57434916, g: 0.4589641, b: 0.26539356, a: 1}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
     - _PlayerPos: {r: 35.954002, g: -96.06749, b: 1963.8604, a: 0}
     - _Pos: {r: 0, g: 0, b: 0, a: 0}

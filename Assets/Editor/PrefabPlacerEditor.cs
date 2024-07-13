@@ -25,7 +25,7 @@ public class PrefabPlacerEditor : Editor
 
     if (GUILayout.Button("Add Prefabs from folder"))
     {
-        script.LoadPrefabsFromFolder();
+        script.LoadPrefabsFromFolder(script.prefabs);
     }
 
     if (GUILayout.Button("Add Materials from folder"))
@@ -40,6 +40,11 @@ public class PrefabPlacerEditor : Editor
     if (GUILayout.Button("Remove", GUILayout.Width(100f), GUILayout.Height(20f)))
     {
         RemoveSelectedPrefab();
+    }
+
+    if (GUILayout.Button("Sort Prefabs By Name"))
+    {
+        script.SortPrefabsByName(script.prefabs);
     }
 
     EditorGUILayout.Space();
@@ -87,9 +92,17 @@ public class PrefabPlacerEditor : Editor
     script.applyScaleOfNewPrefab = EditorGUILayout.Toggle("Apply Scale of New Prefab", script.applyScaleOfNewPrefab);
 
     // Кнопка для удаления нового префаба из списка новых префабов
-    if (GUILayout.Button("Remove New Prefab", GUILayout.Width(150f), GUILayout.Height(20f)))
+    if (GUILayout.Button("Remove", GUILayout.Width(150f), GUILayout.Height(20f)))
     {
         RemoveSelectedNewPrefab();
+    }
+    if (GUILayout.Button("Add Prefabs from folder"))
+    {
+        script.LoadPrefabsFromFolder(script.newPrefabs);
+    }
+    if (GUILayout.Button("Sort Prefabs By Name"))
+    {
+        script.SortPrefabsByName(script.newPrefabs);
     }
 
     EditorGUILayout.Space();
