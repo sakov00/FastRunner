@@ -31,6 +31,8 @@ namespace Assets._Project.Scripts.Systems.Rendering
                     if (!gravityComponent.IsGrounded)
                     {
                         flameEffect.SetActive(true);
+                        groundExplosionEffect.SetActive(false);
+                        dustAfterFallEffect.SetActive(false);
                     }
                     else
                     {

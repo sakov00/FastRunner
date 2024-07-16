@@ -33,7 +33,7 @@ namespace Assets._Project.Scripts.Systems.Physics
                 results = collisionResults
             };
 
-            JobHandle jobHandle = collisionJob.Schedule(colliderDataArray.Length, Environment.ProcessorCount);
+            JobHandle jobHandle = collisionJob.Schedule(colliderDataArray.Length, Environment.ProcessorCount * 4);
             jobHandle.Complete();
 
             for (int i = 0; i < collisionResults.Length; i++)

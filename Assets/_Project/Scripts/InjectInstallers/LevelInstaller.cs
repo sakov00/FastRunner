@@ -7,13 +7,19 @@ namespace Assets._Project.Scripts.InjectInstallers
     {
         public override void InstallBindings()
         {
-            BindFactories();
-            //BindSpawners();
+            //BindObjectPools();
+            //BindFactories();
+        }
+
+        private void BindObjectPools()
+        {
+            Container.Bind<ObjectPool>().AsSingle();
         }
 
         private void BindFactories()
         {
             Container.Bind<PlayerFactory>().AsSingle();
+            Container.Bind<StonesFactory>().AsSingle();
         }
     }
 }

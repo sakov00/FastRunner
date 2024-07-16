@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Leopotam.Ecs;
+using System;
 using UnityEngine;
 using Voody.UniLeo;
 
@@ -10,6 +11,6 @@ namespace Assets._Project.Scripts.Components.GamePlay
     public struct AttentionComponent
     {
         public GameObject ObjectMark;
-        public bool IsActive;
+        public EcsEntity CreatedEntity;
     }
 }

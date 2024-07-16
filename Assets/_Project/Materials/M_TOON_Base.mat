@@ -61,6 +61,7 @@ Material:
     - _Ed1_1: 1.46
     - _Float: 7.09
     - _Float_1: 0
+    - _Height: 0.1
     - _L1: 0.48
     - _L2: 2.56
     - _Max: 0.72
@@ -71,9 +72,12 @@ Material:
     - _Shades: -1.14
     - _Size: 2.04
     - _Smooth: 0
+    - _noiaescale: 0
+    - _step: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color_1: {r: 0.5, g: 0.39955148, b: 0.23103853, a: 1}
+    - _Color_2: {r: 0, g: 0, b: 0, a: 0}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
     - _PlayerPos: {r: 35.954002, g: -96.06749, b: 1963.8604, a: 0}
     - _Pos: {r: 0, g: 0, b: 0, a: 0}

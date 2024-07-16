@@ -8,14 +8,11 @@ namespace Assets._Project.Scripts.Factories
 {
     public class PlayerFactory
     {
-        private readonly DiContainer diContainer;
-
         private Object _playerPrefab;
         private Object _playerCameraPrefab;
 
-        public PlayerFactory(DiContainer diContainer)
+        public PlayerFactory()
         {
-            this.diContainer = diContainer;
             LoadResources();
         }
 
@@ -44,7 +41,7 @@ namespace Assets._Project.Scripts.Factories
 
         public GameObject CreateCameraGameObject(Vector3 position)
         {
-            return diContainer.InstantiatePrefab(_playerCameraPrefab, position, Quaternion.identity, null);
+            return (GameObject)Object.Instantiate(_playerCameraPrefab, position, Quaternion.identity);
         }
     }
 }

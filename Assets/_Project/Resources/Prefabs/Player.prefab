@@ -5329,6 +5329,7 @@ GameObject:
   - component: {fileID: 702917961129484812}
   - component: {fileID: 494908422801187526}
   - component: {fileID: 449053199467755073}
+  - component: {fileID: 1035112357246916513}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -5495,7 +5496,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value:
-    LimitRotationAngleY: 65
+    LimitRotationAngleY: 180
     RotationSpeedOnGround: 10
     RotationSensitiveOnGround: 10
     RotationSpeedOnFlying: 5
@@ -5536,7 +5537,7 @@ MonoBehaviour:
     EnergyPerSecond: 2.5
     EnergyTimer: 10
     ValueSpeedUp: 20
-    ValueSpeedDown: -20
+    ValueSpeedDown: 0
 --- !u!114 &722645144187291512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5675,6 +5676,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b92119809e8b24346a556f2a11f5b247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1035112357246916513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2499697830385207022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8729bb2c54eecdb4ca6281d3f17176d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2505695457569481376

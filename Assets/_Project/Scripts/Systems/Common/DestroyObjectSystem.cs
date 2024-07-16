@@ -38,8 +38,19 @@ namespace Assets._Project.Scripts.Systems.Common
                     }
                 }
 
-                GameObject.Destroy(gameObjectComponent.GameObject);
-                filter.GetEntity(indexEntity).Destroy();
+                if (filter.GetEntity(indexEntity).Has<PoolableComponent>())
+                {
+                    var entity = filter.GetEntity(indexEntity);
+                    ref var pooledComponent = ref entity.Get<PoolableComponent>();
+                    pooledComponent.ObjectPool.ReturnObject(entity);
+                    destroyObjectComponent.IsActivateDestroy = false;
+                }
+                else
+                {
+                    GameObject.Destroy(gameObjectComponent.GameObject);
+                    filter.GetEntity(indexEntity).Destroy();
+                }
+                destroyObjectComponent.CurrentTime = 0;
             }
         }
     }

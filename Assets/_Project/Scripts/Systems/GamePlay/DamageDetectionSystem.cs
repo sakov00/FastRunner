@@ -15,8 +15,8 @@ namespace Assets._Project.Scripts.Systems.GamePlay
             {
                 ref var triggerComponent = ref filter.Get1(entity);
 
-                if (triggerComponent.SourceEntity.IsNull() || 
-                    triggerComponent.TargetEntity.IsNull())
+                if (!triggerComponent.SourceEntity.IsAlive() || 
+                    !triggerComponent.TargetEntity.IsAlive())
                     continue;
 
                 if (!triggerComponent.SourceEntity.Has<DamageComponent>() ||

@@ -20,7 +20,6 @@ namespace Assets._Project.Scripts.Bootstrap
         private EcsSystems updateSystems;
         private EcsSystems lateUpdateSystems;
 
-
         private void Start()
         {
             world = new EcsWorld();
@@ -52,26 +51,28 @@ namespace Assets._Project.Scripts.Bootstrap
         {
             fixedUpdateSystems = new EcsSystems(world);
 
+            fixedUpdateSystems.ConvertScene();
+
+            fixedUpdateSystems.Add(new PopulateObjectPoolSystem());
+
             fixedUpdateSystems.Add(new ActivateAbilitySystem());
             fixedUpdateSystems.Add(new AccelerationAbilitySystem());
             fixedUpdateSystems.Add(new DoubleJumpAbilitySystem());
             fixedUpdateSystems.Add(new EnergyShieldAbilitySystem());
 
-            fixedUpdateSystems.Add(new CleanCollisionSystem());
-            fixedUpdateSystems.Add(new CollisionDetectionSystem());
             fixedUpdateSystems.Add(new HealthSystem());
             fixedUpdateSystems.Add(new DamageDetectionSystem());
 
-            fixedUpdateSystems.Add(new ActivateSystem());
+            fixedUpdateSystems.Add(new ActivatePoolableObjectsSystem());
 
-            fixedUpdateSystems.Add(new PlayerUISystem());
+            fixedUpdateSystems.Add(new SpawnerSystem());
 
-            fixedUpdateSystems.Add(new StonesAttackSystem());
+            fixedUpdateSystems.Add(new CleanCollisionSystem());
+            fixedUpdateSystems.Add(new CollisionDetectionSystem());
 
             fixedUpdateSystems.Add(new DestroyObjectSystem());
             fixedUpdateSystems.Add(new GameOverSystem());
 
-            fixedUpdateSystems.ConvertScene();
             fixedUpdateSystems.Init();
         }
 
@@ -98,6 +99,7 @@ namespace Assets._Project.Scripts.Bootstrap
             lateUpdateSystems = new EcsSystems(world);
 
             lateUpdateSystems.Add(new FollowCameraSystem());
+            lateUpdateSystems.Add(new PlayerUISystem());
 
             lateUpdateSystems.Init();
         }
