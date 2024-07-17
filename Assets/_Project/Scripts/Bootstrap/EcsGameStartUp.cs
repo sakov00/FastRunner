@@ -63,7 +63,7 @@ namespace Assets._Project.Scripts.Bootstrap
             fixedUpdateSystems.Add(new HealthSystem());
             fixedUpdateSystems.Add(new DamageDetectionSystem());
 
-            fixedUpdateSystems.Add(new ActivatePoolableObjectsSystem());
+            fixedUpdateSystems.Add(new ActivateObjectsSystem());
 
             fixedUpdateSystems.Add(new SpawnerSystem());
 

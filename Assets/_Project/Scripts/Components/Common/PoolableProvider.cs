@@ -10,6 +10,5 @@ namespace Assets._Project.Scripts.Components.Common
     public struct PoolableComponent
     {
         public ObjectPool ObjectPool;
-        public bool IsActive;
     }
 }

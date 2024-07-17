@@ -13,15 +13,17 @@ namespace Assets._Project.Scripts.Factories
             objectPool.Push(entity);
             ref var pooledComponent = ref entity.Get<PoolableComponent>();
             pooledComponent.ObjectPool = this;
-            pooledComponent.IsActive = false;
+
+            ref var gameObjectComponent = ref entity.Get<GameObjectComponent>();
+            gameObjectComponent.IsActive = false;
         }
 
         public EcsEntity GetObject()
         {
             if (objectPool.TryPop(out var entity))
             {
-                ref var pooledComponent = ref entity.Get<PoolableComponent>();
-                pooledComponent.IsActive = true;
+                ref var gameObjectComponent = ref entity.Get<GameObjectComponent>();
+                gameObjectComponent.IsActive = true;
             }
             return entity;
         }
@@ -29,8 +31,8 @@ namespace Assets._Project.Scripts.Factories
         public void ReturnObject(EcsEntity entity)
         {
             objectPool.Push(entity);
-            ref var pooledComponent = ref entity.Get<PoolableComponent>();
-            pooledComponent.IsActive = false;
+            ref var gameObjectComponent = ref entity.Get<GameObjectComponent>();
+            gameObjectComponent.IsActive = false;
         }
     }
 }

@@ -46,7 +46,9 @@ public class SpawnerSystem : IEcsRunSystem
 
                     ref var poolableComponent = ref entity.Get<PoolableComponent>();
                     poolableComponent.ObjectPool = objectPoolComponent.ObjectPool;
-                    poolableComponent.IsActive = true;
+
+                    ref var gameObjectComponent = ref entity.Get<GameObjectComponent>();
+                    gameObjectComponent.IsActive = true;
                 }
 
                 ref var destroyObjectComponent = ref entity.Get<DestroyObjectComponent>();

@@ -16,7 +16,7 @@ namespace Assets._Project.Scripts.Systems.Common
                 ref var gameObjectComponent = ref filter.Get2(indexEntity);
                 ref var transformComponent = ref filter.Get3(indexEntity);
 
-                if (!destroyObjectComponent.IsActivateDestroy)
+                if (!destroyObjectComponent.IsActivateDestroy || !gameObjectComponent.IsActive)
                 {
                     continue;
                 }

@@ -18,7 +18,7 @@ namespace Assets._Project.Scripts.Systems.GamePlay
                 ref var gameObjectComponent = ref filter.Get2(entityIndex);
                 ref var attentionComponent = ref filter.Get3(entityIndex);
 
-                if (!attentionComponent.CreatedEntity.IsAlive() && gameObjectComponent.GameObject.activeInHierarchy)
+                if (!attentionComponent.CreatedEntity.IsAlive() && gameObjectComponent.IsActive)
                 {
                     RaycastHit hit;
                     if (UnityEngine.Physics.Raycast(transformComponent.transform.position, Vector3.down, out hit, 100))
