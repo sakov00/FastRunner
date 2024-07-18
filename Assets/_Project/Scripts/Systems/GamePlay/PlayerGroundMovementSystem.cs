@@ -1,5 +1,6 @@
 ﻿using Assets._Project.Scripts.Components.Common;
 using Assets._Project.Scripts.Components.GamePlay;
+using Assets._Project.Scripts.Components.OneFrameComponents;
 using Assets._Project.Scripts.Components.Physics;
 using Leopotam.Ecs;
 using UnityEngine;
@@ -22,6 +23,9 @@ namespace Assets._Project.Scripts.Systems.GamePlay
 
                 if (!characterControllerComponent.CharacterController.isGrounded)
                     break;
+
+                if(unitMovementComponent.Movement.y < unitMovementComponent.GravityValue)
+                    filter.GetEntity(i).Get<LandingComponent>();
 
                 var speedValue = unitMovementComponent.RunningSpeed;
                 unitMovementComponent.Movement.z = gameObjectComponent.GameObject.transform.forward.z * speedValue;

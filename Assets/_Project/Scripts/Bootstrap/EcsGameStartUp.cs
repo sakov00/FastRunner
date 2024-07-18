@@ -1,4 +1,5 @@
-﻿using Assets._Project.Scripts.Systems.Common;
+﻿using Assets._Project.Scripts.Components.OneFrameComponents;
+using Assets._Project.Scripts.Systems.Common;
 using Assets._Project.Scripts.Systems.GamePlay;
 using Assets._Project.Scripts.Systems.GamePlay.Abilities;
 using Assets._Project.Scripts.Systems.GamePlay.InputDevice;
@@ -54,7 +55,7 @@ namespace Assets._Project.Scripts.Bootstrap
             fixedUpdateSystems.ConvertScene();
 
             fixedUpdateSystems.Add(new PopulateObjectPoolSystem());
-
+            
             fixedUpdateSystems.Add(new ActivateAbilitySystem());
             fixedUpdateSystems.Add(new AccelerationAbilitySystem());
             fixedUpdateSystems.Add(new DoubleJumpAbilitySystem());
@@ -81,7 +82,7 @@ namespace Assets._Project.Scripts.Bootstrap
             updateSystems = new EcsSystems(world);
 
             updateSystems.Add(new GravitySystem());
-            updateSystems.Add(new PlayerAnimationSystem());
+            updateSystems.Add(new UnitAnimationSystem());
             updateSystems.Add(new PlayerGroundMovementSystem());
             updateSystems.Add(new PlayerGroundRotationSystem());
             updateSystems.Add(new PlayerAirMovementSystem());
@@ -90,6 +91,9 @@ namespace Assets._Project.Scripts.Bootstrap
             updateSystems.Add(new AttentionSystem());
             updateSystems.Add(new EffectSystem());
             updateSystems.Add(new StoneEffectsSystem());
+
+            updateSystems.Add(new GettingEnergySystem());
+            updateSystems.OneFrame<LandingComponent>();
 
             updateSystems.Init();
         }

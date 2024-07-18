@@ -18,15 +18,18 @@ namespace Assets._Project.Scripts.Components.GamePlay
             {
                 if (value < EnergyPointsMin)
                     energyPoints = EnergyPointsMin;
-                else if (value > EnergyPointsMax)
+                if (value > EnergyPointsMax)
                     energyPoints = EnergyPointsMax;
-                else
+                if (value >= EnergyPointsMin && value <= EnergyPointsMax)
                     energyPoints = value;
             }
         }
 
         public float EnergyPointsMin;
         public float EnergyPointsMax;
+
+        public float GettingEnergyValue;
+        public float AngleForGettingEnergy;
 
         public AbilityType FirstAbilityType;
         public AbilityType SecondAbilityType;
