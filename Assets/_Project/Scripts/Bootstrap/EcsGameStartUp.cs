@@ -1,4 +1,5 @@
 ﻿using Assets._Project.Scripts.Components.OneFrameComponents;
+using Assets._Project.Scripts.Components.Physics;
 using Assets._Project.Scripts.Systems.Common;
 using Assets._Project.Scripts.Systems.GamePlay;
 using Assets._Project.Scripts.Systems.GamePlay.Abilities;
@@ -55,24 +56,29 @@ namespace Assets._Project.Scripts.Bootstrap
             fixedUpdateSystems.ConvertScene();
 
             fixedUpdateSystems.Add(new PopulateObjectPoolSystem());
-            
+
+            fixedUpdateSystems.Add(new CleanCollisionSystem());
+            fixedUpdateSystems.Add(new CollisionDetectionSystem());
+
             fixedUpdateSystems.Add(new ActivateAbilitySystem());
             fixedUpdateSystems.Add(new AccelerationAbilitySystem());
             fixedUpdateSystems.Add(new DoubleJumpAbilitySystem());
             fixedUpdateSystems.Add(new EnergyShieldAbilitySystem());
 
             fixedUpdateSystems.Add(new HealthSystem());
-            fixedUpdateSystems.Add(new DamageDetectionSystem());
+            fixedUpdateSystems.Add(new TriggerDamageDetectionSystem());
+            fixedUpdateSystems.Add(new CollisionDamageDetectionSystem());
 
             fixedUpdateSystems.Add(new ActivateObjectsSystem());
 
+            fixedUpdateSystems.Add(new ActivateSpawner());
             fixedUpdateSystems.Add(new SpawnerSystem());
 
-            fixedUpdateSystems.Add(new CleanCollisionSystem());
-            fixedUpdateSystems.Add(new CollisionDetectionSystem());
 
             fixedUpdateSystems.Add(new DestroyObjectSystem());
             fixedUpdateSystems.Add(new GameOverSystem());
+
+            fixedUpdateSystems.OneFrame<TriggerComponent>();
 
             fixedUpdateSystems.Init();
         }

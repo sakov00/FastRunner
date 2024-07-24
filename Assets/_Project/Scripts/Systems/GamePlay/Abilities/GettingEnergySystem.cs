@@ -30,12 +30,10 @@ namespace Assets._Project.Scripts.Systems.GamePlay.Abilities
                 if (angleX > abilityComponent.AngleForGettingEnergy)
                 {
                     abilityComponent.EnergyPoints += abilityComponent.GettingEnergyValue;
-                    Debug.Log("+");
                 }
                 if (angleX < -abilityComponent.AngleForGettingEnergy)
                 {
                     abilityComponent.EnergyPoints -= abilityComponent.GettingEnergyValue;
-                    Debug.Log("-");
                 }
             }
         }

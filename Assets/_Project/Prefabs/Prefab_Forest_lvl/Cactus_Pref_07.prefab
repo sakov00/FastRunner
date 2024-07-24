@@ -146,6 +146,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: -4356568440615645916}
+    - targetCorrespondingSourceObject: {fileID: -927199367670048503, guid: 0126149ec46a3c5468a3851bf5020bf1,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 39938661468976781}
   m_SourcePrefab: {fileID: 100100000, guid: 0126149ec46a3c5468a3851bf5020bf1, type: 3}
 --- !u!1 &5542499835687142240 stripped
 GameObject:
@@ -254,6 +258,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value:
-    ParticleSystem: {fileID: 0}
+    Effect: {fileID: 1839246063928096219, guid: cf0af969db33b1a40999db45cc42aafe,
+      type: 3}
     IsActivateDestroy: 0
+    IsTriggerDestroy: 1
     DestroyTime: 0
+--- !u!114 &39938661468976781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5542499835687142240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b46cc68ea57c1b49966791f2f39d6ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value:
+    healthPoints: 10
+    HealthPointsMin: 0
+    HealthPointsMax: 10
+    DamageCoolDown: 0

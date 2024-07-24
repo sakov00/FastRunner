@@ -1,32 +1,22 @@
 using Assets._Project.Scripts.Components.Common;
 using Assets._Project.Scripts.Components.GamePlay;
-using Assets._Project.Scripts.Components.Physics;
 using Assets._Project.Scripts.UsefullScripts;
 using Leopotam.Ecs;
-using Unity.Entities;
 using UnityEngine;
-using Voody.UniLeo;
 
 public class SpawnerSystem : IEcsRunSystem
 {
-    private readonly EcsFilter<TriggerComponent, SpawnerComponent, ObjectPoolComponent> filter = null;
+    private readonly EcsFilter<SpawnerComponent, ObjectPoolComponent> filter = null;
 
     public void Run()
     {
         foreach (var entityIndex in filter)
         {
-            ref var triggerComponent = ref filter.Get1(entityIndex);
-            ref var spawnerComponent = ref filter.Get2(entityIndex);
-            ref var objectPoolComponent = ref filter.Get3(entityIndex);
+            ref var spawnerComponent = ref filter.Get1(entityIndex);
+            ref var objectPoolComponent = ref filter.Get2(entityIndex);
 
-            if (triggerComponent.TargetEntity.IsNull())
+            if (!spawnerComponent.IsActive)
                 continue;
-
-            if (!triggerComponent.SourceEntity.Has<SpawnerComponent>() ||
-                !triggerComponent.TargetEntity.Has<PlayerComponent>())
-                continue;
-
-            ref var targetTransformComponent = ref triggerComponent.TargetEntity.Get<TransformComponent>();
 
             if (spawnerComponent.CurrentTime > spawnerComponent.CoolDown)
             {
@@ -34,9 +24,9 @@ public class SpawnerSystem : IEcsRunSystem
                 float distance = Random.Range(spawnerComponent.InnerRadiusSpawn, spawnerComponent.OuterRadiusSpawn);
                 float height = spawnerComponent.Height;
 
-                float x = targetTransformComponent.transform.position.x + Mathf.Cos(angle) * distance;
-                float z = targetTransformComponent.transform.position.z + Mathf.Sin(angle) * distance;
-                float y = targetTransformComponent.transform.position.y + height;
+                float x = spawnerComponent.PointSpawn.position.x + Mathf.Cos(angle) * distance;
+                float z = spawnerComponent.PointSpawn.position.z + Mathf.Sin(angle) * distance;
+                float y = spawnerComponent.PointSpawn.position.y + height;
 
                 var entity = objectPoolComponent.ObjectPool.GetObject();
                 if (entity == EcsEntity.Null)

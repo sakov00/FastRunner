@@ -11,6 +11,8 @@ namespace Assets._Project.Scripts.Components.GamePlay
     {
         public UnityEngine.Object Prefab;
 
+        public bool IsActive;
+
         public Transform PointSpawn;
         public float InnerRadiusSpawn;
         public float OuterRadiusSpawn;

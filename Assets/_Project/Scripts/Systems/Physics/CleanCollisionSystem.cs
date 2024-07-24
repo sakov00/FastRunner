@@ -12,10 +12,10 @@ namespace Assets._Project.Scripts.Systems.Physics
             foreach (var firstEntity in collisionFilter1)
             {
                 ref var collisionComponent = ref collisionFilter1.Get1(firstEntity);
-                if (collisionComponent.CollisionEntity == null)
-                    collisionComponent.CollisionEntity = new System.Collections.Generic.List<EcsEntity>();
+                if (collisionComponent.CollisionEntities == null)
+                    collisionComponent.CollisionEntities = new System.Collections.Generic.List<EcsEntity>();
                 else
-                    collisionComponent.CollisionEntity.Clear();
+                    collisionComponent.CollisionEntities.Clear();
             }
         }
     }

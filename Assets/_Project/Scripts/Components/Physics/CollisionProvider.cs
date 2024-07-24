@@ -8,12 +8,12 @@ namespace Assets._Project.Scripts.Components.Physics
     {
         private void Awake()
         {
-            value.CollisionEntity = new List<EcsEntity>();
+            value.CollisionEntities = new List<EcsEntity>();
         }
     }
 
     public struct CollisionComponent
     {
-        public List<EcsEntity> CollisionEntity;
+        public List<EcsEntity> CollisionEntities;
     }
 }

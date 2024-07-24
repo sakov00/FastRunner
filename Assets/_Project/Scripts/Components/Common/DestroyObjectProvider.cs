@@ -11,6 +11,7 @@ namespace Assets._Project.Scripts.Components.Common
     {
         public GameObject Effect;
         public bool IsActivateDestroy;
+        public bool IsTriggerDestroy;
         public float DestroyTime;
         [NonSerialized] public float CurrentTime;
     }

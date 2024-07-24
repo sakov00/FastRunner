@@ -1,4 +1,5 @@
 ﻿using Assets._Project.Scripts.Components.Common;
+using Assets._Project.Scripts.Components.Physics;
 using Leopotam.Ecs;
 using UnityEngine;
 
@@ -16,14 +17,16 @@ namespace Assets._Project.Scripts.Systems.Common
                 ref var gameObjectComponent = ref filter.Get2(indexEntity);
                 ref var transformComponent = ref filter.Get3(indexEntity);
 
-                if (!destroyObjectComponent.IsActivateDestroy || !gameObjectComponent.IsActive)
-                {
+                if (!gameObjectComponent.IsActive)
                     continue;
-                }
+
+                if (!destroyObjectComponent.IsActivateDestroy &&
+                    !(destroyObjectComponent.IsTriggerDestroy && filter.GetEntity(indexEntity).Has<TriggerComponent>()))
+                    continue;
 
                 if (destroyObjectComponent.CurrentTime < destroyObjectComponent.DestroyTime)
                 {
-                    destroyObjectComponent.CurrentTime += Time.fixedDeltaTime;
+                    destroyObjectComponent.CurrentTime += Time.deltaTime;
                     continue;
                 }
 

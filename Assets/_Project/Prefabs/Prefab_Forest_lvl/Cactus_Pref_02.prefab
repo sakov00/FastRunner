@@ -146,6 +146,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2782695046385500737}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: db3220586c24f614ca7cd0e9faa0353d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -7033846195727808704}
   m_SourcePrefab: {fileID: 100100000, guid: db3220586c24f614ca7cd0e9faa0353d, type: 3}
 --- !u!1 &4472467880511415412 stripped
 GameObject:
@@ -192,6 +196,7 @@ MonoBehaviour:
     Effect: {fileID: 1839246063928096219, guid: cf0af969db33b1a40999db45cc42aafe,
       type: 3}
     IsActivateDestroy: 0
+    IsTriggerDestroy: 1
     DestroyTime: 0
 --- !u!114 &8042265378810872468
 MonoBehaviour:
@@ -258,3 +263,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 519c0f970e6335746844f9d17f59983e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-7033846195727808704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4472467880511415412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b46cc68ea57c1b49966791f2f39d6ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value:
+    healthPoints: 10
+    HealthPointsMin: 0
+    HealthPointsMax: 10
+    DamageCoolDown: 0

@@ -5183,10 +5183,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e7b9e6caed077d04e99aa921094f7e8d,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8231459960987808816}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e7b9e6caed077d04e99aa921094f7e8d,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 5924076279471054093}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e7b9e6caed077d04e99aa921094f7e8d,
         type: 3}
@@ -5279,18 +5275,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value:
     IsCheckCollisions: 0
---- !u!114 &8231459960987808816
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7134520434029549057}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63470f09bfc9c394db01e8762575b5ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5924076279471054093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5352,7 +5336,6 @@ MonoBehaviour:
   value:
     ObjectMark: {fileID: 2114138834335489626, guid: b99193e0d99753b4b9ac2ae72231e70a,
       type: 3}
-    IsActive: 0
 --- !u!114 &5597838126079445380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5368,6 +5351,7 @@ MonoBehaviour:
   value:
     Effect: {fileID: 0}
     IsActivateDestroy: 1
+    IsTriggerDestroy: 0
     DestroyTime: 5
 --- !u!114 &2180002172727062216
 MonoBehaviour:
@@ -5393,8 +5377,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0cbcd2ea976d8648b8e38fbaec33bb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value:
-    IsActive: 1
 --- !u!4 &7514599181783698619 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e7b9e6caed077d04e99aa921094f7e8d,

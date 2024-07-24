@@ -51,7 +51,7 @@ namespace Assets._Project.Scripts.Systems.Physics
                 if (collisionResults[i].IsCollision)
                 {
                     ref var collisionComponent = ref collisionFilter.GetEntity(i).Get<CollisionComponent>();
-                    collisionComponent.CollisionEntity.Add(collisionFilter.GetEntity(collisionResults[i].EntityIndex));
+                    collisionComponent.CollisionEntities.Add(collisionFilter.GetEntity(collisionResults[i].EntityIndex));
                     break;
                 }
             }
