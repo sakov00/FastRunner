@@ -1,6 +1,4 @@
-﻿using Assets._Project.Scripts.Factories;
-using UnityEngine;
-using Zenject;
+﻿using UnityEngine;
 
 namespace Assets._Project.Scripts.Spawners
 {

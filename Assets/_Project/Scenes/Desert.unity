@@ -45786,7 +45786,7 @@ PrefabInstance:
         type: 3}
       propertyPath: spawnPointPlayer
       value: 
-      objectReference: {fileID: 1568686576}
+      objectReference: {fileID: 0}
     - target: {fileID: 5927427857220443494, guid: 96dde8b3498f97e4588c32d46eb2754c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -46592,66 +46592,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 680718468}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1568686575
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1568686576}
-  - component: {fileID: 1568686577}
-  - component: {fileID: 1568686578}
-  m_Layer: 0
-  m_Name: Spawners
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1568686576
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1568686575}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -13.78}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1568686577
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1568686575}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 577ab1c61ecbf8f46880bd385046f1fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  material: {fileID: 2100000, guid: 1932b62fe0b818541bc33027a0a46eea, type: 2}
-  playerPos: {fileID: 0}
-  pos: {x: 0, y: 0, z: 0}
---- !u!114 &1568686578
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1568686575}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1d14819cc5886d4e8bc575c9a2aad9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1569201325 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8115420743696877992, guid: 90cdb06860f310e4e85e5ef3e1d5667b,
@@ -55871,7 +55811,6 @@ SceneRoots:
   - {fileID: 1473060197}
   - {fileID: 1331217008}
   - {fileID: 1129486047}
-  - {fileID: 1568686576}
   - {fileID: 410087041}
   - {fileID: 269976785}
   - {fileID: 832575519}

@@ -1,7 +1,7 @@
 ﻿using Assets._Project.Scripts.Enums;
 using Leopotam.Ecs;
 
-namespace Assets._Project.Scripts.Components.Physics
+namespace Assets._Project.Scripts.Components.OneFrameComponents
 {
     public struct TriggerComponent
     {

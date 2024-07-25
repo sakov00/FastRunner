@@ -24,7 +24,7 @@ namespace Assets._Project.Scripts.Systems.GamePlay
                 if (!characterControllerComponent.CharacterController.isGrounded)
                     break;
 
-                if(unitMovementComponent.Movement.y < unitMovementComponent.GravityValue)
+                if (unitMovementComponent.Movement.y < unitMovementComponent.GravityValue)
                     filter.GetEntity(i).Get<LandingComponent>();
 
                 var speedValue = unitMovementComponent.RunningSpeed;

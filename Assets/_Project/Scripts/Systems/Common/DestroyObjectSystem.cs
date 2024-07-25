@@ -1,5 +1,5 @@
 ﻿using Assets._Project.Scripts.Components.Common;
-using Assets._Project.Scripts.Components.Physics;
+using Assets._Project.Scripts.Components.OneFrameComponents;
 using Leopotam.Ecs;
 using UnityEngine;
 

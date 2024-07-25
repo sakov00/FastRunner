@@ -1,6 +1,6 @@
 ﻿using Leopotam.Ecs;
 
-namespace Assets._Project.Scripts.Components.Physics
+namespace Assets._Project.Scripts.Components.OneFrameComponents
 {
     public struct CollisionComponent
     {

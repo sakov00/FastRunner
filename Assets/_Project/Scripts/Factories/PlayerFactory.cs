@@ -2,7 +2,6 @@
 using Leopotam.Ecs;
 using UnityEngine;
 using Voody.UniLeo;
-using Zenject;
 
 namespace Assets._Project.Scripts.Factories
 {

@@ -47,7 +47,7 @@ public class SpawnerSystem : IEcsRunSystem
                 entity.Get<TransformComponent>().transform.position = new Vector3(x, y, z);
                 spawnerComponent.CurrentTime = 0;
             }
-            else 
+            else
             {
                 spawnerComponent.CurrentTime += Time.fixedDeltaTime;
             }

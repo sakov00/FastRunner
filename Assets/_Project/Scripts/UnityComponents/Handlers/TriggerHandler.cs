@@ -1,4 +1,4 @@
-﻿using Assets._Project.Scripts.Components.Physics;
+﻿using Assets._Project.Scripts.Components.OneFrameComponents;
 using Assets._Project.Scripts.Enums;
 using Leopotam.Ecs;
 using UnityEngine;
@@ -27,7 +27,7 @@ namespace Assets._Project.Scripts.UnityComponents.Handlers
             var otherEntity = other.GetComponent<ConvertToEntity>().TryGetEntity();
             if (otherEntity != EcsEntity.Null)
             {
-                CreateTriggerEvent(otherEntity.Value, TriggerEventType.Enter);
+                CreateTriggerEvent(otherEntity, TriggerEventType.Enter);
             }
         }
 
@@ -36,14 +36,17 @@ namespace Assets._Project.Scripts.UnityComponents.Handlers
             var otherEntity = other.GetComponent<ConvertToEntity>().TryGetEntity();
             if (otherEntity != EcsEntity.Null)
             {
-                CreateTriggerEvent(otherEntity.Value, TriggerEventType.Exit);
+                CreateTriggerEvent(otherEntity, TriggerEventType.Exit);
             }
         }
 
-        private void CreateTriggerEvent(EcsEntity otherEntity, TriggerEventType eventType)
+        private void CreateTriggerEvent(EcsEntity? otherEntity, TriggerEventType eventType)
         {
-            ref var trigger = ref otherEntity.Get<TriggerComponent>();
-            trigger.SourceEntity = otherEntity;
+            if (!otherEntity.HasValue)
+                return;
+
+            ref var trigger = ref otherEntity.Value.Get<TriggerComponent>();
+            trigger.SourceEntity = otherEntity.Value;
             trigger.TargetEntity = _entity;
             trigger.eventType = eventType;
         }

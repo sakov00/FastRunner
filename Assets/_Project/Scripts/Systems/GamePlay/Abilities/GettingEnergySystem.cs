@@ -3,7 +3,6 @@ using Assets._Project.Scripts.Components.GamePlay;
 using Assets._Project.Scripts.Components.OneFrameComponents;
 using Assets._Project.Scripts.Components.Physics;
 using Leopotam.Ecs;
-using UnityEngine;
 
 
 namespace Assets._Project.Scripts.Systems.GamePlay.Abilities

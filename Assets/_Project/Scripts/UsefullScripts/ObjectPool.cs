@@ -2,7 +2,7 @@
 using Leopotam.Ecs;
 using System.Collections.Generic;
 
-namespace Assets._Project.Scripts.Factories
+namespace Assets._Project.Scripts.UsefullScripts
 {
     public class ObjectPool
     {
