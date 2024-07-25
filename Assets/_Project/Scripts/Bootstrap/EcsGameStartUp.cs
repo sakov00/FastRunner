@@ -25,6 +25,9 @@ namespace Assets._Project.Scripts.Bootstrap
             world = new EcsWorld();
             WorldHandler.Init(world);
 
+            QualitySettings.vSyncCount = 1;
+            Application.targetFrameRate = 999;
+
             DeclareInitSystems();
             DeclareFixedUpdateSystems();
             DeclareUpdateSystems();

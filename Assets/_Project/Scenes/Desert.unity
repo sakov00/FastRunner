@@ -48477,24 +48477,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3196221609830167337, guid: 003d85f443ef907479b27f9d231154b1,
-        type: 3}
-      propertyPath: convertMode
-      value: 2
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1035112357246916513, guid: 003d85f443ef907479b27f9d231154b1, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2499697830385207022, guid: 003d85f443ef907479b27f9d231154b1,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1743669298}
-    - targetCorrespondingSourceObject: {fileID: 2499697830385207022, guid: 003d85f443ef907479b27f9d231154b1,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1743669320}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 003d85f443ef907479b27f9d231154b1, type: 3}
 --- !u!1001 &1743423426
 PrefabInstance:
@@ -48643,36 +48629,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -5259009178219549769, guid: d450c5a221a28e947ac33d284a6e9f13, type: 3}
---- !u!1 &1743669256 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2499697830385207022, guid: 003d85f443ef907479b27f9d231154b1,
-    type: 3}
-  m_PrefabInstance: {fileID: 1742750935}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1743669298
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1743669256}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00cbabf6ce0abb540a4369b7d8be9f79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1743669320
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1743669256}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7f1341f769130348951f76e92758e65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1745670918 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7750089897101633864, guid: ddbfb67596610104daaf0a78f1b2c35f,

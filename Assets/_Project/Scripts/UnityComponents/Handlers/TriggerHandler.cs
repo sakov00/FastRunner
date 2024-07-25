@@ -24,7 +24,11 @@ namespace Assets._Project.Scripts.UnityComponents.Handlers
 
         private void OnTriggerEnter(Collider other)
         {
-            var otherEntity = other.GetComponent<ConvertToEntity>().TryGetEntity();
+            var convertToEntity = other.gameObject.GetComponent<ConvertToEntity>();
+            if (convertToEntity == null)
+                return;
+
+            var otherEntity = convertToEntity.TryGetEntity();
             if (otherEntity != EcsEntity.Null)
             {
                 CreateTriggerEvent(otherEntity, TriggerEventType.Enter);
@@ -33,7 +37,11 @@ namespace Assets._Project.Scripts.UnityComponents.Handlers
 
         private void OnTriggerExit(Collider other)
         {
-            var otherEntity = other.GetComponent<ConvertToEntity>().TryGetEntity();
+            var convertToEntity = other.gameObject.GetComponent<ConvertToEntity>();
+            if (convertToEntity == null)
+                return;
+
+            var otherEntity = convertToEntity.TryGetEntity();
             if (otherEntity != EcsEntity.Null)
             {
                 CreateTriggerEvent(otherEntity, TriggerEventType.Exit);
@@ -46,8 +54,8 @@ namespace Assets._Project.Scripts.UnityComponents.Handlers
                 return;
 
             ref var trigger = ref otherEntity.Value.Get<TriggerComponent>();
-            trigger.SourceEntity = otherEntity.Value;
-            trigger.TargetEntity = _entity;
+            trigger.SourceEntity = _entity;
+            trigger.TargetEntity = otherEntity.Value;
             trigger.eventType = eventType;
         }
     }

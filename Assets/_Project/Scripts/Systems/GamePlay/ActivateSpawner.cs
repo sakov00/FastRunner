@@ -16,10 +16,13 @@ namespace Assets._Project.Scripts.Systems.GamePlay
                 ref var triggerComponent = ref filter.Get1(entityIndex);
                 ref var spawnerComponent = ref filter.Get2(entityIndex);
 
+                if (!triggerComponent.SourceEntity.IsAlive() || !triggerComponent.SourceEntity.Has<PlayerComponent>())
+                    continue;
+
                 spawnerComponent.IsActive = !spawnerComponent.IsActive;
 
                 if (spawnerComponent.PointSpawn == null)
-                    spawnerComponent.PointSpawn = triggerComponent.TargetEntity.Get<TransformComponent>().transform;
+                    spawnerComponent.PointSpawn = triggerComponent.SourceEntity.Get<TransformComponent>().transform;
             }
         }
     }

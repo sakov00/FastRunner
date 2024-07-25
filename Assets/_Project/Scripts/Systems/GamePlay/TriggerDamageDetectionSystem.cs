@@ -15,13 +15,13 @@ namespace Assets._Project.Scripts.Systems.GamePlay
                 ref var triggerComponent = ref filter.Get1(entity);
                 ref var damageComponent = ref filter.Get2(entity);
 
-                if (!triggerComponent.TargetEntity.IsAlive())
+                if (!triggerComponent.SourceEntity.IsAlive())
                     continue;
 
-                if (!triggerComponent.TargetEntity.Has<HealthComponent>())
+                if (!triggerComponent.SourceEntity.Has<HealthComponent>())
                     continue;
 
-                ref var targetHealthComponent = ref triggerComponent.TargetEntity.Get<HealthComponent>();
+                ref var targetHealthComponent = ref triggerComponent.SourceEntity.Get<HealthComponent>();
 
                 if (targetHealthComponent.CurrentDamageCoolDown > targetHealthComponent.DamageCoolDown)
                 {
