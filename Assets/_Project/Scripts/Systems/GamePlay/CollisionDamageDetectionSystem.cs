@@ -15,17 +15,14 @@ namespace Assets._Project.Scripts.Systems.GamePlay
                 ref var collisionComponent = ref filter.Get1(entityIndex);
                 ref var healthComponent = ref filter.Get2(entityIndex);
 
-                foreach (var entity in collisionComponent.CollisionEntities)
-                {
-                    if (!entity.Has<DamageComponent>())
-                        continue;
+                if (!collisionComponent.TargetEntity.Has<DamageComponent>())
+                    continue;
 
-                    var damageComponent = entity.Get<DamageComponent>();
-                    if (healthComponent.CurrentDamageCoolDown > healthComponent.DamageCoolDown)
-                    {
-                        healthComponent.CurrentDamageCoolDown = 0;
-                        healthComponent.HealthPoints -= damageComponent.Value;
-                    }
+                var damageComponent = collisionComponent.TargetEntity.Get<DamageComponent>();
+                if (healthComponent.CurrentDamageCoolDown > healthComponent.DamageCoolDown)
+                {
+                    healthComponent.CurrentDamageCoolDown = 0;
+                    healthComponent.HealthPoints -= damageComponent.Value;
                 }
             }
         }

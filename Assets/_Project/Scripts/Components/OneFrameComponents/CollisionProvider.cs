@@ -1,12 +1,10 @@
-﻿using Assets._Project.Scripts.Enums;
-using Leopotam.Ecs;
+﻿using Leopotam.Ecs;
 
 namespace Assets._Project.Scripts.Components.Physics
 {
-    public struct TriggerComponent
+    public struct CollisionComponent
     {
         public EcsEntity SourceEntity;
         public EcsEntity TargetEntity;
-        public TriggerEventType eventType;
     }
 }

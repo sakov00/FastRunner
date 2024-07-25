@@ -4,7 +4,6 @@ using Assets._Project.Scripts.Systems.Common;
 using Assets._Project.Scripts.Systems.GamePlay;
 using Assets._Project.Scripts.Systems.GamePlay.Abilities;
 using Assets._Project.Scripts.Systems.GamePlay.InputDevice;
-using Assets._Project.Scripts.Systems.Physics;
 using Assets._Project.Scripts.Systems.Rendering;
 using Assets._Project.Scripts.Systems.UI;
 using Leopotam.Ecs;
@@ -57,9 +56,6 @@ namespace Assets._Project.Scripts.Bootstrap
 
             fixedUpdateSystems.Add(new PopulateObjectPoolSystem());
 
-            fixedUpdateSystems.Add(new CleanCollisionSystem());
-            fixedUpdateSystems.Add(new CollisionDetectionSystem());
-
             fixedUpdateSystems.Add(new ActivateAbilitySystem());
             fixedUpdateSystems.Add(new AccelerationAbilitySystem());
             fixedUpdateSystems.Add(new DoubleJumpAbilitySystem());
@@ -79,6 +75,7 @@ namespace Assets._Project.Scripts.Bootstrap
             fixedUpdateSystems.Add(new GameOverSystem());
 
             fixedUpdateSystems.OneFrame<TriggerComponent>();
+            fixedUpdateSystems.OneFrame<CollisionComponent>();
 
             fixedUpdateSystems.Init();
         }
