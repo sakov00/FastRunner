@@ -1,5 +1,5 @@
-﻿using Assets._Project.Scripts.Factories;
-using Assets._Project.Scripts.UsefullScripts;
+﻿using Assets._Project.Scripts.Bootstrap;
+using Assets._Project.Scripts.UnityComponents.Handlers;
 using Zenject;
 
 namespace Assets._Project.Scripts.InjectInstallers
@@ -8,19 +8,10 @@ namespace Assets._Project.Scripts.InjectInstallers
     {
         public override void InstallBindings()
         {
-            //BindObjectPools();
-            //BindFactories();
-        }
+            Container.BindInterfacesAndSelfTo<EcsGameStartUp>().FromComponentInHierarchy().AsSingle();
 
-        private void BindObjectPools()
-        {
-            Container.Bind<ObjectPool>().AsSingle();
-        }
-
-        private void BindFactories()
-        {
-            Container.Bind<PlayerFactory>().AsSingle();
-            Container.Bind<StonesFactory>().AsSingle();
+            Container.BindInterfacesAndSelfTo<CollisionHandler>().FromComponentsInHierarchy().AsTransient();
+            Container.BindInterfacesAndSelfTo<TriggerHandler>().FromComponentsInHierarchy().AsTransient();
         }
     }
 }

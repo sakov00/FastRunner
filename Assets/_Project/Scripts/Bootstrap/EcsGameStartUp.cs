@@ -8,10 +8,11 @@ using Assets._Project.Scripts.Systems.UI;
 using Leopotam.Ecs;
 using UnityEngine;
 using Voody.UniLeo;
+using Zenject;
 
 namespace Assets._Project.Scripts.Bootstrap
 {
-    public class EcsGameStartUp : MonoBehaviour
+    public class EcsGameStartUp : MonoBehaviour, IInitializable
     {
         private EcsWorld world;
 
@@ -20,7 +21,7 @@ namespace Assets._Project.Scripts.Bootstrap
         private EcsSystems updateSystems;
         private EcsSystems lateUpdateSystems;
 
-        private void Start()
+        public void Initialize()
         {
             world = new EcsWorld();
             WorldHandler.Init(world);

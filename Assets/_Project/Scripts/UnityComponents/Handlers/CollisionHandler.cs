@@ -2,23 +2,17 @@
 using Leopotam.Ecs;
 using UnityEngine;
 using Voody.UniLeo;
+using Zenject;
 
 namespace Assets._Project.Scripts.UnityComponents.Handlers
 {
-    public class CollisionHandler : MonoBehaviour
+    public class CollisionHandler : MonoBehaviour, IInitializable
     {
         private EcsEntity _entity;
 
-        public void FixedUpdate()
+        public void Initialize()
         {
-            if (_entity == EcsEntity.Null)
-            {
-                var entity = GetComponent<ConvertToEntity>().TryGetEntity();
-                if (GetComponent<ConvertToEntity>().TryGetEntity().HasValue)
-                {
-                    _entity = entity.Value;
-                }
-            }
+            _entity = GetComponent<ConvertToEntity>().TryGetEntity().Value;
         }
 
         private void OnControllerColliderHit(ControllerColliderHit hit)
