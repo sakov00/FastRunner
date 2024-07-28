@@ -159,4 +159,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value:
-    Value: 30
+    HealthValue: 25
+    EnergyValue: 25

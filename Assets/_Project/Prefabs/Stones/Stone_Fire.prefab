@@ -21,7 +21,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3603525220740243846
 Transform:
   m_ObjectHideFlags: 0
@@ -136,7 +136,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value:
-    Value: 100
+    HealthValue: 100
+    EnergyValue: 0
 --- !u!114 &4046191425411471685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5237,6 +5238,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e7b9e6caed077d04e99aa921094f7e8d,
         type: 3}
       insertIndex: -1
+      addedObject: {fileID: 8129284303496031563}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e7b9e6caed077d04e99aa921094f7e8d,
+        type: 3}
+      insertIndex: -1
       addedObject: {fileID: 3266837514629398941}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e7b9e6caed077d04e99aa921094f7e8d,
         type: 3}
@@ -5302,6 +5307,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3, y: 4.35, z: 3.5}
   m_Center: {x: 0, y: 2.4, z: 0}
+--- !u!54 &8129284303496031563
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7134520434029549057}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &3266837514629398941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5428,7 +5460,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value:
-    Value: 20
+    HealthValue: 20
+    EnergyValue: 20
 --- !u!114 &3485482717372402195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5441,8 +5474,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bad2b1803bb6544c9cddedc288c5ebf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value:
-    IsCheckCollisions: 0
 --- !u!4 &7514599181783698619 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e7b9e6caed077d04e99aa921094f7e8d,

@@ -26,7 +26,13 @@ namespace Assets._Project.Scripts.Systems.GamePlay
                 if (targetHealthComponent.CurrentDamageCoolDown > targetHealthComponent.DamageCoolDown)
                 {
                     targetHealthComponent.CurrentDamageCoolDown = 0;
-                    targetHealthComponent.HealthPoints -= damageComponent.Value;
+                    targetHealthComponent.HealthPoints -= damageComponent.HealthValue;
+
+                    if (triggerComponent.SourceEntity.Has<AbilityComponent>())
+                    {
+                        ref var abilityComponent = ref triggerComponent.SourceEntity.Get<AbilityComponent>();
+                        abilityComponent.EnergyPoints -= damageComponent.EnergyValue;
+                    }
                 }
             }
         }

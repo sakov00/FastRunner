@@ -61,10 +61,78 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 0b32be68dd4424a48b8af5756ce60f69,
         type: 3}
       propertyPath: m_Name
-      value: Thorns_1(lod2) (1)
+      value: Thorns_1(lod2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0b32be68dd4424a48b8af5756ce60f69,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -7717075023230625400}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0b32be68dd4424a48b8af5756ce60f69,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -7591668668819185879}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0b32be68dd4424a48b8af5756ce60f69,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -5678755873165986231}
   m_SourcePrefab: {fileID: 100100000, guid: 0b32be68dd4424a48b8af5756ce60f69, type: 3}
+--- !u!1 &1724649741362534239 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0b32be68dd4424a48b8af5756ce60f69,
+    type: 3}
+  m_PrefabInstance: {fileID: 1958579977245895182}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &-7717075023230625400
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724649741362534239}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -6154752019622941398, guid: 0b32be68dd4424a48b8af5756ce60f69, type: 3}
+--- !u!114 &-7591668668819185879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724649741362534239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 863c7f7460b2b49abb4fa9a7ff9cb180, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  convertMode: 2
+--- !u!114 &-5678755873165986231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724649741362534239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 652bd8dec6d44314c8359d337dead1c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value:
+    HealthValue: 30
+    EnergyValue: 30

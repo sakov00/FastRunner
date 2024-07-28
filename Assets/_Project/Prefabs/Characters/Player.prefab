@@ -4870,7 +4870,6 @@ GameObject:
   - component: {fileID: 1503231157373602752}
   - component: {fileID: 4865534767036958595}
   - component: {fileID: 2002505091001307694}
-  - component: {fileID: 6842506973586174327}
   - component: {fileID: 2432960392058396465}
   - component: {fileID: 2399647371889603051}
   - component: {fileID: 702917961129484812}
@@ -4878,6 +4877,7 @@ GameObject:
   - component: {fileID: 449053199467755073}
   - component: {fileID: 2375666077722012978}
   - component: {fileID: 3609974455327531629}
+  - component: {fileID: 7845407299875709152}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -5151,20 +5151,6 @@ MonoBehaviour:
   value:
     HealthSlider: {fileID: 0}
     EnergySlider: {fileID: 0}
---- !u!114 &6842506973586174327
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2499697830385207022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bad2b1803bb6544c9cddedc288c5ebf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  value:
-    IsCheckCollisions: 1
 --- !u!114 &2432960392058396465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5249,6 +5235,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7f1341f769130348951f76e92758e65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7845407299875709152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2499697830385207022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 550bcbcefc2c2a04595568a258bf72d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value:
+    Effect: {fileID: 0}
+    IsActivateDestroy: 0
+    IsTriggerDestroy: 0
+    DestroyTime: 0
 --- !u!1001 &4323405511432971267
 PrefabInstance:
   m_ObjectHideFlags: 0

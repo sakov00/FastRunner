@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5094524186224544539}
   - component: {fileID: 1511596424589641833}
   - component: {fileID: 2779363837089123189}
-  - component: {fileID: 7302751902014268203}
   - component: {fileID: 9096600541992757614}
   m_Layer: 0
   m_Name: DeadZone
@@ -69,20 +68,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   convertMode: 2
---- !u!114 &7302751902014268203
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9012057003877894455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bad2b1803bb6544c9cddedc288c5ebf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  value:
-    IsCheckCollisions: 0
 --- !u!114 &9096600541992757614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,4 +81,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value:
-    Value: 100
+    HealthValue: 100
+    EnergyValue: 0

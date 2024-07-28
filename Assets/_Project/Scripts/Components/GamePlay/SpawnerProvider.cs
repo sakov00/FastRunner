@@ -9,6 +9,7 @@ namespace Assets._Project.Scripts.Components.GamePlay
     [Serializable]
     public struct SpawnerComponent
     {
+        public UnityEngine.Object EffectPrefab;
         public UnityEngine.Object Prefab;
 
         public bool IsActive;

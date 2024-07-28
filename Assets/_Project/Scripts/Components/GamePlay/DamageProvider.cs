@@ -8,6 +8,7 @@ namespace Assets._Project.Scripts.Components.GamePlay
     [Serializable]
     public struct DamageComponent
     {
-        public float Value;
+        public float HealthValue;
+        public float EnergyValue;
     }
 }

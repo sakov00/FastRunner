@@ -18,11 +18,17 @@ namespace Assets._Project.Scripts.Systems.GamePlay
                 if (!collisionComponent.TargetEntity.Has<DamageComponent>())
                     continue;
 
-                var damageComponent = collisionComponent.TargetEntity.Get<DamageComponent>();
+                ref var damageComponent = ref collisionComponent.TargetEntity.Get<DamageComponent>();
                 if (healthComponent.CurrentDamageCoolDown > healthComponent.DamageCoolDown)
                 {
                     healthComponent.CurrentDamageCoolDown = 0;
-                    healthComponent.HealthPoints -= damageComponent.Value;
+                    healthComponent.HealthPoints -= damageComponent.HealthValue;
+
+                    if (collisionComponent.SourceEntity.Has<AbilityComponent>())
+                    {
+                        ref var abilityComponent = ref collisionComponent.SourceEntity.Get<AbilityComponent>();
+                        abilityComponent.EnergyPoints -= damageComponent.EnergyValue;
+                    }
                 }
             }
         }

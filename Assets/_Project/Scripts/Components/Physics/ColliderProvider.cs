@@ -8,15 +8,13 @@ namespace Assets._Project.Scripts.Components.Physics
     {
         private void Awake()
         {
-            value.Colliders = GetComponents<Collider>();
+            value.Collider = GetComponent<Collider>();
         }
     }
 
     [Serializable]
     public struct ColliderComponent
     {
-        [NonSerialized] public Collider[] Colliders;
-
-        public bool IsCheckCollisions;
+        [NonSerialized] public Collider Collider;
     }
 }

@@ -91,7 +91,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ed2d35f53a8b9c8489557e9cc08161bd,
         type: 3}
       propertyPath: m_Name
-      value: Thorns_5(lod1) (1)
+      value: Thorns_5(lod1)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ed2d35f53a8b9c8489557e9cc08161bd,
         type: 3}
@@ -169,4 +169,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value:
-    Value: 30
+    HealthValue: 30
+    EnergyValue: 30

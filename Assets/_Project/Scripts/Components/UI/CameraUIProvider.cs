@@ -11,5 +11,6 @@ namespace Assets._Project.Scripts.Components.UI
     {
         public Slider HealthSlider;
         public Slider EnergySlider;
+        public Image AttentionImage;
     }
 }

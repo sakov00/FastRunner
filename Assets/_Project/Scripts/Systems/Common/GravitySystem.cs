@@ -2,7 +2,6 @@
 using Assets._Project.Scripts.Components.GamePlay;
 using Assets._Project.Scripts.Components.Physics;
 using Leopotam.Ecs;
-using System.Linq;
 using UnityEngine;
 
 namespace Assets._Project.Scripts.Systems.Common
@@ -19,11 +18,11 @@ namespace Assets._Project.Scripts.Systems.Common
                 ref var colliderComponent = ref filter.Get2(entity);
                 ref var gravityComponent = ref filter.Get3(entity);
 
-                var bounds = colliderComponent.Colliders.First().bounds;
+                var bounds = colliderComponent.Collider.bounds;
                 Vector3 bottomPoint = bounds.center - Vector3.up * bounds.extents.y;
                 float distanceToBottom = Vector3.Distance(bounds.center, bottomPoint);
 
-                if (!UnityEngine.Physics.Raycast(bounds.center, Vector3.down, distanceToBottom))
+                if (!Physics.Raycast(bounds.center, Vector3.down, distanceToBottom))
                 {
                     transformComponent.transform.position += Vector3.down * gravityComponent.GravityValue * Time.deltaTime;
                     gravityComponent.IsGrounded = false;

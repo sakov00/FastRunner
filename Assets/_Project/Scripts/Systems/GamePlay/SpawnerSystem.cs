@@ -45,6 +45,15 @@ public class SpawnerSystem : IEcsRunSystem
                 destroyObjectComponent.IsActivateDestroy = true;
 
                 entity.Get<TransformComponent>().transform.position = new Vector3(x, y, z);
+
+                var Effect = (GameObject)Object.Instantiate(spawnerComponent.EffectPrefab);
+                var entityEffect = GameObjectToEntity.AddEntity(Effect);
+
+                ref var entityEffectdestroyObject = ref entityEffect.Get<DestroyObjectComponent>();
+                entityEffectdestroyObject.IsActivateDestroy = true;
+
+                entityEffect.Get<TransformComponent>().transform.position = new Vector3(x, y, z);
+
                 spawnerComponent.CurrentTime = 0;
             }
             else

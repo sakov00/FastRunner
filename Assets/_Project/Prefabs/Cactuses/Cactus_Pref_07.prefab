@@ -133,10 +133,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -927199367670048503, guid: 0126149ec46a3c5468a3851bf5020bf1,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 673866933192705182}
-    - targetCorrespondingSourceObject: {fileID: -927199367670048503, guid: 0126149ec46a3c5468a3851bf5020bf1,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 321357866472891618}
     - targetCorrespondingSourceObject: {fileID: -927199367670048503, guid: 0126149ec46a3c5468a3851bf5020bf1,
         type: 3}
@@ -205,20 +201,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b92119809e8b24346a556f2a11f5b247, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &673866933192705182
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5542499835687142240}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bad2b1803bb6544c9cddedc288c5ebf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  value:
-    IsCheckCollisions: 0
 --- !u!114 &321357866472891618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,7 +214,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value:
-    Value: 10
+    HealthValue: 20
+    EnergyValue: 20
 --- !u!114 &5867640666589639438
 MonoBehaviour:
   m_ObjectHideFlags: 0

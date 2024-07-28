@@ -1,6 +1,7 @@
 ﻿using Assets._Project.Scripts.Components.Common;
 using Assets._Project.Scripts.Components.GamePlay;
 using Assets._Project.Scripts.Components.OneFrameComponents;
+using Assets._Project.Scripts.Components.UI;
 using Leopotam.Ecs;
 
 namespace Assets._Project.Scripts.Systems.GamePlay
@@ -19,7 +20,11 @@ namespace Assets._Project.Scripts.Systems.GamePlay
                 if (!triggerComponent.SourceEntity.IsAlive() || !triggerComponent.SourceEntity.Has<PlayerComponent>())
                     continue;
 
+                ref var cameraUIComponent = ref triggerComponent.SourceEntity.Get<CameraUIComponent>();
+
                 spawnerComponent.IsActive = !spawnerComponent.IsActive;
+
+                cameraUIComponent.AttentionImage.gameObject.SetActive(spawnerComponent.IsActive);
 
                 if (spawnerComponent.PointSpawn == null)
                     spawnerComponent.PointSpawn = triggerComponent.SourceEntity.Get<TransformComponent>().transform;

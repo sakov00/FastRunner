@@ -91,7 +91,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value:
-    Value: 25
+    HealthValue: 30
+    EnergyValue: 30
 --- !u!1001 &42991094411082745
 PrefabInstance:
   m_ObjectHideFlags: 0
