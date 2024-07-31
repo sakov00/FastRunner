@@ -45,8 +45,16 @@ namespace Assets._Project.Scripts.Systems.Common
                 {
                     var entity = filter.GetEntity(indexEntity);
                     ref var pooledComponent = ref entity.Get<PoolableComponent>();
-                    pooledComponent.ObjectPool.ReturnObject(entity);
-                    destroyObjectComponent.IsActivateDestroy = false;
+                    if (pooledComponent.ObjectPool != null)
+                    {
+                        pooledComponent.ObjectPool.ReturnObject(entity);
+                        destroyObjectComponent.IsActivateDestroy = false;
+                    }
+                    else
+                    {
+                        GameObject.Destroy(gameObjectComponent.GameObject);
+                        filter.GetEntity(indexEntity).Destroy();
+                    }
                 }
                 else
                 {

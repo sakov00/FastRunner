@@ -1,17 +1,22 @@
 ﻿using Assets._Project.Scripts.Components.GamePlay;
+using Assets._Project.Scripts.Components.UI;
+using Assets._Project.Scripts.UsefullScripts;
 using Leopotam.Ecs;
+using Photon.Pun;
 using UnityEngine;
-using Voody.UniLeo;
+using Zenject;
 
 namespace Assets._Project.Scripts.Factories
 {
     public class PlayerFactory
     {
+        private DiContainer _container;
         private Object _playerPrefab;
         private Object _playerCameraPrefab;
 
-        public PlayerFactory()
+        public PlayerFactory(DiContainer container)
         {
+            _container = container;
             LoadResources();
         }
 
@@ -21,26 +26,43 @@ namespace Assets._Project.Scripts.Factories
             _playerCameraPrefab = Resources.Load("Prefabs/PlayerCamera");
         }
 
-        public (GameObject PlayerObject, EcsEntity PlayerEntity) CreatePlayer(Vector3 position)
+        public void CreatePlayer(Vector3 position)
         {
-            var playerObject = CreatePlayerGameObject(position);
-            var playerEntity = WorldHandler.GetWorld().GetFilter(typeof(EcsFilter<PlayerComponent>)).GetEntity(0);
+            var player = PhotonNetwork.Instantiate(_playerPrefab.name, position, Quaternion.identity);
+            var ecsEntityPlayer = InjectAndInitialize(player);
 
-            var cameraGameObject = CreateCameraGameObject(position);
-            var cameraEntity = WorldHandler.GetWorld().GetFilter(typeof(EcsFilter<CameraMovementComponent>)).GetEntity(0);
+            var playerPhotonView = player.GetComponent<PhotonView>();
+            if (playerPhotonView.Owner.IsLocal)
+            {
+                var playerCamera = (GameObject)GameObject.Instantiate(_playerCameraPrefab, position, Quaternion.identity);
+                var ecsEntityPlayerCamera = InjectAndInitialize(playerCamera);
 
-            var player = (PlayerObject: playerObject, PlayerEntity: playerEntity);
-            return player;
+                ref var cameraFollowComponent = ref ecsEntityPlayerCamera.Get<FollowComponent>();
+                cameraFollowComponent.Transform = player.transform;
+
+                ref var playerUIComponent = ref ecsEntityPlayer.Get<CameraUIComponent>();
+                ref var cameraUIComponent = ref ecsEntityPlayerCamera.Get<CameraUIComponent>();
+                playerUIComponent.EnergySlider = cameraUIComponent.EnergySlider;
+                playerUIComponent.HealthSlider = cameraUIComponent.HealthSlider;
+                playerUIComponent.AttentionImage = cameraUIComponent.AttentionImage;
+            }
         }
 
-        private GameObject CreatePlayerGameObject(Vector3 position)
+        private EcsEntity InjectAndInitialize(GameObject gameObject)
         {
-            return (GameObject)Object.Instantiate(_playerPrefab, position, Quaternion.identity);
-        }
+            _container.Inject(gameObject);
 
-        public GameObject CreateCameraGameObject(Vector3 position)
-        {
-            return (GameObject)Object.Instantiate(_playerCameraPrefab, position, Quaternion.identity);
+            var ecsEntity = GameObjectToEntity.AddEntity(gameObject);
+
+            foreach (var component in gameObject.GetComponents<MonoBehaviour>())
+            {
+                _container.Inject(component);
+                if (component is IInitializable initializable)
+                {
+                    initializable.Initialize();
+                }
+            }
+            return ecsEntity;
         }
     }
 }

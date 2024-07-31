@@ -1,5 +1,6 @@
 ﻿using Assets._Project.Scripts.Components.Common;
 using Assets._Project.Scripts.Components.GamePlay;
+using Assets._Project.Scripts.Components.Network;
 using Leopotam.Ecs;
 using UnityEngine;
 

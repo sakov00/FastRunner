@@ -15,6 +15,9 @@ namespace Assets._Project.Scripts.Systems.UI
                 ref var healthComponent = ref filter.Get2(indexEntity);
                 ref var abilityComponent = ref filter.Get3(indexEntity);
 
+                if (cameraUIComponent.HealthSlider == null && cameraUIComponent.EnergySlider == null)
+                    continue;
+
                 cameraUIComponent.HealthSlider.value = healthComponent.HealthPoints;
                 cameraUIComponent.EnergySlider.value = abilityComponent.EnergyPoints;
             }

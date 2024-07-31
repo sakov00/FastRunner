@@ -1,6 +1,8 @@
 ﻿using Assets._Project.Scripts.Components.Common;
 using Assets._Project.Scripts.Components.GamePlay;
+using Assets._Project.Scripts.Components.Network;
 using Assets._Project.Scripts.Components.Physics;
+using ExitGames.Client.Photon.StructWrapping;
 using Leopotam.Ecs;
 using UnityEngine;
 
@@ -8,7 +10,7 @@ namespace Assets._Project.Scripts.Systems.GamePlay
 {
     internal class PlayerAirMovementSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<InputComponent, UnitMovementComponent, CharacterControllerComponent, GameObjectComponent> filter = null;
+        private readonly EcsFilter<InputComponent, UnitMovementComponent, CharacterControllerComponent, GameObjectComponent, PhotonViewComponent> filter = null;
 
         public void Run()
         {
@@ -18,9 +20,13 @@ namespace Assets._Project.Scripts.Systems.GamePlay
                 ref var unitMovementComponent = ref filter.Get2(i);
                 ref var characterControllerComponent = ref filter.Get3(i);
                 ref var gameObjectComponent = ref filter.Get4(i);
+                ref var photonViewComponent = ref filter.Get5(i);
+
+                if (!photonViewComponent.PhotonView.IsMine)
+                    continue;
 
                 if (characterControllerComponent.CharacterController.isGrounded)
-                    break;
+                    continue;
 
                 var speedValue = unitMovementComponent.RunningSpeed;
                 var gravityValue = unitMovementComponent.Movement.y;

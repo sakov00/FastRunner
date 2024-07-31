@@ -3,9 +3,11 @@ using Assets._Project.Scripts.Systems.Common;
 using Assets._Project.Scripts.Systems.GamePlay;
 using Assets._Project.Scripts.Systems.GamePlay.Abilities;
 using Assets._Project.Scripts.Systems.GamePlay.InputDevice;
+using Assets._Project.Scripts.Systems.Network;
 using Assets._Project.Scripts.Systems.Rendering;
 using Assets._Project.Scripts.Systems.UI;
 using Leopotam.Ecs;
+using Photon.Pun;
 using UnityEngine;
 using Voody.UniLeo;
 using Zenject;
@@ -73,9 +75,11 @@ namespace Assets._Project.Scripts.Bootstrap
             fixedUpdateSystems.Add(new ActivateSpawner());
             fixedUpdateSystems.Add(new SpawnerSystem());
 
+            fixedUpdateSystems.Add(new GameOverSystem());
 
             fixedUpdateSystems.Add(new DestroyObjectSystem());
-            fixedUpdateSystems.Add(new GameOverSystem());
+
+            //fixedUpdateSystems.Add(new NetworkSyncSystem());
 
             fixedUpdateSystems.OneFrame<TriggerComponent>();
             fixedUpdateSystems.OneFrame<CollisionComponent>();

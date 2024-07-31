@@ -1,5 +1,6 @@
 ﻿using Assets._Project.Scripts.Components.Common;
 using Assets._Project.Scripts.Components.GamePlay;
+using Assets._Project.Scripts.Components.Network;
 using Assets._Project.Scripts.Components.Physics;
 using Assets._Project.Scripts.Components.Rendering;
 using Leopotam.Ecs;
@@ -9,7 +10,7 @@ namespace Assets._Project.Scripts.Systems.GamePlay
 {
     internal class PlayerGroundRotationSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<InputComponent, UnitMovementComponent, CharacterControllerComponent, UnitRotationComponent, TransformComponent> filter = null;
+        private readonly EcsFilter<InputComponent, UnitMovementComponent, CharacterControllerComponent, UnitRotationComponent, TransformComponent, PhotonViewComponent> filter = null;
 
         public void Run()
         {
@@ -20,9 +21,13 @@ namespace Assets._Project.Scripts.Systems.GamePlay
                 ref var characterControllerComponent = ref filter.Get3(i);
                 ref var unitRotationComponent = ref filter.Get4(i);
                 ref var transformComponent = ref filter.Get5(i);
+                ref var photonViewComponent = ref filter.Get6(i);
+
+                if (!photonViewComponent.PhotonView.IsMine)
+                    continue;
 
                 if (!characterControllerComponent.CharacterController.isGrounded)
-                    break;
+                    continue;
 
                 var currentDegrees = transformComponent.transform.eulerAngles.y;
                 var rotationSpeed = unitRotationComponent.RotationSpeedOnGround;

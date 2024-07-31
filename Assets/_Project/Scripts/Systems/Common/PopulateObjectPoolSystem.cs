@@ -2,6 +2,7 @@
 using Assets._Project.Scripts.Components.GamePlay;
 using Assets._Project.Scripts.UsefullScripts;
 using Leopotam.Ecs;
+using Photon.Pun;
 using UnityEngine;
 
 namespace Assets._Project.Scripts.Systems.Common
@@ -19,7 +20,7 @@ namespace Assets._Project.Scripts.Systems.Common
 
                 for (int i = 0; i < objectPoolComponent.Size; i++)
                 {
-                    var newGameObject = (GameObject)Object.Instantiate(spawnerComponent.Prefab);
+                    var newGameObject = PhotonNetwork.Instantiate(spawnerComponent.Prefab.name, Vector3.zero, Quaternion.identity);
                     var entity = GameObjectToEntity.AddEntity(newGameObject);
                     objectPoolComponent.ObjectPool.PopulatePool(entity);
                 }
