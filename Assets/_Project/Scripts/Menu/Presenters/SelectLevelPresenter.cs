@@ -1,6 +1,4 @@
 using Assets._Project.Scripts.Menu.Views;
-using Photon.Pun;
-using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -31,7 +29,6 @@ public class SelectLevelPresenter : MonoBehaviour
 
     private void LoadScene(int levelNumber)
     {
-        PhotonNetwork.LoadLevel(levelNumber);
-        PhotonNetwork.JoinRandomOrCreateRoom(null, 4);
+        SceneManager.LoadScene(levelNumber);
     }
 }

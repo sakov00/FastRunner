@@ -1,5 +1,6 @@
 ﻿using Assets._Project.Scripts.Components.GamePlay;
 using Assets._Project.Scripts.Components.UI;
+using Assets._Project.Scripts.Interfaces;
 using Assets._Project.Scripts.UsefullScripts;
 using Leopotam.Ecs;
 using Photon.Pun;
@@ -22,8 +23,8 @@ namespace Assets._Project.Scripts.Factories
 
         public void LoadResources()
         {
-            _playerPrefab = Resources.Load("Prefabs/Player");
-            _playerCameraPrefab = Resources.Load("Prefabs/PlayerCamera");
+            _playerPrefab = Resources.Load("Player");
+            _playerCameraPrefab = Resources.Load("PlayerCamera");
         }
 
         public void CreatePlayer(Vector3 position)
@@ -57,7 +58,7 @@ namespace Assets._Project.Scripts.Factories
             foreach (var component in gameObject.GetComponents<MonoBehaviour>())
             {
                 _container.Inject(component);
-                if (component is IInitializable initializable)
+                if (component is ICustomInitializable initializable)
                 {
                     initializable.Initialize();
                 }

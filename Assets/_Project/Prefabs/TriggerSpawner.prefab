@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 8342296523503053379}
   - component: {fileID: 3909470096107625974}
   - component: {fileID: 1137849369432126065}
+  - component: {fileID: 8132924021795855841}
   - component: {fileID: 3407933756059250627}
   - component: {fileID: 3454436829689742475}
-  - component: {fileID: 8132924021795855841}
   m_Layer: 0
   m_Name: TriggerSpawner
   m_TagString: Untagged
@@ -70,6 +70,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   convertMode: 2
+--- !u!114 &8132924021795855841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5773336286694321581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b92119809e8b24346a556f2a11f5b247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3407933756059250627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,15 +122,3 @@ MonoBehaviour:
     MaxAngle: 120
     CoolDown: 0.5
     CurrentTime: 0
---- !u!114 &8132924021795855841
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5773336286694321581}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b92119809e8b24346a556f2a11f5b247, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

@@ -11,15 +11,10 @@ namespace Assets._Project.Scripts.InjectInstallers
     {
         public override void InstallBindings()
         {
-            Container.BindInterfacesAndSelfTo<NetworkManager>().FromComponentsInHierarchy().AsSingle();
-
             Container.BindInterfacesAndSelfTo<EcsGameStartUp>().FromComponentInHierarchy().AsSingle();
 
             Container.BindInterfacesAndSelfTo<CollisionHandler>().FromComponentsInHierarchy().AsTransient();
             Container.BindInterfacesAndSelfTo<TriggerHandler>().FromComponentsInHierarchy().AsTransient();
-
-            Container.Bind<PlayerFactory>().AsSingle();
-
         }
     }
 }

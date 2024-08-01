@@ -1,4 +1,5 @@
 ﻿using Assets._Project.Scripts.Components.OneFrameComponents;
+using Assets._Project.Scripts.Interfaces;
 using Assets._Project.Scripts.Systems.Common;
 using Assets._Project.Scripts.Systems.GamePlay;
 using Assets._Project.Scripts.Systems.GamePlay.Abilities;
@@ -14,7 +15,7 @@ using Zenject;
 
 namespace Assets._Project.Scripts.Bootstrap
 {
-    public class EcsGameStartUp : MonoBehaviour, IInitializable
+    public class EcsGameStartUp : MonoBehaviour, ICustomInitializable
     {
         private EcsWorld world;
 
@@ -119,13 +120,13 @@ namespace Assets._Project.Scripts.Bootstrap
         }
 
         private void FixedUpdate()
-            => fixedUpdateSystems.Run();
+            => fixedUpdateSystems?.Run();
 
         private void Update()
-            => updateSystems.Run();
+            => updateSystems?.Run();
 
         private void LateUpdate()
-            => lateUpdateSystems.Run();
+            => lateUpdateSystems?.Run();
 
         private void OnDestroy()
         {

@@ -1,4 +1,5 @@
 ﻿using Assets._Project.Scripts.Components.OneFrameComponents;
+using Assets._Project.Scripts.Interfaces;
 using Leopotam.Ecs;
 using UnityEngine;
 using Voody.UniLeo;
@@ -6,7 +7,7 @@ using Zenject;
 
 namespace Assets._Project.Scripts.UnityComponents.Handlers
 {
-    public class CollisionHandler : MonoBehaviour, IInitializable
+    public class CollisionHandler : MonoBehaviour, ICustomInitializable
     {
         private EcsEntity _entity;
 

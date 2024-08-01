@@ -1,15 +1,13 @@
-﻿using System.Threading.Tasks;
-using UnityEngine;
+﻿using Assets._Project.Scripts.Factories;
 using Zenject;
 
 namespace Assets._Project.Scripts.InjectInstallers
 {
     public class GlobalInstaller : MonoInstaller
     {
-        [SerializeField] private GameObject playerManagerSounds;
-
         public override void InstallBindings()
         {
+            Container.Bind<PlayerFactory>().AsSingle();
         }
     }
 }

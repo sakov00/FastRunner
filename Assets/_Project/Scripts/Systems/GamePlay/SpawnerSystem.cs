@@ -2,7 +2,9 @@ using Assets._Project.Scripts.Components.Common;
 using Assets._Project.Scripts.Components.GamePlay;
 using Assets._Project.Scripts.UsefullScripts;
 using Leopotam.Ecs;
+using Photon.Pun;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class SpawnerSystem : IEcsRunSystem
 {
@@ -15,8 +17,11 @@ public class SpawnerSystem : IEcsRunSystem
             ref var spawnerComponent = ref filter.Get1(entityIndex);
             ref var objectPoolComponent = ref filter.Get2(entityIndex);
 
-            if (!spawnerComponent.IsActive)
+            if (!PhotonNetwork.IsMasterClient)
                 continue;
+
+            if (!spawnerComponent.IsActive)
+            continue;
 
             if (spawnerComponent.CurrentTime > spawnerComponent.CoolDown)
             {
@@ -31,7 +36,7 @@ public class SpawnerSystem : IEcsRunSystem
                 var entity = objectPoolComponent.ObjectPool.GetObject();
                 if (entity == EcsEntity.Null)
                 {
-                    var newGameObject = (GameObject)Object.Instantiate(spawnerComponent.Prefab);
+                    var newGameObject = PhotonNetwork.Instantiate(spawnerComponent.Prefab.name, Vector3.zero, Quaternion.identity);
                     entity = GameObjectToEntity.AddEntity(newGameObject);
 
                     ref var poolableComponent = ref entity.Get<PoolableComponent>();
