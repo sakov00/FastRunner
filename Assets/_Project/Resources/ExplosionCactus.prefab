@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6249021906939724845}
   - component: {fileID: 7489467530505767106}
   - component: {fileID: 5860721321965008726}
-  - component: {fileID: 4609225437494391544}
   m_Layer: 0
   m_Name: ExplosionCactus
   m_TagString: Untagged
@@ -4890,18 +4889,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &4609225437494391544
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1839246063928096219}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e59eebc181b55c14faaa6eec364f8c5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &7312166851950616510
 PrefabInstance:
   m_ObjectHideFlags: 0

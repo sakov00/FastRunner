@@ -5254,9 +5254,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value:
     Effect: {fileID: 0}
-    IsActivateDestroy: 0
-    IsTriggerDestroy: 0
     DestroyTime: 0
+    IsContactDestroyed: 0
 --- !u!114 &2124735250836361674
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,6 +1,6 @@
 ﻿using Assets._Project.Scripts.Components.Common;
 using Assets._Project.Scripts.Components.GamePlay;
-using Assets._Project.Scripts.UsefullScripts;
+using Assets._Project.Scripts.Factories;
 using Leopotam.Ecs;
 using UnityEngine;
 
@@ -10,6 +10,8 @@ namespace Assets._Project.Scripts.Systems.GamePlay
     {
         private readonly EcsFilter<TransformComponent, GameObjectComponent, AttentionComponent> filter = null;
 
+        private EffectsFactory effectsFactory;
+
         public void Run()
         {
             foreach (var entityIndex in filter)
@@ -18,14 +20,12 @@ namespace Assets._Project.Scripts.Systems.GamePlay
                 ref var gameObjectComponent = ref filter.Get2(entityIndex);
                 ref var attentionComponent = ref filter.Get3(entityIndex);
 
-                if (!attentionComponent.CreatedEntity.IsAlive() && gameObjectComponent.IsActive)
+                if (gameObjectComponent.GameObject.activeInHierarchy)
                 {
-                    RaycastHit hit;
-                    if (UnityEngine.Physics.Raycast(transformComponent.transform.position, Vector3.down, out hit, 100))
+                    if (Physics.Raycast(transformComponent.transform.position, Vector3.down, out var hit, 100))
                     {
-                        var attentionMark = GameObject.Instantiate(attentionComponent.ObjectMark, hit.point, attentionComponent.ObjectMark.transform.rotation);
-                        var entity = GameObjectToEntity.AddEntity(attentionMark);
-                        attentionComponent.CreatedEntity = entity;
+                        //effectsFactory.GetSpawnEffect(attentionComponent.Effect, hit.point);
+                        //filter.GetEntity(entityIndex).Del<AttentionComponent>();
                     }
                 }
             }

@@ -1,4 +1,5 @@
-﻿using Assets._Project.Scripts.Menu.Views;
+﻿using Assets._Project.Scripts.Menu.Models;
+using Assets._Project.Scripts.Menu.Views;
 using Zenject;
 
 namespace Assets._Project.Scripts.InjectInstallers

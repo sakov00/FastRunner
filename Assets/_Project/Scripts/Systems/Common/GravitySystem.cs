@@ -8,7 +8,7 @@ namespace Assets._Project.Scripts.Systems.Common
 {
     public class GravitySystem : IEcsRunSystem
     {
-        private readonly EcsFilter<TransformComponent, ColliderComponent, GravityComponent> filter = null;
+        private readonly EcsFilter<TransformComponent, ColliderComponent, GravityComponent, GameObjectComponent> filter = null;
 
         public void Run()
         {
@@ -17,6 +17,12 @@ namespace Assets._Project.Scripts.Systems.Common
                 ref var transformComponent = ref filter.Get1(entity);
                 ref var colliderComponent = ref filter.Get2(entity);
                 ref var gravityComponent = ref filter.Get3(entity);
+                ref var gameObjectComponent = ref filter.Get4(entity);
+
+                if (!gameObjectComponent.GameObject.activeInHierarchy)
+                {
+                    continue;
+                }
 
                 var bounds = colliderComponent.Collider.bounds;
                 Vector3 bottomPoint = bounds.center - Vector3.up * bounds.extents.y;

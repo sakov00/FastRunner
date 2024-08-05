@@ -5420,8 +5420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value:
-    ObjectMark: {fileID: 2114138834335489626, guid: b99193e0d99753b4b9ac2ae72231e70a,
-      type: 3}
+    Effect: 3
 --- !u!114 &5597838126079445380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5436,9 +5435,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value:
     Effect: {fileID: 0}
-    IsActivateDestroy: 1
-    IsTriggerDestroy: 0
     DestroyTime: 5
+    IsContactDestroyed: 0
 --- !u!114 &2180002172727062216
 MonoBehaviour:
   m_ObjectHideFlags: 0

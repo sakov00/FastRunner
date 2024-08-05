@@ -4,7 +4,7 @@ using Leopotam.Ecs;
 
 namespace Assets._Project.Scripts.Systems.GamePlay
 {
-    public class TriggerDamageDetectionSystem : IEcsRunSystem
+    public class TriggerDamageSystem : IEcsRunSystem
     {
         private readonly EcsFilter<TriggerComponent, DamageComponent> filter = null;
 

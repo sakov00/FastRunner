@@ -7,32 +7,19 @@ namespace Assets._Project.Scripts.Systems.Common
 {
     public class DestroyObjectSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<DestroyObjectComponent, GameObjectComponent, TransformComponent> filter = null;
+        private readonly EcsFilter<ActivateDestroyComponent, DestroyInfoComponent, GameObjectComponent, TransformComponent> filter = null;
 
         public void Run()
         {
             foreach (var indexEntity in filter)
             {
-                ref var destroyObjectComponent = ref filter.Get1(indexEntity);
-                ref var gameObjectComponent = ref filter.Get2(indexEntity);
-                ref var transformComponent = ref filter.Get3(indexEntity);
+                ref var destroyInfoComponent = ref filter.Get2(indexEntity);
+                ref var gameObjectComponent = ref filter.Get3(indexEntity);
+                ref var transformComponent = ref filter.Get4(indexEntity);
 
-                if (!gameObjectComponent.IsActive)
-                    continue;
-
-                if (!destroyObjectComponent.IsActivateDestroy &&
-                    !(destroyObjectComponent.IsTriggerDestroy && filter.GetEntity(indexEntity).Has<TriggerComponent>()))
-                    continue;
-
-                if (destroyObjectComponent.CurrentTime < destroyObjectComponent.DestroyTime)
+                if (destroyInfoComponent.Effect != null)
                 {
-                    destroyObjectComponent.CurrentTime += Time.deltaTime;
-                    continue;
-                }
-
-                if (destroyObjectComponent.Effect != null)
-                {
-                    var objectEffect = GameObject.Instantiate(destroyObjectComponent.Effect, transformComponent.transform.position, destroyObjectComponent.Effect.transform.rotation);
+                    var objectEffect = GameObject.Instantiate(destroyInfoComponent.Effect, transformComponent.transform.position, destroyInfoComponent.Effect.transform.rotation);
 
                     var particleSystem = objectEffect.GetComponent<ParticleSystem>();
                     if (particleSystem != null)
@@ -45,23 +32,15 @@ namespace Assets._Project.Scripts.Systems.Common
                 {
                     var entity = filter.GetEntity(indexEntity);
                     ref var pooledComponent = ref entity.Get<PoolableComponent>();
-                    if (pooledComponent.ObjectPool != null)
-                    {
-                        pooledComponent.ObjectPool.ReturnObject(entity);
-                        destroyObjectComponent.IsActivateDestroy = false;
-                    }
-                    else
-                    {
-                        GameObject.Destroy(gameObjectComponent.GameObject);
-                        filter.GetEntity(indexEntity).Destroy();
-                    }
+                    pooledComponent.ObjectPool.ReturnObject(entity);
                 }
                 else
                 {
                     GameObject.Destroy(gameObjectComponent.GameObject);
                     filter.GetEntity(indexEntity).Destroy();
                 }
-                destroyObjectComponent.CurrentTime = 0;
+
+                destroyInfoComponent.CurrentTime = 0;
             }
         }
     }

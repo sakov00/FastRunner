@@ -20,11 +20,17 @@ namespace Assets._Project.Scripts.Systems.GamePlay
                 if (!triggerComponent.SourceEntity.IsAlive() || !triggerComponent.SourceEntity.Has<PlayerComponent>())
                     continue;
 
+                if (triggerComponent.eventType == Enums.TriggerEventType.Enter)
+                {
+                    spawnerComponent.IsActivated = true;
+                }
+                else if (triggerComponent.eventType == Enums.TriggerEventType.Exit)
+                {
+                    spawnerComponent.IsActivated = false;
+                }
+
                 ref var cameraUIComponent = ref triggerComponent.SourceEntity.Get<CameraUIComponent>();
-
-                spawnerComponent.IsActive = !spawnerComponent.IsActive;
-
-                cameraUIComponent.AttentionImage.gameObject.SetActive(spawnerComponent.IsActive);
+                cameraUIComponent.AttentionImage.gameObject.SetActive(spawnerComponent.IsActivated);
 
                 if (spawnerComponent.PointSpawn == null)
                     spawnerComponent.PointSpawn = triggerComponent.SourceEntity.Get<TransformComponent>().transform;

@@ -4,15 +4,14 @@ using Voody.UniLeo;
 
 namespace Assets._Project.Scripts.Components.Common
 {
-    public class DestroyObjectProvider : MonoProvider<DestroyObjectComponent> { }
+    public class DestroyInfoProvider : MonoProvider<DestroyInfoComponent> { }
 
     [Serializable]
-    public struct DestroyObjectComponent
+    public struct DestroyInfoComponent
     {
         public GameObject Effect;
-        public bool IsActivateDestroy;
-        public bool IsTriggerDestroy;
         public float DestroyTime;
+        public bool IsContactDestroyed;
         [NonSerialized] public float CurrentTime;
     }
 }

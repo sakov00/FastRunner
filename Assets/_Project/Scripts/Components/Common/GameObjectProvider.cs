@@ -8,13 +8,11 @@ namespace Assets._Project.Scripts.Components.Common
         private void Awake()
         {
             value.GameObject = gameObject;
-            value.IsActive = true;
         }
     }
 
     public struct GameObjectComponent
     {
         public GameObject GameObject;
-        public bool IsActive;
     }
 }

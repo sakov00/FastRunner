@@ -1,4 +1,4 @@
-﻿using Assets._Project.Scripts.Components.Common;
+﻿using Assets._Project.Scripts.Components.OneFrameComponents;
 using Leopotam.Ecs;
 using System.Collections.Generic;
 
@@ -11,28 +11,19 @@ namespace Assets._Project.Scripts.UsefullScripts
         public void PopulatePool(EcsEntity entity)
         {
             objectPool.Push(entity);
-            ref var pooledComponent = ref entity.Get<PoolableComponent>();
-            pooledComponent.ObjectPool = this;
-
-            ref var gameObjectComponent = ref entity.Get<GameObjectComponent>();
-            gameObjectComponent.IsActive = false;
         }
 
         public EcsEntity GetObject()
         {
-            if (objectPool.TryPop(out var entity))
-            {
-                ref var gameObjectComponent = ref entity.Get<GameObjectComponent>();
-                gameObjectComponent.IsActive = true;
-            }
+            objectPool.TryPop(out var entity);
             return entity;
         }
 
         public void ReturnObject(EcsEntity entity)
         {
             objectPool.Push(entity);
-            ref var gameObjectComponent = ref entity.Get<GameObjectComponent>();
-            gameObjectComponent.IsActive = false;
+            ref var activateComponent = ref entity.Get<ActivateComponent>();
+            activateComponent.IsActivated = false;
         }
     }
 }

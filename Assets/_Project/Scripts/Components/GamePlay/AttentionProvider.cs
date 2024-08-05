@@ -1,6 +1,6 @@
-﻿using Leopotam.Ecs;
+﻿using Assets._Project.Scripts.Enums;
+using Leopotam.Ecs;
 using System;
-using UnityEngine;
 using Voody.UniLeo;
 
 namespace Assets._Project.Scripts.Components.GamePlay
@@ -10,7 +10,6 @@ namespace Assets._Project.Scripts.Components.GamePlay
     [Serializable]
     public struct AttentionComponent
     {
-        public GameObject ObjectMark;
-        public EcsEntity CreatedEntity;
+        public SpawnEffectType Effect;
     }
 }

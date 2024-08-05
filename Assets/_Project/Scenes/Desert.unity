@@ -34570,7 +34570,7 @@ PrefabInstance:
     - target: {fileID: 7435905238737614326, guid: 90cdb06860f310e4e85e5ef3e1d5667b,
         type: 3}
       propertyPath: value.DestroyTime
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7435905238737614326, guid: 90cdb06860f310e4e85e5ef3e1d5667b,
         type: 3}
@@ -37037,6 +37037,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cactus_Pref_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 5005322530858338170, guid: 97ddf31319993094eb13d7512b839434,
+        type: 3}
+      propertyPath: value.IsContactDestroyed
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -54344,6 +54349,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3407933756059250627, guid: e2f11d92f96fea443a42041c91877023,
+        type: 3}
+      propertyPath: value.Size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3454436829689742475, guid: e2f11d92f96fea443a42041c91877023,
+        type: 3}
+      propertyPath: value.Effect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3454436829689742475, guid: e2f11d92f96fea443a42041c91877023,
+        type: 3}
+      propertyPath: value.Object
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5773336286694321581, guid: e2f11d92f96fea443a42041c91877023,
         type: 3}
       propertyPath: m_Name

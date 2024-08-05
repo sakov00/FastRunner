@@ -1,7 +1,7 @@
 using UniRx;
 using UnityEngine;
 
-namespace Assets._Project.Scripts.Menu.Views
+namespace Assets._Project.Scripts.Menu.Models
 {
     public class PanelModel
     {

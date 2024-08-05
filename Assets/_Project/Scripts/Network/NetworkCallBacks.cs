@@ -11,7 +11,7 @@ namespace Assets._Project.Scripts.Network
     public class NetworkCallBacks : MonoBehaviourPunCallbacks
     {
         [Inject] List<ICustomInitializable> _initializableList;
-        [Inject] PlayerFactory playerFactory;
+        [Inject] PlayersFactory playerFactory;
 
         public void Awake()
         {

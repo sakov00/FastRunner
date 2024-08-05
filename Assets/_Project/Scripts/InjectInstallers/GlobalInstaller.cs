@@ -7,7 +7,9 @@ namespace Assets._Project.Scripts.InjectInstallers
     {
         public override void InstallBindings()
         {
-            Container.Bind<PlayerFactory>().AsSingle();
+            Container.Bind<PlayersFactory>().AsSingle();
+            Container.Bind<SpawnObjectsFactory>().AsSingle();
+            Container.Bind<EffectsFactory>().AsSingle();
         }
     }
 }

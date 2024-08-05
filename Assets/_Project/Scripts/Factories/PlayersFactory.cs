@@ -9,13 +9,13 @@ using Zenject;
 
 namespace Assets._Project.Scripts.Factories
 {
-    public class PlayerFactory
+    public class PlayersFactory
     {
         private DiContainer _container;
         private Object _playerPrefab;
         private Object _playerCameraPrefab;
 
-        public PlayerFactory(DiContainer container)
+        public PlayersFactory(DiContainer container)
         {
             _container = container;
             LoadResources();

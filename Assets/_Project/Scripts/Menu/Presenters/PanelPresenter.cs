@@ -1,3 +1,4 @@
+using Assets._Project.Scripts.Menu.Models;
 using Assets._Project.Scripts.Menu.Views;
 using UniRx;
 using UnityEngine;

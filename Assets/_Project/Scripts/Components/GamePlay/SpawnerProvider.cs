@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets._Project.Scripts.Enums;
+using System;
 using UnityEngine;
 using Voody.UniLeo;
 
@@ -9,10 +10,10 @@ namespace Assets._Project.Scripts.Components.GamePlay
     [Serializable]
     public struct SpawnerComponent
     {
-        public UnityEngine.Object EffectPrefab;
-        public UnityEngine.Object Prefab;
+        public SpawnEffectType Effect;
+        public SpawnObjectType Object;
 
-        public bool IsActive;
+        public bool IsActivated;
 
         public Transform PointSpawn;
         public float InnerRadiusSpawn;

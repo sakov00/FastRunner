@@ -1,14 +1,14 @@
-﻿using Assets._Project.Scripts.Components.OneFrameComponents;
+﻿using Assets._Project.Scripts.Components.Common;
+using Assets._Project.Scripts.Components.OneFrameComponents;
+using Assets._Project.Scripts.Factories;
 using Assets._Project.Scripts.Interfaces;
 using Assets._Project.Scripts.Systems.Common;
 using Assets._Project.Scripts.Systems.GamePlay;
 using Assets._Project.Scripts.Systems.GamePlay.Abilities;
 using Assets._Project.Scripts.Systems.GamePlay.InputDevice;
-using Assets._Project.Scripts.Systems.Network;
 using Assets._Project.Scripts.Systems.Rendering;
 using Assets._Project.Scripts.Systems.UI;
 using Leopotam.Ecs;
-using Photon.Pun;
 using UnityEngine;
 using Voody.UniLeo;
 using Zenject;
@@ -17,6 +17,9 @@ namespace Assets._Project.Scripts.Bootstrap
 {
     public class EcsGameStartUp : MonoBehaviour, ICustomInitializable
     {
+        [Inject] private SpawnObjectsFactory spawnObjectsFactory;
+        [Inject] private EffectsFactory effectsFactory;
+
         private EcsWorld world;
 
         private EcsSystems initUpdateSystems;
@@ -67,23 +70,30 @@ namespace Assets._Project.Scripts.Bootstrap
             fixedUpdateSystems.Add(new DoubleJumpAbilitySystem());
             fixedUpdateSystems.Add(new EnergyShieldAbilitySystem());
 
-            fixedUpdateSystems.Add(new HealthSystem());
-            fixedUpdateSystems.Add(new TriggerDamageDetectionSystem());
-            fixedUpdateSystems.Add(new CollisionDamageDetectionSystem());
+            fixedUpdateSystems.Add(new HealthSystem());//need optimization
+            fixedUpdateSystems.Add(new AttentionSystem());//need optimization
 
-            fixedUpdateSystems.Add(new ActivateObjectsSystem());
+            fixedUpdateSystems.Add(new TriggerDamageSystem());
+            fixedUpdateSystems.Add(new CollisionDamageDetectionSystem());
 
             fixedUpdateSystems.Add(new ActivateSpawner());
             fixedUpdateSystems.Add(new SpawnerSystem());
 
-            fixedUpdateSystems.Add(new GameOverSystem());
-
+            fixedUpdateSystems.Add(new TimerDestroySystem());//need optimization
+            fixedUpdateSystems.Add(new TriggerDestroySystem());
             fixedUpdateSystems.Add(new DestroyObjectSystem());
 
-            //fixedUpdateSystems.Add(new NetworkSyncSystem());
+            fixedUpdateSystems.Add(new ActivateObjectsSystem());
+
+            fixedUpdateSystems.Add(new GameOverSystem());
 
             fixedUpdateSystems.OneFrame<TriggerComponent>();
             fixedUpdateSystems.OneFrame<CollisionComponent>();
+            fixedUpdateSystems.OneFrame<ActivateComponent>();
+            fixedUpdateSystems.OneFrame<ActivateDestroyComponent>();
+
+            fixedUpdateSystems.Inject(spawnObjectsFactory); 
+            fixedUpdateSystems.Inject(effectsFactory);
 
             fixedUpdateSystems.Init();
         }
@@ -92,14 +102,13 @@ namespace Assets._Project.Scripts.Bootstrap
         {
             updateSystems = new EcsSystems(world);
 
-            updateSystems.Add(new GravitySystem());
+            updateSystems.Add(new GravitySystem());//need optimization
             updateSystems.Add(new UnitAnimationSystem());
             updateSystems.Add(new PlayerGroundMovementSystem());
             updateSystems.Add(new PlayerGroundRotationSystem());
             updateSystems.Add(new PlayerAirMovementSystem());
             updateSystems.Add(new PlayerAirRotationSystem());
 
-            updateSystems.Add(new AttentionSystem());
             updateSystems.Add(new EffectSystem());
             updateSystems.Add(new StoneEffectsSystem());
 

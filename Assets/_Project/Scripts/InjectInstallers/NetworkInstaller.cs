@@ -1,5 +1,4 @@
-﻿using Assets._Project.Scripts.Menu.Views;
-using Assets._Project.Scripts.Network;
+﻿using Assets._Project.Scripts.Network;
 using System;
 using System.Collections.Generic;
 using System.Linq;
