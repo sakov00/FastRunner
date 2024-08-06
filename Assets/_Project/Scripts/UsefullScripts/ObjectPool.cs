@@ -7,8 +7,9 @@ namespace Assets._Project.Scripts.UsefullScripts
     public class ObjectPool
     {
         private Stack<EcsEntity> objectPool = new Stack<EcsEntity>();
+        public int Size { get; set; }
 
-        public void PopulatePool(EcsEntity entity)
+        public void PushToPool(EcsEntity entity)
         {
             objectPool.Push(entity);
         }

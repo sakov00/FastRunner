@@ -71,7 +71,6 @@ namespace Assets._Project.Scripts.Bootstrap
             fixedUpdateSystems.Add(new EnergyShieldAbilitySystem());
 
             fixedUpdateSystems.Add(new HealthSystem());//need optimization
-            fixedUpdateSystems.Add(new AttentionSystem());//need optimization
 
             fixedUpdateSystems.Add(new TriggerDamageSystem());
             fixedUpdateSystems.Add(new CollisionDamageDetectionSystem());
@@ -83,10 +82,17 @@ namespace Assets._Project.Scripts.Bootstrap
             fixedUpdateSystems.Add(new TriggerDestroySystem());
             fixedUpdateSystems.Add(new DestroyObjectSystem());
 
+            fixedUpdateSystems.Add(new AttentionSystem());
+
             fixedUpdateSystems.Add(new ActivateObjectsSystem());
+
+            fixedUpdateSystems.Add(new EffectSystem());
 
             fixedUpdateSystems.Add(new GameOverSystem());
 
+            fixedUpdateSystems.Add(new GettingEnergySystem());
+
+            fixedUpdateSystems.OneFrame<LandingComponent>();
             fixedUpdateSystems.OneFrame<TriggerComponent>();
             fixedUpdateSystems.OneFrame<CollisionComponent>();
             fixedUpdateSystems.OneFrame<ActivateComponent>();
@@ -102,18 +108,14 @@ namespace Assets._Project.Scripts.Bootstrap
         {
             updateSystems = new EcsSystems(world);
 
-            updateSystems.Add(new GravitySystem());//need optimization
+            //updateSystems.Add(new GravitySystem());//need optimization
             updateSystems.Add(new UnitAnimationSystem());
             updateSystems.Add(new PlayerGroundMovementSystem());
             updateSystems.Add(new PlayerGroundRotationSystem());
             updateSystems.Add(new PlayerAirMovementSystem());
             updateSystems.Add(new PlayerAirRotationSystem());
 
-            updateSystems.Add(new EffectSystem());
-            updateSystems.Add(new StoneEffectsSystem());
-
-            updateSystems.Add(new GettingEnergySystem());
-            updateSystems.OneFrame<LandingComponent>();
+            //updateSystems.Add(new StoneEffectsSystem());//need optimization
 
             updateSystems.Init();
         }

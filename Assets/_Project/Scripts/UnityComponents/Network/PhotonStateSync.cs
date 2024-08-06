@@ -2,7 +2,7 @@
 
 namespace Assets._Project.Scripts.UnityComponents.Network
 {
-    internal class StateSync : MonoBehaviourPun
+    public class PhotonStateSync : MonoBehaviourPun
     {
         [PunRPC]
         void RPC_SetActive(bool isActive)

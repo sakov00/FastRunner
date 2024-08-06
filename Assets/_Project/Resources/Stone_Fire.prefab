@@ -5434,7 +5434,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value:
-    Effect: {fileID: 0}
+    Effect: 0
     DestroyTime: 5
     IsContactDestroyed: 0
 --- !u!114 &2180002172727062216

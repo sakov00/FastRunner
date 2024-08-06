@@ -16,8 +16,10 @@ GameObject:
   - component: {fileID: 3251283770077976453}
   - component: {fileID: -4653059042674204065}
   - component: {fileID: 1567826087569103370}
+  - component: {fileID: 2335712663048007214}
   - component: {fileID: 9065878847159350953}
   - component: {fileID: 7788751340322837250}
+  - component: {fileID: 8526178862336912086}
   m_Layer: 0
   m_Name: Spot
   m_TagString: Untagged
@@ -4945,7 +4947,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value:
-    Effect: {fileID: 0}
+    Effect: 0
     DestroyTime: 1
     IsContactDestroyed: 0
 --- !u!114 &1567826087569103370
@@ -4958,6 +4960,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0cbcd2ea976d8648b8e38fbaec33bb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2335712663048007214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2114138834335489626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a11e30c05ad7b848b4342ada60d66bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &9065878847159350953
@@ -4994,3 +5008,15 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &8526178862336912086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2114138834335489626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a13e84881ad315b46b2187b067f171d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -11,7 +11,9 @@ namespace Assets._Project.Scripts.Factories
 {
     public class EffectsFactory : IFactory
     {
-        private readonly ObjectPool objectPool = new ObjectPool();
+        private readonly ObjectPool portalObjectPool = new ObjectPool();
+        private readonly ObjectPool explosionCactusObjectPool = new ObjectPool();
+        private readonly ObjectPool spotObjectPool = new ObjectPool();
 
         private GameObject portal;
         private GameObject explosionCactus;
@@ -31,7 +33,9 @@ namespace Assets._Project.Scripts.Factories
 
         public void PopulateObjectPool()
         {
-            objectPool.PopulatePool(CreateSpawnEffect(portal));
+            portalObjectPool.PushToPool(CreateSpawnEffect(portal, portalObjectPool));
+            explosionCactusObjectPool.PushToPool(CreateSpawnEffect(explosionCactus, explosionCactusObjectPool));
+            spotObjectPool.PushToPool(CreateSpawnEffect(spot, spotObjectPool));
         }
 
         public EcsEntity GetSpawnEffect(SpawnEffectType spawnEffectType, Vector3 position = default)
@@ -39,17 +43,17 @@ namespace Assets._Project.Scripts.Factories
             switch (spawnEffectType)
             {
                 case SpawnEffectType.Portal:
-                    return GetSpawnEffect(portal, position);
+                    return GetSpawnEffect(portal, portalObjectPool, position);
                 case SpawnEffectType.ExplosionCactus:
-                    return GetSpawnEffect(explosionCactus,position);
+                    return GetSpawnEffect(explosionCactus, explosionCactusObjectPool, position);
                 case SpawnEffectType.Spot:
-                    return GetSpawnEffect(spot, position);
+                    return GetSpawnEffect(spot, spotObjectPool, position);
                 default:
                     return EcsEntity.Null;
             }
         }
 
-        private EcsEntity GetSpawnEffect(GameObject spawnObject, Vector3 position = default)
+        private EcsEntity GetSpawnEffect(GameObject spawnObject, ObjectPool objectPool, Vector3 position = default)
         {
             var entity = objectPool.GetObject();
             if (entity != EcsEntity.Null)
@@ -59,12 +63,16 @@ namespace Assets._Project.Scripts.Factories
             }
             else if (entity == EcsEntity.Null)
             {
-                CreateSpawnEffect(spawnObject, position);
+                entity = CreateSpawnEffect(spawnObject, objectPool, position);
             }
+
+            ref var activateComponent = ref entity.Get<ActivateComponent>();
+            activateComponent.IsActivated = true;
+
             return entity;
         }
 
-        private EcsEntity CreateSpawnEffect(GameObject spawnEffect, Vector3 position = default)
+        private EcsEntity CreateSpawnEffect(GameObject spawnEffect, ObjectPool objectPool, Vector3 position = default)
         {
             var newGameObject = PhotonNetwork.Instantiate(spawnEffect.name, position, spawnEffect.transform.rotation);
             var entity = GameObjectToEntity.AddEntity(newGameObject);

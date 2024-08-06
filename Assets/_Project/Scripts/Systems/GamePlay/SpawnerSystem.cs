@@ -39,12 +39,6 @@ public class SpawnerSystem : IEcsRunSystem
             var spawnObjectEntity = firedStoneFactory.GetSpawnObject(spawnerComponent.Object, new Vector3(x, y, z));
             var spawnEffectEntity = effectFactory.GetSpawnEffect(spawnerComponent.Effect, new Vector3(x, y, z));
 
-            ref var spawnObjectActivateComponent = ref spawnObjectEntity.Get<ActivateComponent>();
-            spawnObjectActivateComponent.IsActivated = true;
-
-            ref var spawnEffectActivateComponent = ref spawnEffectEntity.Get<ActivateComponent>();
-            spawnEffectActivateComponent.IsActivated = true;
-
             spawnerComponent.CurrentTime = 0;
         }
     }

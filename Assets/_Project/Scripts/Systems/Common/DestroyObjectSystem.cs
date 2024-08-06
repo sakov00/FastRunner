@@ -1,5 +1,8 @@
 ﻿using Assets._Project.Scripts.Components.Common;
 using Assets._Project.Scripts.Components.OneFrameComponents;
+using Assets._Project.Scripts.Components.Rendering;
+using Assets._Project.Scripts.Enums;
+using Assets._Project.Scripts.Factories;
 using Leopotam.Ecs;
 using UnityEngine;
 
@@ -9,6 +12,8 @@ namespace Assets._Project.Scripts.Systems.Common
     {
         private readonly EcsFilter<ActivateDestroyComponent, DestroyInfoComponent, GameObjectComponent, TransformComponent> filter = null;
 
+        private EffectsFactory effectFactory;
+
         public void Run()
         {
             foreach (var indexEntity in filter)
@@ -17,15 +22,9 @@ namespace Assets._Project.Scripts.Systems.Common
                 ref var gameObjectComponent = ref filter.Get3(indexEntity);
                 ref var transformComponent = ref filter.Get4(indexEntity);
 
-                if (destroyInfoComponent.Effect != null)
+                if (destroyInfoComponent.Effect != SpawnEffectType.None)
                 {
-                    var objectEffect = GameObject.Instantiate(destroyInfoComponent.Effect, transformComponent.transform.position, destroyInfoComponent.Effect.transform.rotation);
-
-                    var particleSystem = objectEffect.GetComponent<ParticleSystem>();
-                    if (particleSystem != null)
-                    {
-                        particleSystem.Play();
-                    }
+                    effectFactory.GetSpawnEffect(destroyInfoComponent.Effect, transformComponent.transform.position);
                 }
 
                 if (filter.GetEntity(indexEntity).Has<PoolableComponent>())

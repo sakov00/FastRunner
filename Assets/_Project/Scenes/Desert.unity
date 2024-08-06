@@ -34570,7 +34570,7 @@ PrefabInstance:
     - target: {fileID: 7435905238737614326, guid: 90cdb06860f310e4e85e5ef3e1d5667b,
         type: 3}
       propertyPath: value.DestroyTime
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7435905238737614326, guid: 90cdb06860f310e4e85e5ef3e1d5667b,
         type: 3}
@@ -34585,7 +34585,7 @@ PrefabInstance:
     - target: {fileID: 8115420743696877992, guid: 90cdb06860f310e4e85e5ef3e1d5667b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.54
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 8115420743696877992, guid: 90cdb06860f310e4e85e5ef3e1d5667b,
         type: 3}

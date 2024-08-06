@@ -5253,7 +5253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value:
-    Effect: {fileID: 0}
+    Effect: 0
     DestroyTime: 0
     IsContactDestroyed: 0
 --- !u!114 &2124735250836361674

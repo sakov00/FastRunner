@@ -1,5 +1,5 @@
-﻿using System;
-using UnityEngine;
+﻿using Assets._Project.Scripts.Enums;
+using System;
 using Voody.UniLeo;
 
 namespace Assets._Project.Scripts.Components.Common
@@ -9,7 +9,7 @@ namespace Assets._Project.Scripts.Components.Common
     [Serializable]
     public struct DestroyInfoComponent
     {
-        public GameObject Effect;
+        public SpawnEffectType Effect;
         public float DestroyTime;
         public bool IsContactDestroyed;
         [NonSerialized] public float CurrentTime;

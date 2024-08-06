@@ -16,8 +16,10 @@ GameObject:
   - component: {fileID: -4762790959110990976}
   - component: {fileID: 7446837164749169431}
   - component: {fileID: 6208629181880639235}
+  - component: {fileID: 2400704387724694965}
   - component: {fileID: 8369210226965523328}
   - component: {fileID: 5259557347609603620}
+  - component: {fileID: 3435529243114834346}
   m_Layer: 0
   m_Name: PortalStone
   m_TagString: Untagged
@@ -4945,7 +4947,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value:
-    Effect: {fileID: 0}
+    Effect: 0
     DestroyTime: 1
     IsContactDestroyed: 0
 --- !u!114 &6208629181880639235
@@ -4958,6 +4960,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0cbcd2ea976d8648b8e38fbaec33bb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2400704387724694965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765777131777492159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a11e30c05ad7b848b4342ada60d66bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &8369210226965523328
@@ -4994,3 +5008,15 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &3435529243114834346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765777131777492159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a13e84881ad315b46b2187b067f171d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

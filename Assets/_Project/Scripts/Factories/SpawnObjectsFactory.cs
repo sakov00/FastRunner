@@ -27,7 +27,7 @@ namespace Assets._Project.Scripts.Factories
 
         public void PopulateObjectPool()
         {
-            objectPool.PopulatePool(CreateSpawnObject(firedStone));
+            objectPool.PushToPool(CreateSpawnObject(firedStone));
         }
 
         public EcsEntity GetSpawnObject(SpawnObjectType spawnObjectType, Vector3 position = default) 
@@ -51,8 +51,12 @@ namespace Assets._Project.Scripts.Factories
             }
             else if (entity == EcsEntity.Null)
             {
-                CreateSpawnObject(spawnObject, position);
+                entity = CreateSpawnObject(spawnObject, position);
             }
+
+            ref var activateComponent = ref entity.Get<ActivateComponent>();
+            activateComponent.IsActivated = true;
+
             return entity;
         }
 

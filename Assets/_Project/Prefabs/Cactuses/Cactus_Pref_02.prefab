@@ -189,8 +189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value:
-    Effect: {fileID: 1839246063928096219, guid: cf0af969db33b1a40999db45cc42aafe,
-      type: 3}
+    Effect: 2
     DestroyTime: 0
     IsContactDestroyed: 1
 --- !u!114 &8042265378810872468

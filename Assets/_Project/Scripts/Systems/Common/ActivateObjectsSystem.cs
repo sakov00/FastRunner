@@ -19,6 +19,7 @@ namespace Assets._Project.Scripts.Systems.Common
                 ref var photonViewComponent = ref filter.Get3(entityIndex);
 
                 gameObjectComponent.GameObject.SetActive(activateComponent.IsActivated);
+                photonViewComponent.PhotonView.RPC("RPC_SetActive", RpcTarget.AllBuffered, activateComponent.IsActivated);
             }
         }
     }
