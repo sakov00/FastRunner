@@ -2,12 +2,11 @@
 using Leopotam.Ecs;
 using System.Collections.Generic;
 
-namespace Assets._Project.Scripts.UsefullScripts
+namespace Assets._Project.Scripts.UseFullScripts
 {
     public class ObjectPool
     {
         private Stack<EcsEntity> objectPool = new Stack<EcsEntity>();
-        public int Size { get; set; }
 
         public void PushToPool(EcsEntity entity)
         {

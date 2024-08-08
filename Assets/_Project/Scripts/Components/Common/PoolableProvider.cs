@@ -1,4 +1,4 @@
-﻿using Assets._Project.Scripts.UsefullScripts;
+﻿using Assets._Project.Scripts.UseFullScripts;
 using System;
 using Voody.UniLeo;
 

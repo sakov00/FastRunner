@@ -2,7 +2,7 @@
 using UnityEngine;
 using Voody.UniLeo;
 
-namespace Assets._Project.Scripts.UsefullScripts
+namespace Assets._Project.Scripts.UseFullScripts
 {
     public static class GameObjectToEntity
     {

@@ -13,6 +13,8 @@ namespace Assets._Project.Scripts.Network
         [Inject] List<ICustomInitializable> _initializableList;
         [Inject] PlayersFactory playerFactory;
 
+        [SerializeField] private Transform spawnPlayerPoint;
+
         public void Awake()
         {
             PhotonNetwork.ConnectUsingSettings();
@@ -43,7 +45,7 @@ namespace Assets._Project.Scripts.Network
         public override void OnJoinedRoom()
         {
             _initializableList.ForEach(x => x.Initialize());
-            playerFactory.CreatePlayer(Vector3.zero);
+            playerFactory.CreatePlayer(spawnPlayerPoint.position);
         }
     }
 }

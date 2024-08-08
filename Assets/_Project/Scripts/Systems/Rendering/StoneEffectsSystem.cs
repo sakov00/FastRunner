@@ -1,8 +1,6 @@
 ﻿using Assets._Project.Scripts.Components.GamePlay;
 using Assets._Project.Scripts.Components.Rendering;
 using Leopotam.Ecs;
-using System;
-using System.Linq;
 using UnityEngine;
 
 namespace Assets._Project.Scripts.Systems.Rendering
@@ -22,26 +20,22 @@ namespace Assets._Project.Scripts.Systems.Rendering
                 var groundExplosionEffect = effectComponent.Effects[1];
                 var dustAfterFallEffect = effectComponent.Effects[2];
 
-                foreach (var effect in effectComponent.Effects)
+                if (!gravityComponent.IsGrounded)
                 {
-                    if (!gravityComponent.IsGrounded)
-                    {
-                        flameEffect.SetActive(true);
-                        groundExplosionEffect.SetActive(false);
-                        dustAfterFallEffect.SetActive(false);
-                    }
-                    else
-                    {
-                        flameEffect.SetActive(false);
+                    flameEffect.SetActive(true);
+                    groundExplosionEffect.SetActive(false);
+                    dustAfterFallEffect.SetActive(false);
+                }
+                else
+                {
+                    flameEffect.SetActive(false);
+                    groundExplosionEffect.SetActive(true);
+                    dustAfterFallEffect.SetActive(true);
 
-                        groundExplosionEffect.SetActive(true);
-                        var meshRendererGroundExplosion = groundExplosionEffect.GetComponent<MeshRenderer>();
-                        var heightMaterial = meshRendererGroundExplosion.material.GetFloat("_Height");
-                        heightMaterial -= 1f * Time.deltaTime;
-                        meshRendererGroundExplosion.material.SetFloat("_Height", heightMaterial);
-
-                        dustAfterFallEffect.SetActive(true);
-                    }
+                    var meshRendererGroundExplosion = groundExplosionEffect.GetComponent<MeshRenderer>();
+                    var heightMaterial = meshRendererGroundExplosion.material.GetFloat("_Height");
+                    heightMaterial -= Time.fixedDeltaTime;
+                    meshRendererGroundExplosion.material.SetFloat("_Height", heightMaterial);                    
                 }
 
             }

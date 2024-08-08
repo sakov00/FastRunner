@@ -1,7 +1,7 @@
 ﻿using Assets._Project.Scripts.Components.Common;
 using Assets._Project.Scripts.Components.OneFrameComponents;
 using Assets._Project.Scripts.Enums;
-using Assets._Project.Scripts.UsefullScripts;
+using Assets._Project.Scripts.UseFullScripts;
 using Leopotam.Ecs;
 using Photon.Pun;
 using UnityEngine;
@@ -11,9 +11,9 @@ namespace Assets._Project.Scripts.Factories
 {
     public class EffectsFactory : IFactory
     {
-        private readonly ObjectPool portalObjectPool = new ObjectPool();
-        private readonly ObjectPool explosionCactusObjectPool = new ObjectPool();
-        private readonly ObjectPool spotObjectPool = new ObjectPool();
+        private readonly ObjectPool portalPool = new ObjectPool();
+        private readonly ObjectPool explosionCactusPool = new ObjectPool();
+        private readonly ObjectPool spotPool = new ObjectPool();
 
         private GameObject portal;
         private GameObject explosionCactus;
@@ -31,11 +31,20 @@ namespace Assets._Project.Scripts.Factories
             spot = (GameObject)Resources.Load("Spot");
         }
 
-        public void PopulateObjectPool()
+        public void PopulateObjectPool(SpawnEffectType spawnEffectType)
         {
-            portalObjectPool.PushToPool(CreateSpawnEffect(portal, portalObjectPool));
-            explosionCactusObjectPool.PushToPool(CreateSpawnEffect(explosionCactus, explosionCactusObjectPool));
-            spotObjectPool.PushToPool(CreateSpawnEffect(spot, spotObjectPool));
+            switch (spawnEffectType)
+            {
+                case SpawnEffectType.Portal:
+                    portalPool.PushToPool(CreateSpawnEffect(portal, portalPool));
+                    break;
+                case SpawnEffectType.ExplosionCactus:
+                    explosionCactusPool.PushToPool(CreateSpawnEffect(explosionCactus, explosionCactusPool));
+                    break;
+                case SpawnEffectType.Spot:
+                    spotPool.PushToPool(CreateSpawnEffect(spot, spotPool));
+                    break;
+            }
         }
 
         public EcsEntity GetSpawnEffect(SpawnEffectType spawnEffectType, Vector3 position = default)
@@ -43,11 +52,11 @@ namespace Assets._Project.Scripts.Factories
             switch (spawnEffectType)
             {
                 case SpawnEffectType.Portal:
-                    return GetSpawnEffect(portal, portalObjectPool, position);
+                    return GetSpawnEffect(portal, portalPool, position);
                 case SpawnEffectType.ExplosionCactus:
-                    return GetSpawnEffect(explosionCactus, explosionCactusObjectPool, position);
+                    return GetSpawnEffect(explosionCactus, explosionCactusPool, position);
                 case SpawnEffectType.Spot:
-                    return GetSpawnEffect(spot, spotObjectPool, position);
+                    return GetSpawnEffect(spot, spotPool, position);
                 default:
                     return EcsEntity.Null;
             }

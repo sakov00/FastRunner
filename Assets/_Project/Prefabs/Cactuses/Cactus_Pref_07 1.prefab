@@ -146,10 +146,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 7201848176514023329}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c3f1dab89e19fce40994709294bde0fb,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8491952251305703781}
   m_SourcePrefab: {fileID: 100100000, guid: c3f1dab89e19fce40994709294bde0fb, type: 3}
 --- !u!1 &4047172627561047638 stripped
 GameObject:
@@ -271,20 +267,3 @@ MonoBehaviour:
     Effect: 2
     DestroyTime: 0
     IsContactDestroyed: 1
---- !u!114 &8491952251305703781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4047172627561047638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b46cc68ea57c1b49966791f2f39d6ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  value:
-    healthPoints: 10
-    HealthPointsMin: 0
-    HealthPointsMax: 10
-    DamageCoolDown: 0

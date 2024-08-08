@@ -3,7 +3,6 @@ using Assets._Project.Scripts.Interfaces;
 using Leopotam.Ecs;
 using UnityEngine;
 using Voody.UniLeo;
-using Zenject;
 
 namespace Assets._Project.Scripts.UnityComponents.Handlers
 {
@@ -23,13 +22,24 @@ namespace Assets._Project.Scripts.UnityComponents.Handlers
                 return;
 
             var otherEntity = convertToEntity.TryGetEntity();
+            CreateCollisionEvent(otherEntity);
+        }
 
-            if (otherEntity != EcsEntity.Null)
-            {
-                ref var entityCollision = ref _entity.Get<CollisionComponent>();
-                entityCollision.SourceEntity = _entity;
-                entityCollision.TargetEntity = otherEntity.Value;
-            }
+        //void OnCollisionEnter(Collision collision)
+        //{
+        //    var convertToEntity = collision.gameObject.GetComponent<ConvertToEntity>();
+        //    if (convertToEntity == null)
+        //        return;
+
+        //    var otherEntity = convertToEntity.TryGetEntity();
+        //    CreateCollisionEvent(otherEntity);
+        //}
+
+        private void CreateCollisionEvent(EcsEntity? otherEntity)
+        {
+            ref var entityCollision = ref _entity.Get<CollisionComponent>();
+            entityCollision.SourceEntity = _entity;
+            entityCollision.TargetEntity = otherEntity.Value;
         }
     }
 }

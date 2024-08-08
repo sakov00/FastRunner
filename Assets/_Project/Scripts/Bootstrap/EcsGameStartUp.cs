@@ -63,14 +63,12 @@ namespace Assets._Project.Scripts.Bootstrap
 
             fixedUpdateSystems.ConvertScene();
 
-            fixedUpdateSystems.Add(new PopulateObjectPoolSystem());
-
             fixedUpdateSystems.Add(new ActivateAbilitySystem());
             fixedUpdateSystems.Add(new AccelerationAbilitySystem());
             fixedUpdateSystems.Add(new DoubleJumpAbilitySystem());
             fixedUpdateSystems.Add(new EnergyShieldAbilitySystem());
 
-            fixedUpdateSystems.Add(new HealthSystem());//need optimization
+            fixedUpdateSystems.Add(new HealthSystem());
 
             fixedUpdateSystems.Add(new TriggerDamageSystem());
             fixedUpdateSystems.Add(new CollisionDamageDetectionSystem());
@@ -78,7 +76,7 @@ namespace Assets._Project.Scripts.Bootstrap
             fixedUpdateSystems.Add(new ActivateSpawner());
             fixedUpdateSystems.Add(new SpawnerSystem());
 
-            fixedUpdateSystems.Add(new TimerDestroySystem());//need optimization
+            fixedUpdateSystems.Add(new TimerDestroySystem());
             fixedUpdateSystems.Add(new TriggerDestroySystem());
             fixedUpdateSystems.Add(new DestroyObjectSystem());
 
@@ -92,7 +90,7 @@ namespace Assets._Project.Scripts.Bootstrap
 
             fixedUpdateSystems.Add(new GettingEnergySystem());
 
-            fixedUpdateSystems.OneFrame<LandingComponent>();
+            fixedUpdateSystems.OneFrame<GroundedComponent>();
             fixedUpdateSystems.OneFrame<TriggerComponent>();
             fixedUpdateSystems.OneFrame<CollisionComponent>();
             fixedUpdateSystems.OneFrame<ActivateComponent>();
@@ -108,14 +106,14 @@ namespace Assets._Project.Scripts.Bootstrap
         {
             updateSystems = new EcsSystems(world);
 
-            //updateSystems.Add(new GravitySystem());//need optimization
+            updateSystems.Add(new GravitySystem());//need optimization
             updateSystems.Add(new UnitAnimationSystem());
             updateSystems.Add(new PlayerGroundMovementSystem());
             updateSystems.Add(new PlayerGroundRotationSystem());
             updateSystems.Add(new PlayerAirMovementSystem());
             updateSystems.Add(new PlayerAirRotationSystem());
 
-            //updateSystems.Add(new StoneEffectsSystem());//need optimization
+            updateSystems.Add(new StoneEffectsSystem());//need optimization
 
             updateSystems.Init();
         }

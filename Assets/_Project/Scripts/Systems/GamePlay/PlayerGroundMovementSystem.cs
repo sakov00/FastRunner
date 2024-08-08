@@ -30,7 +30,7 @@ namespace Assets._Project.Scripts.Systems.GamePlay
                     continue;
 
                 if (unitMovementComponent.Movement.y < unitMovementComponent.GravityValue)
-                    filter.GetEntity(i).Get<LandingComponent>();
+                    filter.GetEntity(i).Get<GroundedComponent>();
 
                 var speedValue = unitMovementComponent.RunningSpeed;
                 unitMovementComponent.Movement.z = gameObjectComponent.GameObject.transform.forward.z * speedValue;

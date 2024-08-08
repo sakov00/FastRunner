@@ -10,7 +10,7 @@ public class SpawnerSystem : IEcsRunSystem
 {
     private readonly EcsFilter<SpawnerComponent> filter = null;
 
-    private SpawnObjectsFactory firedStoneFactory;
+    private SpawnObjectsFactory spawnObjectsFactory;
     private EffectsFactory effectFactory;
 
     public void Run()
@@ -36,7 +36,7 @@ public class SpawnerSystem : IEcsRunSystem
             float z = spawnerComponent.PointSpawn.position.z + Mathf.Sin(angle) * distance;
             float y = spawnerComponent.PointSpawn.position.y + height;
 
-            var spawnObjectEntity = firedStoneFactory.GetSpawnObject(spawnerComponent.Object, new Vector3(x, y, z));
+            var spawnObjectEntity = spawnObjectsFactory.GetSpawnObject(spawnerComponent.Object, new Vector3(x, y, z));
             var spawnEffectEntity = effectFactory.GetSpawnEffect(spawnerComponent.Effect, new Vector3(x, y, z));
 
             spawnerComponent.CurrentTime = 0;

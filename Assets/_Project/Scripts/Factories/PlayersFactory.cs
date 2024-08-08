@@ -1,7 +1,7 @@
 ﻿using Assets._Project.Scripts.Components.GamePlay;
 using Assets._Project.Scripts.Components.UI;
 using Assets._Project.Scripts.Interfaces;
-using Assets._Project.Scripts.UsefullScripts;
+using Assets._Project.Scripts.UseFullScripts;
 using Leopotam.Ecs;
 using Photon.Pun;
 using UnityEngine;

@@ -9,7 +9,7 @@ namespace Assets._Project.Scripts.Systems.GamePlay.Abilities
 {
     public class GettingEnergySystem : IEcsRunSystem
     {
-        private readonly EcsFilter<AbilityComponent, CharacterControllerComponent, TransformComponent, LandingComponent> filter = null;
+        private readonly EcsFilter<AbilityComponent, CharacterControllerComponent, TransformComponent, GroundedComponent> filter = null;
 
         public void Run()
         {

@@ -5,16 +5,16 @@ using UnityEngine;
 
 namespace Assets._Project.Scripts.Systems.Common
 {
-    internal class TimerDestroySystem : IEcsRunSystem
+    public class TimerDestroySystem : IEcsRunSystem
     {
         private readonly EcsFilter<DestroyInfoComponent, GameObjectComponent> filter = null;
 
         public void Run()
         {
-            foreach (var indexEntity in filter)
+            for (int i = 0; i < filter.GetEntitiesCount(); i++)
             {
-                ref var destroyInfoComponent = ref filter.Get1(indexEntity);
-                ref var gameObjectComponent = ref filter.Get2(indexEntity);
+                ref var destroyInfoComponent = ref filter.Get1(i);
+                ref var gameObjectComponent = ref filter.Get2(i);
 
                 if (!gameObjectComponent.GameObject.activeInHierarchy)
                 {
@@ -28,7 +28,7 @@ namespace Assets._Project.Scripts.Systems.Common
 
                 if (destroyInfoComponent.CurrentTime > destroyInfoComponent.DestroyTime)
                 {
-                    filter.GetEntity(indexEntity).Get<ActivateDestroyComponent>();
+                    filter.GetEntity(i).Get<ActivateDestroyComponent>();
                 }
 
                 destroyInfoComponent.CurrentTime += Time.fixedDeltaTime;
